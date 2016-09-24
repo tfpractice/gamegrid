@@ -1,0 +1,18 @@
+{
+  "name": "gamegrid",
+  "version": "1.0.0",
+  "description": "grid",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "keywords": [
+    "game"
+  ],
+  "author": "theory f practice",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^2.5.2",
+    "jasmine-expect": "^3.0.1"
+  }
+}
