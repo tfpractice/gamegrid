@@ -7,7 +7,7 @@ const { colDiff, rowDiff, cAdj, rAdj, isEquivalent, x_isEquivalent } = cell;
 
 const defG = { cNum: 3, rNum: 3, cells: [] };
 
-let initCells = (cNum = 3, rNum = 3) => {
+let initCells = (cNum = 0, rNum = 0) => {
 	let cells = [];
 	for (var c = cNum - 1; c >= 0; c--) {
 		for (var r = rNum - 1; r >= 0; r--) {
