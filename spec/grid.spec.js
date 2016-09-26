@@ -23,10 +23,45 @@ describe('grid', function() {
 			expect(grid.cells(g66)).toBeArray();
 		});
 	});
+	describe('cellsByColumn', () => {
+		it('returns the cells of the grid', function() {
+			expect(grid.cellsByColumn(myGrid)(2)).toBeArray();
+		});
+	});
+	describe('cellsByRow', () => {
+		it('returns the cells of the grid', function() {
+			expect(grid.cellsByRow(myGrid)(2)).toBeArray();
+		});
+	});
 	describe('makeGrid', () => {
 		it('returns a graph of the cells ', function() {
-			console.log(myGrid.showGraph);
 			expect(grid.makeGrid(g66)).toBeObject();
+		});
+	});
+	describe('graph methods', () => {
+		describe('colInit', () => {
+			it('creates an edge between each cell in a column', function() {
+				grid.colInit(myGrid);
+				// console.log(myGrid.showGraph);
+			});
+		});
+		describe('rowInit', () => {
+			it('creates an edge between each cell in a column', function() {
+				grid.rowInit(myGrid);
+				// console.log(myGrid.showGraph);
+			});
+		});
+		describe('initEdges', () => {
+			it('creates an edge between each cell in a column', function() {
+				grid.initEdges(myGrid);
+				// console.log(myGrid.showGraph);
+			});
+		});
+		describe('initEdges', () => {
+			it('creates an edge between each cell in a column', function() {
+				grid.initEdges(myGrid);
+				// console.log(myGrid.showGraph);
+			});
 		});
 	});
 
