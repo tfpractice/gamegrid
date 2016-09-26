@@ -1,7 +1,10 @@
 const { Graph, utils: gUtil } = require('functional_graph_theory');
+const cell = require('./cell');
+
 const { nodes, addEdge } = Graph;
 const { spreadKeys, spreadValues, spreadEntries } = gUtil;
-const cell = require('./cell');
+const { colDiff, rowDiff, cAdj, rAdj, isEquivalent, x_isEquivalent } = cell;
+
 const defG = { cNum: 3, rNum: 3, cells: [] };
 
 let initCells = (cNum = 3, rNum = 3) => {
@@ -37,20 +40,14 @@ const colInit = ({ cNum, edges, cells }) => {
 	for (let c = cNum - 1; c >= 0; c--) {
 		cellsByColumn({ cells })(c)
 			.reduce((prev, next) => addEdge({ edges })(prev)(next) && next);
-
 	}
-
-	// console.log(Graph.showGraph({ edges }));
 };
 
 const rowInit = ({ rNum, edges, cells }) => {
 	for (let r = rNum - 1; r >= 0; r--) {
 		cellsByRow({ cells })(r)
 			.reduce((prev, next) => addEdge({ edges })(prev)(next) && next);
-
 	}
-
-	// console.log(Graph.showGraph({ edges }));
 };
 
 const initEdges = ({ rNum, cNum, edges, cells }) => {
@@ -58,26 +55,11 @@ const initEdges = ({ rNum, cNum, edges, cells }) => {
 	cells.forEach((prev) =>
 		adjNodes({ cells })(prev).map(addEdge(graph)(prev))
 	);
-	// rowInit(graph);
-	// colInit(graph);
-	console.log(Graph.showGraph(graph));
 };
 
-const colDiff = ({ column: c0 }) => ({ column: c1 }) => Math.abs(c0 - c1);
-const rowDiff = ({ row: r0 }) => ({ row: r1 }) => Math.abs(r0 - r1);
-const cAdj = (src) => (alt) => colDiff(src)(alt) < 1;
-const rAdj = (src) => (alt) => rowDiff(src)(alt) < 1;
 const adjNodes = ({ cells }) => (src) =>
-	cNabes = cells.filter(cAdj(src)).concat(cells.filter(rAdj(src)));
-// let rNabes=cells.filter((c) => rowDiff(src)(c) < 1);
+	cells.filter(x_isEquivalent(src)).filter(cAdj(src)).filter(rAdj(src));
 
-
-
-//
-//
-//
-//
-//
 exports.state = state;
 exports.makeGrid = makeGrid;
 exports.initCells = initCells;
