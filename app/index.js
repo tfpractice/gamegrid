@@ -1,1 +1,2 @@
-module.exports.cell = require('./cell');
+exports.cell = require('./cell');
+exports.grid = require('./grid');

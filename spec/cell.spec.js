@@ -1,4 +1,8 @@
 describe('cell', function() {
+	beforeAll(function() {
+		console.log('\n.........cell Spec.........');
+	});
+
 	beforeEach(function() {
 		c00 = cell(0, 0);
 		c01 = cell(0, 1);
@@ -20,6 +24,13 @@ describe('cell', function() {
 			it('retuns the column index', function() {
 				expect(cell.column(c00)).toBe(0);
 
+			});
+		});
+
+		describe('cellString(cell)', () => {
+			it('returns a string representation', function() {
+				console.log(cell.cellString(c00));
+				expect(cell.cellString(c00)).toBeString();
 			});
 		});
 
