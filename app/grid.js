@@ -1,12 +1,5 @@
-const { Graph, utils: gUtil } = require('functional_graph_theory');
 const GameGraph = require('./game_graph');
 const cell = require('./cell');
-const { addEdge } = Graph;
-const { colDiff, rowDiff, cAdj, rAdj } = cell;
-const { isNeighbor, isEquivalent, x_isEquivalent } = cell;
-const { spawn, cells, cellsByColumn, cellsByRow } = GameGraph;
-const { connectAdjacents, adjNodes, addNodes, removeNodes } = GameGraph;
-const { getComponents, countComponents } = GameGraph;
 
 const state = (cNum = 3, rNum = 3) => ({ cNum, rNum });
 
