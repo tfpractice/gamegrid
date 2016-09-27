@@ -35,12 +35,26 @@ const getComponents = (graph) =>
 	new Set(utils.spreadValues(components(graph)));
 const countComponents = (graph) => getComponents(graph).size;
 
-exports.spawn = spawn;
-exports.cells = cells;
-exports.cellsByColumn = cellsByColumn;
-exports.cellsByRow = cellsByRow;
-exports.connectAdjacents = connectAdjacents;
-exports.adjNodes = adjNodes;
-exports.addNodes = addNodes;
-exports.removeNodes = removeNodes;
-exports.getComponents = getComponents;
+module.exports = {
+	spawn,
+	cells,
+	cellsByColumn,
+	cellsByRow,
+	connectAdjacents,
+	adjNodes,
+	addNodes,
+	removeNodes,
+	getComponents,
+	countComponents,
+};
+
+// exports.spawn = spawn;
+// exports.cells = cells;
+// exports.cellsByColumn = cellsByColumn;
+// exports.cellsByRow = cellsByRow;
+// exports.connectAdjacents = connectAdjacents;
+// exports.adjNodes = adjNodes;
+// exports.addNodes = addNodes;
+// exports.removeNodes = removeNodes;
+// exports.getComponents = getComponents;
+// exports.countComponents = countComponents;

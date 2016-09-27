@@ -31,10 +31,9 @@ describe('GameGraph', function() {
 	});
 	describe('graph methods', () => {
 		describe('adjNodes', () => {
-			it('creates an edge between each cell in a column',
-				() => {
-					GameGraph.connectAdjacents(myGraph);
-				});
+			it('creates an edge between each cell in a column', () => {
+				GameGraph.connectAdjacents(myGraph);
+			});
 		});
 
 		describe('addNodes', () => {
@@ -48,9 +47,15 @@ describe('GameGraph', function() {
 				expect(edges(mySub).has(n30)).toBeFalse();
 			});
 		});
-		describe('getComponents', function() {
-			it('returns the length', function() {
+		describe('getComponents', () => {
+			it('returns the length', () => {
 				expect(GameGraph.getComponents(myGraph) instanceof Set).toBeTruthy();
+			});
+		});
+
+		describe('countComponents', () => {
+			it('returns the length of the components', () => {
+				expect(GameGraph.countComponents(myGraph)).toBe(1);
 			});
 		});
 	});
