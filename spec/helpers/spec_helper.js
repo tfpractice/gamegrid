@@ -1,17 +1,19 @@
 beforeAll(function() {
 	require('jasmine-expect');
 	GT = require('functional_graph_theory');
-	({ Graph, utils: gUtils, traversals } = GT);
+	({ Graph, utils, traversals } = GT);
 	app = require('../../index');
-	({ cell, grid, player, AsyncGrid } = app);
+	({ cell, grid, GameGraph, player, AsyncGrid } = app);
 });
 
 beforeEach(function() {
 	g66 = grid.state(6, 6);
 	myGrid = grid.makeGrid(g66);
+	allCells = GameGraph.cells(myGrid);
+	// console.log(allCells);
 	myAsync = AsyncGrid();
 
-	everyThird = grid.cells(myGrid).filter((cell, id) => id % 3 === 0);
+	everyThird = allCells.filter((cell, id) => id % 3 === 0);
 	mySub = grid.subGrid();
 	grid.addNodes(mySub)(...everyThird);
 	// console.log(everyThird.length);
