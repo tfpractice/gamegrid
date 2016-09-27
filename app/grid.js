@@ -3,7 +3,8 @@ const cell = require('./cell');
 
 const { nodes, addEdge } = Graph;
 const { spreadKeys, spreadValues, spreadEntries } = gUtil;
-const { colDiff, rowDiff, cAdj, rAdj, isEquivalent, x_isEquivalent } = cell;
+const { colDiff, rowDiff, cAdj, rAdj } = cell;
+const { isNeighbor, isEquivalent, x_isEquivalent } = cell;
 
 const defG = { cNum: 3, rNum: 3, cells: [] };
 
@@ -18,7 +19,7 @@ let initCells = (cNum = 0, rNum = 0) => {
 	return cells;
 };
 
-const cells = ({ cells: c, edges }) => [...(nodes({ edges }))] || c;
+const cells = ({ edges }) => [...(nodes({ edges }))];
 const getCells = cells;
 
 const state = (cNum = 3, rNum = 3) => ({
@@ -27,38 +28,49 @@ const state = (cNum = 3, rNum = 3) => ({
 	cells: initCells(cNum, rNum),
 });
 
-const makeGrid = ({ cNum, rNum, cells }) =>
-	Object.assign(Graph(...cells), { cNum, rNum, cells });
+const makeGrid = ({ cNum, rNum }) =>
+	// Object.assign(Graph(...cells), { cNum, rNum, cells });
+	Object.assign(Graph(...(initCells(cNum, rNum))), { cNum, rNum });
 
-const cellsByColumn = ({ cells }) => (cID = 0) =>
-	cells.filter(({ column }) => column === cID);
+const cellsByColumn = ({ edges }) => (cID = 0) =>
+	cells({ edges }).filter(({ column }) => column === cID);
 
-const cellsByRow = ({ cells }) => (rID = 0) =>
-	cells.filter(({ row }) => row === rID);
+const cellsByRow = ({ edges }) => (rID = 0) =>
+	cells({ edges }).filter(({ row }) => row === rID);
 
-const colInit = ({ cNum, edges, cells }) => {
+const colInit = ({ cNum, edges }) => {
 	for (let c = cNum - 1; c >= 0; c--) {
-		cellsByColumn({ cells })(c)
+		cellsByColumn({ edges })(c)
 			.reduce((prev, next) => addEdge({ edges })(prev)(next) && next);
 	}
 };
 
-const rowInit = ({ rNum, edges, cells }) => {
+const rowInit = ({ rNum, edges }) => {
 	for (let r = rNum - 1; r >= 0; r--) {
-		cellsByRow({ cells })(r)
+		cellsByRow({ edges })(r)
 			.reduce((prev, next) => addEdge({ edges })(prev)(next) && next);
 	}
 };
 
-const initEdges = ({ rNum, cNum, edges, cells }) => {
-	let graph = { rNum, cNum, edges, cells };
-	cells.forEach((prev) =>
-		adjNodes({ cells })(prev).map(addEdge(graph)(prev))
+const initEdges = (grid) => {
+	cells(grid).forEach((prev) =>
+		adjNodes(grid)(prev).map(n => addEdge(grid)(prev)(n))
 	);
 };
 
-const adjNodes = ({ cells }) => (src) =>
-	cells.filter(x_isEquivalent(src)).filter(cAdj(src)).filter(rAdj(src));
+const subGrid = (...elements) => Graph(...elements);
+const addNodes = (grid) => (...nodes) => {
+	Graph.addNodes(grid)(...nodes);
+	initEdges(grid);
+};
+
+const removeNodes = (grid) => (...nodes) => {
+	nodes.forEach(n => Graph.removeNode(grid)(n));
+	initEdges(grid);
+};
+
+const adjNodes = (grid) => (src) =>
+	cells(grid).filter(isNeighbor(src));
 
 exports.state = state;
 exports.makeGrid = makeGrid;
@@ -70,3 +82,6 @@ exports.colInit = colInit;
 exports.rowInit = rowInit;
 exports.initEdges = initEdges;
 exports.adjNodes = adjNodes;
+exports.subGrid = subGrid;
+exports.addNodes = addNodes;
+exports.removeNodes = removeNodes;
