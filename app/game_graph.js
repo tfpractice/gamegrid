@@ -1,10 +1,11 @@
 const { Graph, utils, traversals } = require('functional_graph_theory');
 const { sameColumn, sameRow, isNeighbor } = require('./cell');
 const { nodes, addEdge } = Graph;
+const { spreadValues } = utils;
 const { components } = traversals;
 
 const spawn = Graph;
-const cells = ({ edges }) => [...(nodes({ edges }))];
+const cells = (graph) => spreadValues(nodes(graph));
 
 const cellsByColumn = (graph) => (column = 0) =>
 	cells(graph).filter(sameColumn({ column }));
@@ -47,14 +48,3 @@ module.exports = {
 	getComponents,
 	countComponents,
 };
-
-// exports.spawn = spawn;
-// exports.cells = cells;
-// exports.cellsByColumn = cellsByColumn;
-// exports.cellsByRow = cellsByRow;
-// exports.connectAdjacents = connectAdjacents;
-// exports.adjNodes = adjNodes;
-// exports.addNodes = addNodes;
-// exports.removeNodes = removeNodes;
-// exports.getComponents = getComponents;
-// exports.countComponents = countComponents;

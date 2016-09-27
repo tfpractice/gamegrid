@@ -38,13 +38,13 @@ describe('GameGraph', function() {
 
 		describe('addNodes', () => {
 			it('adds nodes to a grid and connects them via adjNodes function', () => {
-				expect(edges(mySub).has(n30)).toBeTrue();
+				expect(Graph.edges(myGraph).has(n30)).toBeTrue();
 			});
 		});
 		describe('removeNodes', () => {
 			it('removes nodes from a grid and resets edges them via initEdges', () => {
-				grid.removeNodes(mySub)(n30, n32);
-				expect(edges(mySub).has(n30)).toBeFalse();
+				GameGraph.removeNodes(myGraph)(n30, n32);
+				expect(Graph.edges(myGraph).has(n30)).toBeFalse();
 			});
 		});
 		describe('getComponents', () => {
