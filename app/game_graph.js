@@ -33,6 +33,7 @@ const connectAdjacents = (graph) => {
 
 const getComponents = (graph) =>
 	new Set(utils.spreadValues(components(graph)));
+const countComponents = (graph) => getComponents(graph).size;
 
 exports.spawn = spawn;
 exports.cells = cells;
