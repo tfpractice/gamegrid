@@ -1,11 +1,11 @@
 const cell = (column = null, row = null) => ({
-    column,
-    row,
-    toString: () =>
-        `{ cell::${column}_${row} }`,
+	column,
+	row,
+	toString: () =>
+		`{ cell::${column}_${row} }`,
 });
-const column = ({ column, row }) => column;
-const row = ({ column, row }) => row;
+const column = ({ column }) => column;
+const row = ({ row }) => row;
 const cellString = ({ column, row }) => `{ cell::${column}_${row} }`;
 
 const colDiff = ({ column: c0 }) => ({ column: c1 }) => Math.abs(c0 - c1);
@@ -14,14 +14,13 @@ const cAdj = (src) => (alt) => colDiff(src)(alt) < 2;
 const rAdj = (src) => (alt) => rowDiff(src)(alt) < 2;
 
 const isNeighbor = (src) => (alt) =>
-    x_isEquivalent(src)(alt) && cAdj(src)(alt) && rAdj(src)(alt);
+	x_isEquivalent(src)(alt) && cAdj(src)(alt) && rAdj(src)(alt);
 
 const sameColumn = (src) => (alt) => colDiff(src)(alt) === 0;
 const sameRow = (src) => (alt) => rowDiff(src)(alt) === 0;
 
-const isEquivalent = ({ column: c, row: r }) =>
-    ({ column: altC, row: altR }) =>
-    c === altC && r === altR;
+const isEquivalent = (c0) => (c1) =>
+	colDiff(c0)(c1) === rowDiff(c0)(c1) && rowDiff(c0)(c1) === 0;
 const x_isEquivalent = (src) => (alt) => !isEquivalent(src)(alt);
 
 module.exports = cell;
