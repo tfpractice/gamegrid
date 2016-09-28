@@ -10,22 +10,26 @@ describe('game', function() {
 		jane = P('Jane');
 		myGame = Game.spawn(jane, dick, myGrid);
 	});
+
 	describe('players', function() {
 		it('returns the players attribute of the', function() {
 			expect(Game.players(myGame)).toBeArray();
 		});
 	});
+
 	describe('activePlayer', function() {
 		it('returns the games active ', function() {
 			expect(Game.activePlayer(myGame)).toBe(jane);
 		});
 	});
+
 	describe('togglePlayers', function() {
-		// 	it('returns the games active ', function() {
-		// 		Game.togglePlayers(myGame);
-		// 		console.log(Game.players(myGame));
-		// 		expect(Game.togglePlayers(myGame)).toBeArray();
-		// });
+		it('returns the games active ', function() {
+			// console.log(Game.players(myGame));
+			Game.togglePlayers(myGame);
+			// console.log(Game.players(myGame));
+			// expect(Game.togglePlayers(myGame)).toBeArray();
+		});
 	});
 	//
 	// describe('when given a name string', () => {

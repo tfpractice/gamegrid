@@ -22,6 +22,7 @@ const removeNodes = (graph) => (...nodes) => {
 	nodes.forEach(n => Graph.removeNode(graph)(n));
 	connectAdjacents(graph);
 };
+// const selectCell(column=0, row=0)
 
 const adjNodes = (graph) => (src) =>
 	cells(graph).filter(isNeighbor(src));

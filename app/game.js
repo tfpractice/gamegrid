@@ -5,18 +5,16 @@ const spawn = (active, passive, grid) => ({ players: [active, passive], grid });
 const players = ({ players }) => players;
 const activePlayer = ({ players: [active, passive] }) => active;
 const passivePlayer = ({ players: [active, passive] }) => passive;
-const togglePlayers = ({ players: [active, passive] }) => {
-	// console.log(players[0]);
-	// console.log(players[1]);
-	// console.log(active);
-	// let []
-	// console.log(players);
+const togglePlayers = ({ players }) => {
+	let [passive, active] = players;
+	[players[1], players[0]] = [passive, active];
 };
+
 module.exports = {
 	spawn,
 	players,
 	activePlayer,
 	passivePlayer,
-	togglePlayers
+	togglePlayers,
 };
 // module.exports = game;
