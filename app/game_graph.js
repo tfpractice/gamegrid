@@ -22,7 +22,9 @@ const removeNodes = (graph) => (...nodes) => {
 	nodes.forEach(n => Graph.removeNode(graph)(n));
 	connectAdjacents(graph);
 };
-// const selectCell(column=0, row=0)
+
+const cellByPosition = (graph) => (column = 0, row = 0) =>
+	cells(graph).find(cell.isEquivalent({ column, row }));
 
 const adjNodes = (graph) => (src) =>
 	cells(graph).filter(isNeighbor(src));
@@ -41,6 +43,7 @@ module.exports = {
 	spawn,
 	cells,
 	cellsByColumn,
+	cellByPosition,
 	cellsByRow,
 	connectAdjacents,
 	adjNodes,

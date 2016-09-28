@@ -24,6 +24,11 @@ describe('GameGraph', function() {
 			expect(GameGraph.cellsByRow(myGraph)(2)).toBeArray();
 		});
 	});
+	describe('cellByPosition', () => {
+		it('retrives a cell with the specified row and column', function() {
+			expect(GameGraph.cellByPosition(myGraph)(3, 0)).toBeObject();
+		});
+	});
 	describe('spawn', () => {
 		it('returns a graph of the cells ', () => {
 			expect(GameGraph.spawn()).toBeObject();
