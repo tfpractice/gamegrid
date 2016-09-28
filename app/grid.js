@@ -17,6 +17,8 @@ const initCells = (cNum = 0, rNum = 0) => {
 const makeGrid = ({ cNum = 0, rNum = 0 }) =>
 	Object.assign(GameGraph.spawn(...(initCells(cNum, rNum))), { cNum, rNum });
 
-exports.state = state;
-exports.makeGrid = makeGrid;
-exports.initCells = initCells;
+module.exports = {
+	state,
+	makeGrid,
+	initCells,
+};
