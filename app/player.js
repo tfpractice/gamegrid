@@ -16,18 +16,11 @@ const player = (name) => ({
 
 const getName = ({ name }) => name;
 const getGraph = ({ graph }) => graph;
-const claimCells = ({ graph }) =>
-	GameGraph.addNodes(graph);
-// Promise.resolve(addNodes(graph)(...cells))
-// 	// .then(() => Promise.resolve(graph))
-// 	.then(() => connectAdjacents(graph))
-// 	// .then((g) => connectAdjacents(g) && g)
-// 	.then(() => console.log(('' + Graph.edges(graph).has(cells[0]))));
-// // .then(() => console.log((cells.edges)));
-// addNodes(graph)(...cells);
-// connectAdjacents(graph);
+const score = ({ score }) => score;
+const claimCells = ({ graph }) => GameGraph.addNodes(graph);
 
 module.exports = player;
 module.exports.getName = getName;
 module.exports.getGraph = getGraph;
+module.exports.score = score;
 module.exports.claimCells = claimCells;
