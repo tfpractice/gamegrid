@@ -46,7 +46,6 @@ describe('GameGraph', function() {
 				GameGraph.connectAdjacents(myGraph);
 			});
 		});
-
 		describe('addNodes', () => {
 			it('adds nodes to a grid and connects them via adjNodes function', () => {
 				expect(Graph.edges(myGraph).has(n30)).toBeTrue();
@@ -62,7 +61,6 @@ describe('GameGraph', function() {
 			it('transfers nodes from one graph to another', function() {
 				let e3 = evens[3];
 				GameGraph.transferCells(eGraph)(oGraph)(e3);
-
 				expect(Graph.contains(oGraph)(e3)).toBeTrue();
 				expect(Graph.contains(eGraph)(e3)).toBeFalse();
 			});
@@ -72,7 +70,6 @@ describe('GameGraph', function() {
 				expect(GameGraph.getComponents(myGraph) instanceof Set).toBeTruthy();
 			});
 		});
-
 		describe('countComponents', () => {
 			it('returns the length of the components', () => {
 				expect(GameGraph.countComponents(myGraph)).toBe(1);

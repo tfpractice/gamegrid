@@ -12,62 +12,46 @@ describe('game', function() {
 	});
 
 	describe('grid', () => {
-		it('returns the grid of the game', function() {
+		it('returns the grid of the game', () => {
 			expect(Game.grid(myGame)).toBeObject();
 		});
 	});
-	describe('players', function() {
-		it('returns the players attribute of the', function() {
+	describe('players', () => {
+		it('returns the players attribute of the', () => {
 			expect(Game.players(myGame)).toBeArray();
 		});
 	});
 
-	describe('active', function() {
-		it('returns the games active ', function() {
+	describe('active', () => {
+		it('returns the games active ', () => {
 			expect(Game.active(myGame)).toBe(jane);
 		});
 	});
 
-	describe('togglePlayers', function() {
-		it('switches the games active player ', function() {
+	describe('togglePlayers', () => {
+		it('switches the games active player ', () => {
 			Game.togglePlayers(myGame);
 			expect(Game.active(myGame)).toBe(dick);
 		});
 	});
 
-	describe('selectNode', () => {
-		it('returns a node at the specified position', function() {
-			let n30 = Game.selectNode(myGame)(3, 0);
-
-			(Game.setCurrent(myGame)(n30));
-
-			expect(Game.selectNode(myGame)(3, 0)).toBeObject();
+	describe('selectCell', () => {
+		it('returns a node at the specified position', () => {
+			Game.selectCell(myGame)(3, 0);
+			expect(Game.current(myGame)).toBeObject();
 		});
 	});
-	describe('assignNodes', () => {
-		it('transfers nodes from the grid to the active player', function() {
-			let n30 = Game.selectNode(myGame)(3, 0);
-			Game.assignNodes(myGame)(n30);
-			expect(myGame.grid.contains(n30)).toBeFalse();
-		});
 
-		it('switches the current player', function() {
-			let oldPlayer = Game.active(myGame);
-			let n30 = Game.selectNode(myGame)(3, 0);
-			Game.assignNodes(myGame)(n30);
-			expect(Game.active(myGame)).not.toBe(oldPlayer);
-		});
-	});
 	describe('completeTurn', () => {
-		it('transfers nodes from the grid to the active player', function() {
-			let n30 = Game.selectNode(myGame)(3, 0);
+		it('transfers nodes from the grid to the active player', () => {
+			let n30 = Game.selectCell(myGame)(3, 0);
 			Game.completeTurn(myGame);
 			expect(myGame.grid.contains(n30)).toBeFalse();
 		});
 
-		it('switches the current player', function() {
+		it('switches the current player', () => {
 			let oldPlayer = Game.active(myGame);
-			let n40 = Game.selectNode(myGame)(4, 0);
+			let n40 = Game.selectCell(myGame)(4, 0);
 			Game.completeTurn(myGame);
 			expect(Game.active(myGame)).not.toBe(oldPlayer);
 		});
