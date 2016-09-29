@@ -62,6 +62,8 @@ describe('GameGraph', function() {
 			it('transfers nodes from one graph to another', function() {
 				let e3 = evens[3];
 				GameGraph.transferCells(eGraph)(oGraph)(e3);
+
+				expect(Graph.contains(oGraph)(e3)).toBeTrue();
 				expect(Graph.contains(eGraph)(e3)).toBeFalse();
 			});
 		});
