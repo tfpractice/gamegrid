@@ -49,7 +49,6 @@ describe('player', function() {
 		it('adds a cell to the Ps graph', () => {
 			n30 = allCells.find(({ column, row }) =>
 				column === 3 && row === 0);
-
 			P.claimCells(john)(n30);
 			expect(G.edges(P.getGraph(john)).has(n30)).toBeTrue();
 		});
