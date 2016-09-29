@@ -36,12 +36,12 @@ const connectAdjacents = (graph) => {
 };
 
 const transferCells = (src) => (dest) => (...nodes) => {
-	removeNodes(src)(...nodes);
-	addNodes(dest)(...nodes);
+	Promise.resolve(removeNodes(src)(...nodes))
+		.then(() => addNodes(dest)(...nodes));
 };
 
 const getComponents = (graph) =>
-	new Set(utils.spreadValues(components(graph)));
+	new Set(spreadValues(components(graph)));
 
 const countComponents = (graph) => getComponents(graph).size;
 

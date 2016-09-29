@@ -22,12 +22,12 @@ describe('player', function() {
 			expect(P.getName(john)).toBe('john');
 		});
 	});
-	//
-	// describe('getGraph', () => {
-	// it('returns the Ps graph object', function() {
-	// expect(P.getGraph(john)).toBeObject();
-	// });
-	// });
+
+	describe('getGraph', () => {
+		it('returns the Ps graph object', function() {
+			expect(P.getGraph(john)).toBeObject();
+		});
+	});
 	// describe('getComponents', () => {
 	// it('retrives the components of the players graph', function() {
 	// console.log(P.getComponents(john));
