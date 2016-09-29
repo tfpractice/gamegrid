@@ -34,8 +34,10 @@ const connectAdjacents = (graph) => {
 	);
 };
 
-const transferCells = (src) => (dest) => (...nodes) =>
-	removeNodes(src)(...nodes) && addNodes(dest)(...nodes);
+const transferCells = (src) => (dest) => (...nodes) => {
+	removeNodes(src)(...nodes);
+	addNodes(dest)(...nodes);
+};
 
 const getComponents = (graph) =>
 	new Set(spreadValues(components(graph)));
