@@ -4,7 +4,7 @@ describe('player', function() {
 		P = player;
 		G = Graph;
 	});
-	//
+
 	beforeEach(function() {
 		john = player('john');
 		jCells = allCells.filter((c, id) => id > 17);
@@ -33,7 +33,7 @@ describe('player', function() {
 			expect(P.score(john)).toBe(1);
 		});
 	});
-	describe('incrementScore', () => {
+	describe('decrementScore', () => {
 		it('increases the score by one', () => {
 			P.decrementScore(john);
 			expect(P.score(john)).toBe(-1);
