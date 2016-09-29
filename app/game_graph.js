@@ -26,8 +26,7 @@ const removeNodes = (graph) => (...nodes) => {
 	connectAdjacents(graph);
 };
 
-const adjNodes = (graph) => (src) =>
-	cells(graph).filter(isNeighbor(src));
+const adjNodes = (graph) => (src) => cells(graph).filter(isNeighbor(src));
 
 const connectAdjacents = (graph) => {
 	cells(graph).forEach((prev) =>
@@ -35,10 +34,8 @@ const connectAdjacents = (graph) => {
 	);
 };
 
-const transferCells = (src) => (dest) => (...nodes) => {
-	removeNodes(src)(...nodes);
-	addNodes(dest)(...nodes);
-};
+const transferCells = (src) => (dest) => (...nodes) =>
+	removeNodes(src)(...nodes) && addNodes(dest)(...nodes);
 
 const getComponents = (graph) =>
 	new Set(spreadValues(components(graph)));
