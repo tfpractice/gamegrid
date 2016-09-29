@@ -13,6 +13,9 @@ const cellsByColumn = (graph) => (column = 0) =>
 const cellsByRow = (graph) => (row = 0) =>
 	cells(graph).filter(sameRow({ row }));
 
+const cellByPosition = (graph) => (column = 0, row = 0) =>
+	cells(graph).find(cell.isEquivalent({ column, row }));
+
 const addNodes = (graph) => (...nodes) => {
 	Graph.addNodes(graph)(...nodes);
 	connectAdjacents(graph);
@@ -23,9 +26,6 @@ const removeNodes = (graph) => (...nodes) => {
 	connectAdjacents(graph);
 };
 
-const cellByPosition = (graph) => (column = 0, row = 0) =>
-	cells(graph).find(cell.isEquivalent({ column, row }));
-
 const adjNodes = (graph) => (src) =>
 	cells(graph).filter(isNeighbor(src));
 
@@ -35,8 +35,14 @@ const connectAdjacents = (graph) => {
 	);
 };
 
+const transferCells = (src) => (dest) => (...nodes) => {
+	removeNodes(src)(...nodes);
+	addNodes(dest)(...nodes);
+};
+
 const getComponents = (graph) =>
 	new Set(utils.spreadValues(components(graph)));
+
 const countComponents = (graph) => getComponents(graph).size;
 
 module.exports = {
@@ -47,6 +53,7 @@ module.exports = {
 	cellsByRow,
 	connectAdjacents,
 	adjNodes,
+	transferCells,
 	addNodes,
 	removeNodes,
 	getComponents,

@@ -5,8 +5,14 @@ describe('GameGraph', function() {
 
 	beforeEach(function() {
 		myGraph = GameGraph.spawn();
+		eGraph = GameGraph.spawn();
+		oGraph = GameGraph.spawn();
+		evens = allCells.filter((c, id) => id % 2 === 0);
+		odds = allCells.filter((c, id) => id % 2 !== 0);
 		myCells = allCells.filter((c, id) => id < 18);
 		GameGraph.addNodes(myGraph)(...myCells);
+		GameGraph.addNodes(eGraph)(...evens);
+		GameGraph.addNodes(oGraph)(...odds);
 	});
 
 	describe('cells', () => {
@@ -50,6 +56,13 @@ describe('GameGraph', function() {
 			it('removes nodes from a grid and resets edges them via initEdges', () => {
 				GameGraph.removeNodes(myGraph)(n30, n32);
 				expect(Graph.edges(myGraph).has(n30)).toBeFalse();
+			});
+		});
+		describe('transferCells', () => {
+			it('transfers nodes from one graph to another', function() {
+				let e3 = evens[3];
+				GameGraph.transferCells(eGraph)(oGraph)(e3);
+				expect(Graph.contains(eGraph)(e3)).toBeFalse();
 			});
 		});
 		describe('getComponents', () => {

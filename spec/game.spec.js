@@ -11,54 +11,65 @@ describe('game', function() {
 		myGame = Game.spawn(jane, dick, myGrid);
 	});
 
+	describe('grid', () => {
+		it('returns the grid of the game', function() {
+			expect(Game.grid(myGame)).toBeObject();
+		});
+	});
 	describe('players', function() {
 		it('returns the players attribute of the', function() {
 			expect(Game.players(myGame)).toBeArray();
 		});
 	});
 
-	describe('activePlayer', function() {
+	describe('active', function() {
 		it('returns the games active ', function() {
-			expect(Game.activePlayer(myGame)).toBe(jane);
+			expect(Game.active(myGame)).toBe(jane);
 		});
 	});
 
 	describe('togglePlayers', function() {
-		it('returns the games active ', function() {
-			// console.log(Game.players(myGame));
+		it('switches the games active player ', function() {
 			Game.togglePlayers(myGame);
-			// console.log(Game.players(myGame));
-			// expect(Game.togglePlayers(myGame)).toBeArray();
+			expect(Game.active(myGame)).toBe(dick);
 		});
 	});
-	//
-	// describe('when given a name string', () => {
-	// it('retuns an object with that name', function() {
-	// expect(P('john')).toBeObject();
-	// });
-	// });
-	// describe('name(P)', function() {
-	// it('retrieves the name attribute', function() {
-	// expect(P.getName(john)).toBe('john');
-	// });
-	// });
-	//
-	// describe('getGraph', () => {
-	// it('returns the Ps graph object', function() {
-	// expect(P.getGraph(john)).toBeObject();
-	// });
-	// });
-	// describe('getComponents', () => {
-	// it('retrives the components of the players graph', function() {
-	// console.log(P.getComponents(john));
-	// console.log(G.edges(P.getGraph(john)));
-	// });
-	// });
-	//
-	// describe('claimCell', () => {
-	// it('adds a cell to the Ps graph', function() {
-	// P.claimCells(john)(n30);
-	// expect(G.edges(P.getGraph(john)).has(n30)).toBeTrue();
-	// });
-	// });
+
+	describe('selectNode', () => {
+		it('returns a node at the specified position', function() {
+			let n30 = Game.selectNode(myGame)(3, 0);
+
+			(Game.setCurrent(myGame)(n30));
+
+			expect(Game.selectNode(myGame)(3, 0)).toBeObject();
+		});
+	});
+	describe('assignNodes', () => {
+		it('transfers nodes from the grid to the active player', function() {
+			let n30 = Game.selectNode(myGame)(3, 0);
+			Game.assignNodes(myGame)(n30);
+			expect(myGame.grid.contains(n30)).toBeFalse();
+		});
+
+		it('switches the current player', function() {
+			let oldPlayer = Game.active(myGame);
+			let n30 = Game.selectNode(myGame)(3, 0);
+			Game.assignNodes(myGame)(n30);
+			expect(Game.active(myGame)).not.toBe(oldPlayer);
+		});
+	});
+	describe('completeTurn', () => {
+		it('transfers nodes from the grid to the active player', function() {
+			let n30 = Game.selectNode(myGame)(3, 0);
+			Game.completeTurn(myGame);
+			expect(myGame.grid.contains(n30)).toBeFalse();
+		});
+
+		it('switches the current player', function() {
+			let oldPlayer = Game.active(myGame);
+			let n40 = Game.selectNode(myGame)(4, 0);
+			Game.completeTurn(myGame);
+			expect(Game.active(myGame)).not.toBe(oldPlayer);
+		});
+	});
 });

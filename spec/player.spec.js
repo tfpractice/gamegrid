@@ -5,26 +5,23 @@ describe('player', function() {
 		G = Graph;
 	});
 	//
-	// beforeEach(function() {
-	// john = player('john');
-	// allCells = grid.cells(myGrid);
-	// jCells = allCells.filter((c, id) => id < 18);
-	// console.log(jCells);
+	beforeEach(function() {
+		john = player('john');
+		jCells = allCells.filter((c, id) => id > 17);
 
-	// P.claimCells(john)(...jCells);
-	// console.log(john);
-	// });
+		P.claimCells(john)(...jCells);
+	});
 	//
-	// describe('when given a name string', () => {
-	// it('retuns an object with that name', function() {
-	// expect(P('john')).toBeObject();
-	// });
-	// });
-	// describe('name(P)', function() {
-	// it('retrieves the name attribute', function() {
-	// expect(P.getName(john)).toBe('john');
-	// });
-	// });
+	describe('when given a name string', () => {
+		it('retuns an object with that name', function() {
+			expect(P('john')).toBeObject();
+		});
+	});
+	describe('name(P)', function() {
+		it('retrieves the name attribute', function() {
+			expect(P.getName(john)).toBe('john');
+		});
+	});
 	//
 	// describe('getGraph', () => {
 	// it('returns the Ps graph object', function() {
