@@ -14,7 +14,7 @@ describe('player', function() {
 		P.claimCells(
 			john)(...jCells);
 	});
-	//
+
 	describe('when given a name string', () => {
 		it('retuns an object with that name', function() {
 			expect(P('john')).toBeObject();
@@ -26,6 +26,23 @@ describe('player', function() {
 		});
 	});
 
+	describe('score', () => {
+		it('returns the players score', function() {
+			expect(P.score(john)).toBe(0);
+		});
+	});
+	describe('incrementScore', () => {
+		it('increases the score by one', function() {
+			P.incrementScore(john);
+			expect(P.score(john)).toBe(1);
+		});
+	});
+	describe('incrementScore', () => {
+		it('increases the score by one', function() {
+			P.decrementScore(john);
+			expect(P.score(john)).toBe(-1);
+		});
+	});
 	describe('getGraph', () => {
 		it('returns the Ps graph object', function() {
 			expect(P.getGraph(john)).toBeObject();

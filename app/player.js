@@ -17,10 +17,17 @@ const player = (name) => ({
 const getName = ({ name }) => name;
 const getGraph = ({ graph }) => graph;
 const score = ({ score }) => score;
+const incrementScore = (player) => ++player.score;
+const decrementScore = (player) => --player.score;
 const claimCells = ({ graph }) => GameGraph.addNodes(graph);
 
 module.exports = player;
 module.exports.getName = getName;
-module.exports.getGraph = getGraph;
+module.exports.getGraph =
+	getGraph;
 module.exports.score = score;
-module.exports.claimCells = claimCells;
+module.exports.incrementScore =
+	incrementScore;
+module.exports.decrementScore = decrementScore;
+module.exports
+	.claimCells = claimCells;
