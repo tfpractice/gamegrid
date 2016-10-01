@@ -21,6 +21,7 @@
     "jasmine-expect": "^3.0.1"
   },
   "dependencies": {
-    "functional_graph_theory": "git://github.com/tfpractice/functional_graph_theory.git"
+    "functional_graph_theory": "git://github.com/tfpractice/functional_graph_theory.git",
+    "inquirer": "^1.2.1"
   }
 }
