@@ -46,7 +46,7 @@ describe('game', function() {
 		it('transfers nodes from the grid to the active player', () => {
 			let n30 = Game.selectCell(myGame)(3, 0);
 			Game.completeTurn(myGame);
-			expect(myGame.grid.contains(n30)).toBeFalse();
+			expect(Graph.contains(Game.grid(myGame))(n30)).toBeFalse();
 		});
 
 		it('switches the current player', () => {

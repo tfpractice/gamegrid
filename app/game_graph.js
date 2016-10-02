@@ -4,7 +4,7 @@ const { nodes, addEdge } = Graph;
 const { spreadValues } = utils;
 const { components } = traversals;
 
-const spawn = Graph;
+const spawn = Graph.fromElements;
 const cells = (graph) => spreadValues(nodes(graph));
 
 const cellsByColumn = (graph) => (column = 0) =>
