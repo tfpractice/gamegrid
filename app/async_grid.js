@@ -1,7 +1,6 @@
 const { Graph, utils: gUtil, traversals } = require('functional_graph_theory');
 const cell = require('./cell');
 const { addEdge, removeEdge } = Graph;
-// const { addNodes, removeNode } = Graph;
 const { importEdge, mergeGraphs } = Graph;
 const { clearNodes, clearEdges, showGraph } = Graph;
 const { spreadKeys, spreadValues, spreadEntries } = gUtil;

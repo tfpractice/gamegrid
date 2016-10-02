@@ -17,17 +17,8 @@ const cellByPosition = (graph) => (column = 0, row = 0) =>
 	cells(graph).find(cell.isEquivalent({ column, row }));
 
 const addNodes = (graph) => (...nodes) => {
-	return Promise.resolve(graph)
-		.then(g => {
-			Graph.addNodes(g)(...nodes);
-			return g;
-		})
-		.then(g => {
-			connectAdjacents(g);
-			return g;
-		});
-	// Graph.addNodes(graph)(...nodes);
-	// connectAdjacents(graph);
+	Graph.addNodes(graph)(...nodes);
+	connectAdjacents(graph);
 };
 
 const removeNodes = (graph) => (...nodes) => {

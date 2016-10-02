@@ -407,6 +407,7 @@
 			importEdge({ edges: e0 })([source, nabes]));
 
 		return { edges: e0, nodes: n0 };
+
 	};
 
 	let removeEdge = ({ edges }) => (src) => (nabe) =>
@@ -417,6 +418,7 @@
 		edges.delete(exNode);
 
 		return { edges };
+
 	};
 
 	let clearNodes = ({ nodes }) => nodes.clear;
@@ -424,16 +426,18 @@
 
 	let Graph = (...elements) => {
 		let gState = makeGraph(...elements);
-		return Object.assign(gState, {
+		return {
 			addEdge: addEdge(gState),
 			addNodes: addNodes(gState),
 			clearEdges: clearEdges(gState),
 			clearNodes: clearNodes(gState),
 			contains: contains(gState),
+			edges: edges(gState),
 			importEdge: importEdge(gState),
 			isAdjacent: isAdjacent(gState),
 			mergeGraphs: mergeGraphs(gState),
 			neighbors: neighbors(gState),
+			nodes: nodes(gState),
 			removeEdge: removeEdge(gState),
 			removeNode: removeNode(gState),
 			showGraph: showGraph(gState),
@@ -441,7 +445,7 @@
 			bfs: bfs(gState),
 			components: components(gState),
 			dijkstra: dijkstra(gState),
-		});
+		};
 	};
 
 	module.exports = Graph;
