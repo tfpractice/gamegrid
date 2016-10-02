@@ -6,8 +6,8 @@ describe('game', function() {
 	});
 
 	beforeEach(function() {
-		dick = P('Dick');
-		jane = P('Jane');
+		dick = P.spawn('Dick');
+		jane = P.spawn('Jane');
 		myGame = Game.spawn(jane, dick, myGrid);
 	});
 

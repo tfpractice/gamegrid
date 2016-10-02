@@ -6,14 +6,14 @@ describe('player', function() {
 	});
 
 	beforeEach(function() {
-		john = player('john');
+		john = P.spawn('john');
 		jCells = allCells.filter((c, id) => id > 17);
 		P.claimCells(john)(...jCells);
 	});
 
 	describe('when given a name string', () => {
 		it('retuns an object with that name', () => {
-			expect(P('john')).toBeObject();
+			expect(P.spawn('john')).toBeObject();
 		});
 	});
 	describe('name(P)', () => {
