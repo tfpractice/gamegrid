@@ -3,7 +3,7 @@ describe('GameGraph', function() {
 		console.log('\n.........GameGraph Spec.........');
 	});
 
-	beforeEach(function() {
+	beforeEach(function(done) {
 		myGraph = GameGraph.spawn();
 		eGraph = GameGraph.spawn();
 		oGraph = GameGraph.spawn();
@@ -13,6 +13,7 @@ describe('GameGraph', function() {
 		GameGraph.addNodes(myGraph)(...myCells);
 		GameGraph.addNodes(eGraph)(...evens);
 		GameGraph.addNodes(oGraph)(...odds);
+		done();
 	});
 
 	describe('cells', () => {
