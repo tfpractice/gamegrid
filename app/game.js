@@ -14,18 +14,21 @@ const spawn = (active, passive, grid) => ({
 const grid = ({ grid }) => grid;
 const players = ({ players }) => players;
 const score = ({ score }) => score;
+const active = ({ players: [active, passive] }) => active;
+const passivePlayer = ({ players: [active, passive] }) => passive;
+const current = ({ current }) => current;
+
 const activeScore = ({ players: [active, passive], score }) =>
 	score.get(active);
+
 const passiveScore = ({ players: [active, passive], score }) =>
 	score.get(passive);
 
 const playerScore = ({ score }) => (player) =>
 	score.get(player);
+
 const incrementPlayerScore = ({ score }) => (player) =>
 	score.set(player, score.get(player) + 1);
-const active = ({ players: [active, passive] }) => active;
-const passivePlayer = ({ players: [active, passive] }) => passive;
-const current = ({ current }) => current;
 
 const togglePlayers = ({ players }) => {
 	let [passive, active] = players;
