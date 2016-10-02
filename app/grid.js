@@ -14,11 +14,15 @@ const initCells = (cNum = 0, rNum = 0) => {
 	return cells;
 };
 
+const spawn = (cNum = 3, rNum = 3) =>
+	Object.assign(GameGraph.spawn(...(initCells(cNum, rNum))), { cNum, rNum });
+
 const makeGrid = ({ cNum = 0, rNum = 0 }) =>
 	Object.assign(GameGraph.spawn(...(initCells(cNum, rNum))), { cNum, rNum });
 
 module.exports = {
 	state,
+	spawn,
 	makeGrid,
 	initCells,
 };
