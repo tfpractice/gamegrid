@@ -4,12 +4,12 @@ describe('cell', function() {
 	});
 
 	beforeEach(function() {
-		c00 = cell(0, 0);
-		c01 = cell(0, 1);
+		c00 = cell.spawn(0, 0);
+		c01 = cell.spawn(0, 1);
 	});
 
 	it('is a function', () => {
-		expect(cell).toBeFunction();
+		expect(cell.spawn).toBeFunction();
 	});
 	describe('operators', () => {
 		describe('row(cell)', () => {
@@ -75,7 +75,7 @@ describe('cell', function() {
 	});
 	describe('when given a row and column indices', () => {
 		it('returns an Object with row and column properties', () => {
-			expect(cell(2, 3)).toBeObject();
+			expect(cell.spawn(2, 3)).toBeObject();
 			expect(c01.column).toBe(0);
 			expect(c01.row).toBe(1);
 		});

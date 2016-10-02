@@ -1,4 +1,4 @@
-const cell = (column = null, row = null) => ({
+const spawn = (column = null, row = null) => ({
 	column,
 	row,
 	toString: () =>
@@ -23,16 +23,18 @@ const isEquivalent = (c0) => (c1) =>
 	colDiff(c0)(c1) === rowDiff(c0)(c1) && rowDiff(c0)(c1) === 0;
 const x_isEquivalent = (src) => (alt) => !isEquivalent(src)(alt);
 
-module.exports = cell;
-module.exports.column = column;
-module.exports.row = row;
-module.exports.cellString = cellString;
-module.exports.colDiff = colDiff;
-module.exports.rowDiff = rowDiff;
-module.exports.cAdj = cAdj;
-module.exports.rAdj = rAdj;
-module.exports.isNeighbor = isNeighbor;
-module.exports.isEquivalent = isEquivalent;
-module.exports.x_isEquivalent = x_isEquivalent;
-module.exports.sameColumn = sameColumn;
-module.exports.sameRow = sameRow;
+module.exports = {
+	spawn,
+	column,
+	row,
+	cellString,
+	colDiff,
+	rowDiff,
+	cAdj,
+	rAdj,
+	isNeighbor,
+	isEquivalent,
+	x_isEquivalent,
+	sameColumn,
+	sameRow,
+};

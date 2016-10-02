@@ -7,7 +7,7 @@ const initCells = (cNum = 0, rNum = 0) => {
 	let cells = [];
 	for (var c = cNum - 1; c >= 0; c--) {
 		for (var r = rNum - 1; r >= 0; r--) {
-			cells.push(cell(c, r));
+			cells.push(cell.spawn(c, r));
 		}
 	}
 
