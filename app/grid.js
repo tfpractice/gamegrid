@@ -1,7 +1,8 @@
 const GameGraph = require('./game_graph');
 const cell = require('./cell');
 
-const state = (cNum = 3, rNum = 3) => ({ cNum, rNum });
+const spawn = (cNum = 3, rNum = 3) =>
+	Object.assign(GameGraph.spawn(...(initCells(cNum, rNum))), { cNum, rNum });
 
 const initCells = (cNum = 0, rNum = 0) => {
 	let cells = [];
@@ -14,15 +15,10 @@ const initCells = (cNum = 0, rNum = 0) => {
 	return cells;
 };
 
-const spawn = (cNum = 3, rNum = 3) =>
-	Object.assign(GameGraph.spawn(...(initCells(cNum, rNum))), { cNum, rNum });
-
-const makeGrid = ({ cNum = 0, rNum = 0 }) =>
-	Object.assign(GameGraph.spawn(...(initCells(cNum, rNum))), { cNum, rNum });
+const fromGrid = ({ cNum = 0, rNum = 0 }) => spawn(cNum, rNum);
 
 module.exports = {
-	state,
 	spawn,
-	makeGrid,
+	fromGrid,
 	initCells,
 };

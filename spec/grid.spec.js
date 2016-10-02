@@ -3,14 +3,11 @@ describe('grid', function() {
 		console.log('\n.........grid Spec.........');
 	});
 
-	beforeEach(function() {
-		g66 = grid.state(6, 6);
-		myGrid = grid.makeGrid(g66);
-	});
+	beforeEach(function() {});
 
-	describe('state', () => {
+	describe('spawn', () => {
 		it('retunrn an object wtih cNum and rNum attributes', () => {
-			expect(grid.state(3, 3)).toBeObject();
+			expect(grid.spawn(3, 3)).toBeObject();
 		});
 	});
 	describe('initCells({cNum, rNum})', () => {
@@ -20,8 +17,6 @@ describe('grid', function() {
 	});
 
 	describe('makeGrid', () => {
-		it('returns a graph of the cells ', () => {
-			expect(grid.makeGrid(g66)).toBeObject();
-		});
+		it('returns a graph of the cells ', () => {});
 	});
 });
