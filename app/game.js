@@ -4,9 +4,11 @@ const GameGraph = require('./game_graph');
 const { cells, cellByPosition, transferCells } = GameGraph;
 const { getGraph: pGraph, claimCells } = Player;
 
-const spawn = (active, passive, grid) => ({ players: [active, passive],
+const spawn = (active, passive, grid) => ({
+    players: [active, passive],
     grid,
-    current: cells(grid)[0], });
+    current: cells(grid)[0],
+});
 
 const grid = ({ grid }) => grid;
 const players = ({ players }) => players;
@@ -32,7 +34,8 @@ const completeTurn = (game) => {
     togglePlayers(game);
 };
 
-module.exports = { spawn,
+module.exports = {
+    spawn,
     players,
     grid,
     active,
@@ -41,4 +44,5 @@ module.exports = { spawn,
     togglePlayers,
     selectCell,
     setCurrent,
-    current, };
+    current,
+};
