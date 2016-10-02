@@ -27,7 +27,35 @@ describe('game', function() {
 			expect(Game.active(myGame)).toBe(jane);
 		});
 	});
+	describe('score', () => {
+		it('retrieve a map of player scores', () => {
+			expect(Game.score(myGame) instanceof Map).toBeTrue();
+		});
+	});
 
+	describe('playerScore', () => {
+		it('retrieves the players score', () => {
+			expect(Game.playerScore(myGame)(Game.active(myGame))).toBe(0);
+		});
+	});
+	describe('activeScore', () => {
+		it('returns the active pplayers score', () => {
+			expect(Game.activeScore(myGame)).toBe(0);
+		});
+	});
+
+	describe('passiveScore', () => {
+		it('returns the active pplayers score', () => {
+			expect(Game.passiveScore(myGame)).toBe(0);
+		});
+	});
+
+	describe('increment player score', () => {
+		it('increaeses the players score by one', () => {
+			Game.incrementPlayerScore(myGame)(Game.active(myGame));
+			expect(Game.activeScore(myGame)).toBe(1);
+		});
+	});
 	describe('togglePlayers', () => {
 		it('switches the games active player ', () => {
 			Game.togglePlayers(myGame);

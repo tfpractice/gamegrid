@@ -5,44 +5,60 @@ const { cells, cellByPosition, transferCells } = GameGraph;
 const { getGraph: pGraph, claimCells } = Player;
 
 const spawn = (active, passive, grid) => ({
-    players: [active, passive],
-    grid,
-    current: cells(grid)[0],
+	players: [active, passive],
+	grid,
+	current: cells(grid)[0],
+	score: new Map().set(active, 0).set(passive, 0),
 });
 
 const grid = ({ grid }) => grid;
 const players = ({ players }) => players;
+const score = ({ score }) => score;
+const activeScore = ({ players: [active, passive], score }) =>
+	score.get(active);
+const passiveScore = ({ players: [active, passive], score }) =>
+	score.get(passive);
+
+const playerScore = ({ score }) => (player) =>
+	score.get(player);
+const incrementPlayerScore = ({ score }) => (player) =>
+	score.set(player, score.get(player) + 1);
 const active = ({ players: [active, passive] }) => active;
 const passivePlayer = ({ players: [active, passive] }) => passive;
 const current = ({ current }) => current;
 
 const togglePlayers = ({ players }) => {
-    let [passive, active] = players;
-    [players[1], players[0]] = [passive, active];
+	let [passive, active] = players;
+	[players[1], players[0]] = [passive, active];
 };
 
 const setCurrent = (game) => (current) => {
-    Object.assign(game, { current });
+	Object.assign(game, { current });
 };
 
 const selectCell = (game) => (column, row) => {
-    setCurrent(game)(cellByPosition(grid(game))(column, row));
+	setCurrent(game)(cellByPosition(grid(game))(column, row));
 };
 
 const completeTurn = (game) => {
-    transferCells(grid(game))(pGraph(active(game)))(current(game));
-    togglePlayers(game);
+	transferCells(grid(game))(pGraph(active(game)))(current(game));
+	togglePlayers(game);
 };
 
 module.exports = {
-    spawn,
-    players,
-    grid,
-    active,
-    completeTurn,
-    passivePlayer,
-    togglePlayers,
-    selectCell,
-    setCurrent,
-    current,
+	spawn,
+	players,
+	playerScore,
+	incrementPlayerScore,
+	activeScore,
+	passiveScore,
+	grid,
+	score,
+	active,
+	completeTurn,
+	passivePlayer,
+	togglePlayers,
+	selectCell,
+	setCurrent,
+	current,
 };

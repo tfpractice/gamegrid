@@ -22,21 +22,21 @@ describe('player', function() {
 		});
 	});
 
-	describe('score', () => {
-		it('returns the players score', () => {
-			expect(P.score(john)).toBe(0);
+	describe('wins', () => {
+		it('returns the players wins', () => {
+			expect(P.wins(john)).toBe(0);
 		});
 	});
 	describe('incrementScore', () => {
-		it('increases the score by one', () => {
+		it('increases the wins by one', () => {
 			P.incrementScore(john);
-			expect(P.score(john)).toBe(1);
+			expect(P.wins(john)).toBe(1);
 		});
 	});
 	describe('decrementScore', () => {
-		it('increases the score by one', () => {
+		it('increases the wins by one', () => {
 			P.decrementScore(john);
-			expect(P.score(john)).toBe(-1);
+			expect(P.wins(john)).toBe(-1);
 		});
 	});
 	describe('getGraph', () => {
