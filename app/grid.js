@@ -17,8 +17,4 @@ const initCells = (cNum = 0, rNum = 0) => {
 
 const fromGrid = ({ cNum = 0, rNum = 0 }) => spawn(cNum, rNum);
 
-module.exports = {
-	spawn,
-	fromGrid,
-	initCells,
-};
+module.exports = { spawn, fromGrid, initCells };
