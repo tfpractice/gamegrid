@@ -1,7 +1,6 @@
 const { addNodes, spawn: gSpawn } = require('./game_graph');
 
 const spawn = (name) => ({ name, graph: gSpawn(), wins: 0 });
-
 const name = ({ name }) => name;
 const graph = ({ graph }) => graph;
 const wins = ({ wins }) => wins;
