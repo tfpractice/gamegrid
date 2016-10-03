@@ -15,7 +15,7 @@ const grid = ({ grid }) => grid;
 const players = ({ players }) => players;
 const score = ({ score }) => score;
 const active = ({ players: [active, passive] }) => active;
-const passivePlayer = ({ players: [active, passive] }) => passive;
+const passive = ({ players: [active, passive] }) => passive;
 const current = ({ current }) => current;
 
 const activeScore = ({ players: [active, passive], score }) =>
@@ -59,7 +59,7 @@ module.exports = {
 	score,
 	active,
 	completeTurn,
-	passivePlayer,
+	passive,
 	togglePlayers,
 	selectCell,
 	setCurrent,
