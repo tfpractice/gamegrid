@@ -6,6 +6,9 @@ describe('cell', function() {
 	beforeEach(function() {
 		c00 = cell.spawn(0, 0);
 		c01 = cell.spawn(0, 1);
+		c22 = cell.spawn(2, 2);
+		c31 = cell.spawn(3, 1);
+		c33 = cell.spawn(3, 3);
 	});
 
 	it('is a function', () => {
@@ -34,7 +37,7 @@ describe('cell', function() {
 		});
 		describe('rowDiff', () => {
 			it('returns the difference in column attributes', () => {
-				expect(cell.rowDiff(c00)(c01)).toBe(1);
+				expect(Math.abs(cell.rowDiff(c00)(c01))).toBe(1);
 			});
 		});
 		describe('cAdj', () => {
@@ -47,6 +50,28 @@ describe('cell', function() {
 				expect(cell.rAdj(c00)(c01)).toBeTrue();
 			});
 		});
+		describe('tangent', function() {
+			it('returns coldiff/rowDiff', function() {
+				expect(Math.abs(cell.tangent(c00)(c01))).toBe(Infinity);
+			});
+		});
+
+		describe('angleBetween', () => {
+			it('returns the angle between two nodes in radians', function() {
+				expect(Math.abs(cell.angleBetween(c00)(c01))).toBe(Math.PI / 2);
+			});
+		});
+		describe('samePVector', () => {
+			it('checks if the anglebetween two nodes is PI/4', function() {
+				expect(cell.samePVector(c22)(c33)).toBeTrue();
+			});
+		});
+		describe('sameNVector', () => {
+			it('checks if the anglebetween two nodes is PI/4', function() {
+				expect(cell.sameNVector(c31)(c22)).toBeTrue();
+			});
+		});
+
 		describe('sameColumn', () => {
 			it('checks cell columns a difference of 0', () => {
 				expect(cell.sameColumn(c00)(c01)).toBeTrue();
