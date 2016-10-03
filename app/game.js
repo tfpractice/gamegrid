@@ -38,7 +38,7 @@ const setCurrent = (game) => (current) => {
 	Object.assign(game, { current });
 };
 
-const selectCell = (game) => (column, row) => {
+const selectCell = (game) => (column = 0, row = 0) => {
 	setCurrent(game)(cellByPosition(grid(game))(column, row));
 };
 
