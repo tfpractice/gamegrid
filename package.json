@@ -2,7 +2,7 @@
   "name": "game_grid",
   "version": "1.0.0",
   "description": "grid",
-  "main": "public/index.html",
+  "main": "index.js",
   "scripts": {
     "start": "webpack --config config/webpack.config.js",
     "test": "jasmine"
