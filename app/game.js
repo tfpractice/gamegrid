@@ -1,5 +1,4 @@
 const Player = require('./player');
-const Grid = require('./grid');
 const GameGraph = require('./game_graph');
 const { cells, cellByPosition, transferCells } = GameGraph;
 const { graph: pGraph, claimCells } = Player;
