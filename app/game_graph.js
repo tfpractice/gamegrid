@@ -1,11 +1,11 @@
 const FGT = require('functional_graph_theory');
 const Cell = require('./cell');
 const { Graph, utils, traversals } = FGT;
-const { sameColumn, sameRow, isNeighbor } = Cell;
-const { samePVector, sameNVector } = Cell;
 const { nodes, addEdge } = Graph;
 const { spreadValues } = utils;
 const { components } = traversals;
+const { sameColumn, sameRow, isNeighbor } = Cell;
+const { samePVector, sameNVector } = Cell;
 
 const spawn = Graph.fromElements;
 const cells = (graph) => spreadValues(nodes(graph));
@@ -45,9 +45,7 @@ const transferCells = (src) => (dest) => (...nodes) => {
 	addNodes(dest)(...nodes);
 };
 
-const getComponents = (graph) =>
-	new Set(spreadValues(components(graph)));
-
+const getComponents = (graph) => new Set(spreadValues(components(graph)));
 const countComponents = (graph) => getComponents(graph).size;
 
 module.exports = {
