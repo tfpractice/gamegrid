@@ -3,7 +3,7 @@ beforeAll(function() {
 	app = require('../../index');
 	GT = require('functional_graph_theory');
 	({ Graph, utils, traversals } = GT);
-	({ cell, grid, GameGraph, player, Game } = app);
+	({ Cell, grid, GameGraph, player, Game } = app);
 });
 
 beforeEach(function() {

@@ -1,6 +1,7 @@
 const FGT = require('functional_graph_theory');
+const Cell = require('./cell');
 const { Graph, utils, traversals, AsyncOps: AS } = FGT;
-const { sameColumn, sameRow, isNeighbor } = require('./cell');
+const { sameColumn, sameRow, isNeighbor } = Cell;
 const { nodes, addEdge } = Graph;
 const { spreadValues } = utils;
 const { components } = traversals;
@@ -15,7 +16,7 @@ const cellsByRow = (graph) => (row = 0) =>
 	cells(graph).filter(sameRow({ row }));
 
 const cellByPosition = (graph) => (column = 0, row = 0) =>
-	cells(graph).find(cell.isEquivalent({ column, row }));
+	cells(graph).find(Cell.isEquivalent({ column, row }));
 
 const addNodes = (graph) => (...nodes) => {
 	Graph.addNodes(graph)(...nodes);
