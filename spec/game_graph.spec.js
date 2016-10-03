@@ -33,7 +33,7 @@ describe('GameGraph', function() {
 	});
 	describe('cellByPosition', () => {
 		it('retrives a cell with the specified row and column', function() {
-			expect(GameGraph.cellByPosition(myGraph)(3, 0)).toBeObject();
+			expect(GameGraph.cellByPosition(myGraph)(0, 3)).toBeObject();
 		});
 	});
 	describe('spawn', () => {
@@ -59,7 +59,7 @@ describe('GameGraph', function() {
 			});
 		});
 		describe('transferCells', () => {
-			it('transfers nodes from one graph to another', function() {
+			it('transfers nodes from one graph to another', () => {
 				let e3 = evens[3];
 				GameGraph.transferCells(eGraph)(oGraph)(e3);
 				expect(Graph.contains(oGraph)(e3)).toBeTrue();
@@ -75,6 +75,75 @@ describe('GameGraph', function() {
 			it('returns the length of the components', () => {
 				expect(GameGraph.countComponents(myGraph)).toBe(1);
 			});
+		});
+	});
+	describe('rowNeighbors ', () => {
+		it('returns all neighboring nodes adjacent bby row', () => {
+			expect(GameGraph.rowNeighbors(myGraph)(n30)).toBeArray();
+		});
+	});
+	describe('columnNeighbors ', () => {
+		it('returns all neighboring nodes adjacent by column', () => {
+			expect(GameGraph.columnNeighbors(myGraph)(n30)).toBeArray();
+		});
+	});
+	describe('posNeighbors ', () => {
+		it('returns all neighboring nodes adjacent bby row', () => {
+			expect(GameGraph.posNeighbors(myGraph)(n30)).toBeArray();
+		});
+	});
+	describe('negNeighbors ', () => {
+		it('returns all neighboring nodes adjacent by column', () => {
+			expect(GameGraph.negNeighbors(myGraph)(n30)).toBeArray();
+		});
+	});
+	describe('connectCols', () => {
+		it('creates edges between columnNeighbors', () => {
+			GameGraph.connectCols(myGraph);
+		});
+	});
+
+	describe('connectRows', () => {
+		it('creates edges between rowNeighbors', () => {
+			GameGraph.connectRows(myGraph);
+		});
+	});
+
+	describe('connectPVectors', () => {
+		it('creates edges between posNeighbors', () => {
+			GameGraph.connectPVectors(myGraph);
+		});
+	});
+
+	describe('connectNVectors', () => {
+		it('creates edges between negNeighbors', () => {
+			GameGraph.connectNVectors(myGraph);
+		});
+	});
+	describe('colGraph', () => {
+		it('returns a new Graph with only columns connected', function() {
+			expect(GameGraph.colGraph(myGraph)).toBeObject();
+		});
+	});
+	describe('rowGraph', () => {
+		it('returns a new Graph with only columns connected', function() {
+			expect(GameGraph.rowGraph(myGraph)).toBeObject();
+		});
+	});
+	describe('posGraph', () => {
+		it('returns a new Graph with only columns connected', function() {
+			expect(GameGraph.posGraph(myGraph)).toBeObject();
+		});
+	});
+	describe('negGraph', () => {
+		it('returns a new Graph with only columns connected', function() {
+			expect(GameGraph.negGraph(myGraph)).toBeObject();
+		});
+	});
+	describe('colComponents', function() {
+		it('retrives the compnents of the colGraph', function() {
+			console.log(GameGraph.colComponents(myGraph));
+			expect(GameGraph.colComponents(myGraph) instanceof Set).toBeTrue();
 		});
 	});
 });
