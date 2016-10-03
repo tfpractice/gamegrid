@@ -1,7 +1,7 @@
 describe('player', function() {
 	beforeAll(function() {
 		console.log('\n.........player Spec.........');
-		P = player;
+		P = Player;
 		G = Graph;
 	});
 
@@ -18,7 +18,7 @@ describe('player', function() {
 	});
 	describe('name(P)', () => {
 		it('retrieves the name attribute', () => {
-			expect(P.getName(john)).toBe('john');
+			expect(P.name(john)).toBe('john');
 		});
 	});
 
@@ -39,9 +39,9 @@ describe('player', function() {
 			expect(P.wins(john)).toBe(-1);
 		});
 	});
-	describe('getGraph', () => {
+	describe('graph', () => {
 		it('returns the Ps graph object', () => {
-			expect(P.getGraph(john)).toBeObject();
+			expect(P.graph(john)).toBeObject();
 		});
 	});
 
@@ -50,7 +50,7 @@ describe('player', function() {
 			n30 = allCells.find(({ column, row }) =>
 				column === 3 && row === 0);
 			P.claimCells(john)(n30);
-			expect(G.edges(P.getGraph(john)).has(n30)).toBeTrue();
+			expect(G.edges(P.graph(john)).has(n30)).toBeTrue();
 		});
 	});
 });

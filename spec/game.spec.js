@@ -1,7 +1,7 @@
 describe('game', function() {
 	beforeAll(function() {
 		console.log('\n.........game Spec.........');
-		P = player;
+		P = Player;
 		GR = Graph;
 	});
 

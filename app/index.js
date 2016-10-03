@@ -4,4 +4,4 @@ exports.Grid = require('./grid');
 exports.Game = require('./Game');
 exports.GameGraph = require('./game_graph');
 // exports.AsyncGrid = require('./async_grid');
-exports.player = require('./player');
+exports.Player = require('./player');

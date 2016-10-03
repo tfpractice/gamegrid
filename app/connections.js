@@ -56,6 +56,25 @@ const rowComponents = (graph) => getComponents(rowGraph(graph));
 const posComponents = (graph) => getComponents(posGraph(graph));
 const negComponents = (graph) => getComponents(negGraph(graph));
 
+
+// const components = ({ edges }) => {
+// 	let cMap = new Map();
+
+// 	let visitComponent = (comp = new Set) => (node) => {
+// 		comp.add(node);
+// 		cMap.set(node, comp);
+// 		for (let [nabe, nWeight] of edges.get(node)) {
+// 			if (!comp.has(nabe)) { visitComponent(comp)(nabe); }
+// 		}
+// 	};
+
+// 	for (let [node, nabes] of edges) {
+// 		if (!cMap.has(node)) { visitComponent(new Set)(node); }
+// 	}
+
+// 	return cMap;
+// };
+
 module.exports = {
 	rowNeighbors,
 	columnNeighbors,

@@ -2,7 +2,7 @@ const Player = require('./player');
 const Grid = require('./grid');
 const GameGraph = require('./game_graph');
 const { cells, cellByPosition, transferCells } = GameGraph;
-const { getGraph: pGraph, claimCells } = Player;
+const { graph: pGraph, claimCells } = Player;
 
 const spawn = (active, passive, grid) => ({
 	players: [active, passive],
