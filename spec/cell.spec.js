@@ -112,6 +112,13 @@ fdescribe('cell', function() {
 				expect(Cell.player(c00)).not.toBeNull();
 			});
 		});
+		describe('unclaim', () => {
+			it('sets the objects player attribute', function() {
+				Cell.unclaim(c00);
+				expect(Cell.player(c00)).toBeNull();
+			});
+		});
+
 		describe('samePlayer', function() {
 			it('checks if the player attributes are identical', function() {
 				expect(Cell.samePlayer(c00)(c01)).toBeTrue();
