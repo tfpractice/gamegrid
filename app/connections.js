@@ -27,31 +27,29 @@ const posConnectR = (graph = new Map, src) =>
 const negConnectR = (graph = new Map, src) =>
 	addEdges(graph)(src, 0)(...negAdj(graph)(src));
 
-const connectAdj = (graph) => nodes(graph).reduce(adjConnectR, graph);
-const connectCols = (graph) => nodes(graph).reduce(colConnectR, graph);
-const connectRows = (graph) => nodes(graph).reduce(rowConnectR, graph);
-const connectPVectors = (graph) => nodes(graph).reduce(posConnectR, graph);
-const connectNVectors = (graph) => nodes(graph).reduce(negConnectR, graph);
+const joinAdj = (graph) => nodes(graph).reduce(adjConnectR, graph);
+const joinCols = (graph) => nodes(graph).reduce(colConnectR, graph);
+const joinRows = (graph) => nodes(graph).reduce(rowConnectR, graph);
+const joinPVectors = (graph) => nodes(graph).reduce(posConnectR, graph);
+const joinNVectors = (graph) => nodes(graph).reduce(negConnectR, graph);
 
 const colComponents = (graph) => componentSet(colGraph(graph));
 const rowComponents = (graph) => componentSet(rowGraph(graph));
 const posComponents = (graph) => componentSet(posGraph(graph));
 const negComponents = (graph) => componentSet(negGraph(graph));
-
+//
 const adjCells = adjNodes;
 
-module.exports = {
-	adjNodes,
-	adjCells,
-	rowAdj,
-	colAdj,
-	posAdj,
-	negAdj,
-	adjConnectR,
-	connectAdj,
-	connectCols,
-	connectRows,
-	connectPVectors,
-	connectNVectors,
-	connectAdj,
-};
+module.exports = { adjNodes,
+    adjCells,
+    rowAdj,
+    colAdj,
+    posAdj,
+    negAdj,
+    adjConnectR,
+    joinAdj,
+    joinCols,
+    joinRows,
+    joinPVectors,
+    joinNVectors,
+    joinAdj, };

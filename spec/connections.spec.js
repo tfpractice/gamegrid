@@ -1,6 +1,6 @@
 fdescribe('Connections', function() {
 	beforeAll(function() {
-		console.log('\n.........connections Spec.........');
+		console.log('\n.........Connections Spec.........');
 	});
 
 	beforeEach(function(done) {
@@ -51,37 +51,37 @@ fdescribe('Connections', function() {
 			expect(GameGraph.neighbors(myGraph)(n11)).toBeArray();
 		});
 	});
-	describe('connectAdj', () => {
+	describe('joinAdj', () => {
 		it('creates edges between all adjacent nodes', function() {
-			expect(Connections.connectAdj(myGraph) instanceof Map).toBeTrue();
+			expect(Connections.joinAdj(myGraph) instanceof Map).toBeTrue();
 		});
 	});
-	describe('connectCols', () => {
+	describe('joinCols', () => {
 		it('creates edges between colAdj', () => {
-			Connections.connectCols(myGraph);
+			Connections.joinCols(myGraph);
 		});
 	});
 
-	describe('connectRows', () => {
+	describe('joinRows', () => {
 		it('creates edges between rowAdj', () => {
-			Connections.connectRows(myGraph);
+			Connections.joinRows(myGraph);
 		});
 	});
 
-	describe('connectPVectors', () => {
+	describe('joinPVectors', () => {
 		it('creates edges between posAdj', () => {
-			Connections.connectPVectors(myGraph);
+			Connections.joinPVectors(myGraph);
 		});
 	});
 
-	describe('connectNVectors', () => {
+	describe('joinNVectors', () => {
 		it('creates edges between negAdj', () => {
-			Connections.connectNVectors(myGraph);
+			Connections.joinNVectors(myGraph);
 		});
 	});
-	describe('connectAdj', () => {
+	describe('joinAdj', () => {
 		it('creates edges between all adjacent cells', () => {
-			Connections.connectAdj(myGraph);
+			Connections.joinAdj(myGraph);
 		});
 	});
 
