@@ -4,15 +4,16 @@ const { Traversals: { componentSet }, Graph: { fromElements, nodes, addEdges } }
 FGT;
 const { sameCol, sameRow, samePVector, sameNVector, isNeighbor } = Cell;
 
-const adjCells = (graph) => (src) => nodes(graph).filter(isNeighbor(src));
-const rowAdj = (graph) => (src) => adjCells(graph)(src).filter(sameRow(src));
-const colAdj = (graph) => (src) => adjCells(graph)(src).filter(sameCol(src));
-const posAdj = (graph) => (src) => adjCells(graph)(src).filter(samePVector(src));
-const negAdj = (graph) => (src) => adjCells(graph)(src).filter(sameNVector(src));
-const allAdj = (graph) => (src) => adjCells(graph)(src).filter(isNeighbor(src));
+const adjNodes = (graph) => (src) => nodes(graph).filter(isNeighbor(src));
+
+const rowAdj = (graph) => (src) => adjNodes(graph)(src).filter(sameRow(src));
+const colAdj = (graph) => (src) => adjNodes(graph)(src).filter(sameCol(src));
+const posAdj = (graph) => (src) => adjNodes(graph)(src).filter(samePVector(src));
+const negAdj = (graph) => (src) => adjNodes(graph)(src).filter(sameNVector(src));
+const allAdj = (graph) => (src) => adjNodes(graph)(src).filter(isNeighbor(src));
 
 const adjConnectR = (graph = new Map, src) =>
-	addEdges(graph)(src, 0)(...adjCells(graph)(src));
+	addEdges(graph)(src, 0)(...adjNodes(graph)(src));
 
 const colConnectR = (graph = new Map, src) =>
 	addEdges(graph)(src, 0)(...rowAdj(graph)(src));
@@ -37,7 +38,10 @@ const rowComponents = (graph) => componentSet(rowGraph(graph));
 const posComponents = (graph) => componentSet(posGraph(graph));
 const negComponents = (graph) => componentSet(negGraph(graph));
 
+const adjCells = adjNodes;
+
 module.exports = {
+	adjNodes,
 	adjCells,
 	rowAdj,
 	colAdj,
