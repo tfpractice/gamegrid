@@ -1,64 +1,54 @@
 const FGT = require('functional_graph_theory');
 const Cell = require('./cell');
 const { Graph, utils, Traversals } = FGT;
-const { nodes, addEdges } = Graph;
+const { nodes, addNodes, removeNodes, addEdges } = Graph;
 // const { spreadValues } = utils;
-// const { components } = Traversals;
-// const { sameColumn, sameRow, isNeighbor } = Cell;
-// const { samePVector, sameNVector } = Cell;
+const { componentSet } = Traversals;
+const { sameColumn, sameRow, isNeighbor } = Cell;
+const { samePVector, sameNVector } = Cell;
 
-const spawn = Graph.spawn;
-const cells = (graph) => nodes(graph);
+const cells = nodes;
 
-// const cellsByColumn = (graph) => (column = 0) =>
-// 	cells(graph).filter(sameColumn({ column }));
+const cellsByColumn = (graph) => (column = 0) =>
+	cells(graph).filter(sameColumn({ column }));
 
-// const cellsByRow = (graph) => (row = 0) =>
-// 	cells(graph).filter(sameRow({ row }));
+const cellsByRow = (graph) => (row = 0) =>
+	cells(graph).filter(sameRow({ row }));
 
-// const cellByPosition = (graph) => (column = 0, row = 0) =>
-// 	cells(graph).find(Cell.isEquivalent({ column, row }));
+const cellByPosition = (graph) => (column = 0, row = 0) =>
+	cells(graph).find(Cell.isEquivalent({ column, row }));
 
-// const addNodes = (graph) => (...nodes) => {
-// 	Graph.addNodes(graph)(...nodes);
-// 	connectAdjacents(graph);
-// 	return graph;
-// };
+const adjCells = (graph) => (src) => cells(graph).filter(isNeighbor(src));
 
-// const removeNodes = (graph) => (...nodes) => {
-// 	nodes.forEach(n => Graph.removeNode(graph)(n));
-// 	connectAdjacents(graph);
-// 	return graph;
-// };
+const addCells = (graph) => (...nodes) =>
+	connectAdjacents(addNodes(graph)(...nodes));
 
-// const adjNodes = (graph) => (src) => cells(graph).filter(isNeighbor(src));
+const removeCells = (graph) => (...nodes) =>
+	connectAdjacents(removeNodes(graph)(...nodes));
 
-// const connectAdjacents = (graph) => {
-// 	cells(graph).forEach((prev) =>
-// 		adjNodes(graph)(prev).map(n => addEdge(graph)(prev)(n))
-// 	);
-// 	return graph;
-// };
+const connectAdjR = (graph = new Map, src) =>
+	addEdges(graph)(src, 0)(...adjCells(graph)(src));
 
-// const transferCells = (src) => (dest) => (...nodes) => {
-// 	removeNodes(src)(...nodes);
-// 	addNodes(dest)(...nodes);
-// };
+const connectAdjacents = (graph) => cells(graph).reduce(connectAdjR, graph);
 
-// const getComponents = (graph) => new Set(spreadValues(components(graph)));
-// const countComponents = (graph) => getComponents(graph).size;
+const transferCells = (src) => (dest) => (...nodes) =>
+	removeCells(src)(...nodes) && addNodes(dest)(...nodes);
 
-module.exports = {
-	spawn,
+
+// const components = (graph) => new Set(spreadValues(components(graph)));
+const countComponents = (graph) => componentSet(graph).size;
+
+module.exports = Object.assign({}, Graph, {
 	cells,
-	// cellsByColumn,
-	// cellByPosition,
-	// cellsByRow,
-	// connectAdjacents,
-	// adjNodes,
-	// transferCells,
-	// addNodes,
-	// removeNodes,
+	cellsByColumn,
+	cellByPosition,
+	cellsByRow,
+	connectAdjR,
+	connectAdjacents,
+	adjCells,
+	transferCells,
+	addCells,
+	removeCells,
 	// getComponents,
-	// countComponents,
-};
+	countComponents,
+});
