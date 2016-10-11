@@ -31,10 +31,7 @@ const connectCols = (graph) => nodes(graph).reduce(colConnectR, graph);
 const connectRows = (graph) => nodes(graph).reduce(rowConnectR, graph);
 const connectPVectors = (graph) => nodes(graph).reduce(posConnectR, graph);
 const connectNVectors = (graph) => nodes(graph).reduce(negConnectR, graph);
-// const colGraph = (graph) => connectCols(fromElements(...nodes(graph)));
-// const rowGraph = (graph) => connectRows(fromElements(...nodes(graph)));
-// const posGraph = (graph) => connectPVectors(fromElements(...nodes(graph)));
-// const negGraph = (graph) => connectNVectors(fromElements(...nodes(graph)));
+
 const colComponents = (graph) => componentSet(colGraph(graph));
 const rowComponents = (graph) => componentSet(rowGraph(graph));
 const posComponents = (graph) => componentSet(posGraph(graph));
@@ -53,9 +50,4 @@ module.exports = {
 	connectPVectors,
 	connectNVectors,
 	connectAdj,
-
-	// colComponents,
-	// rowComponents,
-	// posComponents,
-	// negComponents,
 };

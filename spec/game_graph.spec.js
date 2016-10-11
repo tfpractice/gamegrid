@@ -44,6 +44,12 @@ fdescribe('GameGraph', function() {
 	});
 
 	describe('graph representations', () => {
+		describe('omniGraph', function() {
+			it('returns a new Graph with all neighbors connected', function() {
+				expect(GameGraph.omniGraph(myGraph) instanceof Map).toBeTrue();
+			});
+		});
+
 		describe('colGraph', () => {
 			it('returns a new Graph with only columns connected', function() {
 				expect(GameGraph.colGraph(myGraph) instanceof Map).toBeTrue();

@@ -2,7 +2,7 @@ const FGT = require('functional_graph_theory');
 const Cell = require('./cell');
 const Connections = require('./connections');
 const { Graph: { nodes, addNodes, removeNodes, fromElements } } = FGT;
-const { connectCols, connectRows, connectPVectors, connectNVectors, } =
+const { connectCols, connectRows, connectPVectors, connectNVectors, connectAdj } =
 Connections;
 const { sameCol, sameRow, samePlayer, isNeighbor } = Cell;
 const { samePVector, sameNVector } = Cell;
@@ -21,7 +21,7 @@ const cellsByRow = (graph) => (row = 0) =>
 const cellByPosition = (graph) => (column = 0, row = 0) =>
 	cells(graph).find(Cell.isEquivalent({ column, row }));
 
-// const omniGraph = (graph)=> connectAdj
+const omniGraph = (graph) => connectAdj(fromElements(...cells(graph)));
 const colGraph = (graph) => connectCols(fromElements(...cells(graph)));
 const rowGraph = (graph) => connectRows(fromElements(...cells(graph)));
 const posGraph = (graph) => connectPVectors(fromElements(...cells(graph)));
@@ -32,16 +32,18 @@ const transferCells = (src) => (dest) => (...nodes) =>
 
 // const countComponents = (graph) => componentSet(graph).size;
 
-module.exports = Object.assign({}, FGT.Graph, { cells,
-    cellsByPlayer,
-    cellsByColumn,
-    cellByPosition,
-    cellsByRow,
+module.exports = Object.assign({}, FGT.Graph, {
+	cells,
+	cellsByPlayer,
+	cellsByColumn,
+	cellByPosition,
+	cellsByRow,
 	transferCells,
+	omniGraph,
 	colGraph,
 	rowGraph,
-    posGraph,
-    negGraph,
+	posGraph,
+	negGraph,
 
-    // countComponents,
+	// countComponents,
 });
