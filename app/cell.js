@@ -1,11 +1,9 @@
-const spawn = (column = null, row = null) => ({
-	column,
-	row,
-	toString: () =>
-		`{ cell::${column}_${row} }`,
-});
+const spawn = (column = null, row = null, player = null) =>
+	({ column, row, player, toString: () => cellString({ column, row }) });
+
 const column = ({ column }) => column;
 const row = ({ row }) => row;
+const player = ({ player }) => player;
 const cellString = ({ column, row }) => `{ cell::${column}_${row} }`;
 
 const colDiff = ({ column: c0 }) => ({ column: c1 }) => (c0 - c1);
@@ -34,6 +32,7 @@ module.exports = {
 	spawn,
 	column,
 	row,
+	player,
 	cellString,
 	colDiff,
 	rowDiff,

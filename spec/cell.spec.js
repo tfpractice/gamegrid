@@ -12,9 +12,12 @@ fdescribe('cell', function() {
 		c33 = Cell.spawn(3, 3);
 	});
 
-	it('is a function', () => {
-		expect(Cell.spawn).toBeFunction();
+	describe('spawn', () => {
+		it('is a function', () => {
+			expect(Cell.spawn).toBeFunction();
+		});
 	});
+
 	describe('operators', () => {
 		describe('row(cell)', () => {
 			it('retuns the row index', () => {
@@ -24,6 +27,11 @@ fdescribe('cell', function() {
 		describe('column(cell)', () => {
 			it('retuns the column index', () => {
 				expect(Cell.column(c00)).toBe(0);
+			});
+		});
+		describe('player', () => {
+			it('returns the player attribute', function() {
+				expect(Cell.player(c00)).toBeNull();
 			});
 		});
 		describe('cellString(cell)', () => {
@@ -99,6 +107,7 @@ fdescribe('cell', function() {
 			});
 		});
 	});
+
 	describe('when given a row and column indices', () => {
 		it('returns an Object with row and column properties', () => {
 			expect(Cell.spawn(2, 3)).toBeObject();
