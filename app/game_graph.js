@@ -6,7 +6,6 @@ const { connectCols, connectRows, connectPVectors, connectNVectors, connectAdj }
 Connections;
 const { sameCol, sameRow, samePlayer, isNeighbor } = Cell;
 const { samePVector, sameNVector } = Cell;
-const cells = nodes;
 
 const nodesByColumn = (graph) => (column = 0) =>
 	nodes(graph).filter(sameCol({ column }));
@@ -29,14 +28,15 @@ const negGraph = (graph) => connectNVectors(fromElements(...nodes(graph)));
 const transferNodes = (src) => (dest) => (...nodes) =>
 	removeNodes(src)(...nodes) && addNodes(dest)(...nodes);
 
-module.exports = Object.assign({}, FGT.Graph, { nodes,
-    nodesByPlayer,
-    nodesByColumn,
-    nodeByPosition,
-    nodesByRow,
-    transferNodes,
-    omniGraph,
-    colGraph,
-    rowGraph,
-    posGraph,
-    negGraph, });
+module.exports = Object.assign({}, FGT.Graph, {
+	nodesByPlayer,
+	nodesByColumn,
+	nodeByPosition,
+	nodesByRow,
+	transferNodes,
+	omniGraph,
+	colGraph,
+	rowGraph,
+	posGraph,
+	negGraph,
+});
