@@ -106,6 +106,11 @@ fdescribe('cell', function() {
 				expect(Cell.x_isEquivalent(c00)(c01)).toBeTrue();
 			});
 		});
+		describe('claim', () => {
+			it('sets the objects player attribute', function() {
+				Cell.claim(c00)({ name: 'jack' });
+			});
+		});
 	});
 
 	describe('when given a row and column indices', () => {

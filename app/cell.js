@@ -28,6 +28,9 @@ const isEquivalent = (c0) => (c1) =>
 	colDiff(c0)(c1) === rowDiff(c0)(c1) && rowDiff(c0)(c1) === 0;
 const x_isEquivalent = (src) => (alt) => !isEquivalent(src)(alt);
 
+const claim = (cell) => (player) =>
+	Object.assign(cell, { player });
+
 module.exports = {
 	spawn,
 	column,
@@ -47,4 +50,5 @@ module.exports = {
 	x_isEquivalent,
 	sameColumn,
 	sameRow,
+	claim,
 };
