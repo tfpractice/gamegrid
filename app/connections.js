@@ -37,7 +37,6 @@ const colComponents = (graph) => componentSet(colGraph(graph));
 const rowComponents = (graph) => componentSet(rowGraph(graph));
 const posComponents = (graph) => componentSet(posGraph(graph));
 const negComponents = (graph) => componentSet(negGraph(graph));
-//
 const adjCells = adjNodes;
 
 module.exports = {
