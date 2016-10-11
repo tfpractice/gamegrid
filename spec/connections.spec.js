@@ -36,6 +36,11 @@ fdescribe('Connections', function() {
 			expect(Connections.negAdj(myGraph)(n30)).toBeArray();
 		});
 	});
+	describe('allAdj', () => {
+		it('creates an edge between each cell in a column', () => {
+			expect(Connections.allAdj(myGraph)(n30)).toBeArray();
+		});
+	});
 
 	describe('connectCols', () => {
 		it('creates edges between colAdj', () => {
@@ -58,6 +63,11 @@ fdescribe('Connections', function() {
 	describe('connectNVectors', () => {
 		it('creates edges between negAdj', () => {
 			Connections.connectNVectors(myGraph);
+		});
+	});
+	describe('connectAdj', () => {
+		it('creates edges between all adjacent cells', () => {
+			Connections.connectAdj(myGraph);
 		});
 	});
 	describe('colGraph', () => {
