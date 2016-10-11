@@ -34,18 +34,16 @@ const playerGraph = (graph) => (p) => (fromElements(...nodesByPlayer(graph)(p)))
 const transferNodes = (src) => (dest) => (...nodes) =>
 	removeNodes(src)(...nodes) && addNodes(dest)(...nodes);
 
-module.exports = Object.assign({}, FGT.Graph, {
-	nodesByPlayer,
-	nodesByColumn,
+module.exports = Object.assign({}, FGT.Graph, { nodesByPlayer,
+    nodesByColumn,
 	nodeByPosition,
 	nodesByPVector,
 	nodesByNVector,
-	nodesByRow,
-	transferNodes,
-	omniGraph,
-	colGraph,
-	rowGraph,
-	posGraph,
-	negGraph,
-	playerGraph,
-});
+    nodesByRow,
+    transferNodes,
+    omniGraph,
+    colGraph,
+    rowGraph,
+    posGraph,
+    negGraph,
+    playerGraph, });
