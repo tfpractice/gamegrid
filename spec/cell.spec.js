@@ -109,6 +109,12 @@ fdescribe('cell', function() {
 		describe('claim', () => {
 			it('sets the objects player attribute', function() {
 				Cell.claim(c00)({ name: 'jack' });
+				expect(Cell.player(c00)).not.toBeNull();
+			});
+		});
+		describe('samePlayer', function() {
+			it('checks if the player attributes are identical', function() {
+				expect(Cell.samePlayer(c00)(c01)).toBeTrue();
 			});
 		});
 	});
