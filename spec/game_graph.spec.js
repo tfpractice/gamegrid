@@ -51,32 +51,6 @@ fdescribe('GameGraph', function() {
 	});
 
 	describe('graph representations', () => {
-		describe('omniGraph', function() {
-			it('returns a new Graph with all neighbors joined', function() {
-				expect(GameGraph.omniGraph(myGraph) instanceof Map).toBeTrue();
-			});
-		});
-
-		describe('colGraph', () => {
-			it('returns a new Graph with only columns joined', function() {
-				expect(GameGraph.colGraph(myGraph) instanceof Map).toBeTrue();
-			});
-		});
-		describe('rowGraph', () => {
-			it('returns a new Graph with only columns joined', function() {
-				expect(GameGraph.rowGraph(myGraph) instanceof Map).toBeTrue();
-			});
-		});
-		describe('posGraph', () => {
-			it('returns a new Graph with only columns joined', function() {
-				expect(GameGraph.posGraph(myGraph) instanceof Map).toBeTrue();
-			});
-		});
-		describe('negGraph', () => {
-			it('returns a new Graph with only columns joined', function() {
-				expect(GameGraph.negGraph(myGraph) instanceof Map).toBeTrue();
-			});
-		});
 		describe('playerGraph', () => {
 			it('returns a new Graph of only nodes belonging to a player', () => {
 				expect(GameGraph.playerGraph(myGraph)(null) instanceof Map).toBeTrue();
