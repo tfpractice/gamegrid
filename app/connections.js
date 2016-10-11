@@ -12,6 +12,9 @@ const posAdj = (graph) => (src) => adjCells(graph)(src).filter(samePVector(src))
 const negAdj = (graph) => (src) => adjCells(graph)(src).filter(sameNVector(src));
 const allAdj = (graph) => (src) => adjCells(graph)(src).filter(isNeighbor(src));
 
+const adjConnectR = (graph = new Map, src) =>
+	addEdges(graph)(src, 0)(...adjCells(graph)(src));
+
 const colConnectR = (graph = new Map, src) =>
 	addEdges(graph)(src, 0)(...rowAdj(graph)(src));
 
@@ -24,14 +27,11 @@ const posConnectR = (graph = new Map, src) =>
 const negConnectR = (graph = new Map, src) =>
 	addEdges(graph)(src, 0)(...negAdj(graph)(src));
 
-const adjConnectR = (graph = new Map, src) =>
-	addEdges(graph)(src, 0)(...adjCells(graph)(src));
-
+const connectAdj = (graph) => cells(graph).reduce(adjConnectR, graph);
 const connectCols = (graph) => cells(graph).reduce(colConnectR, graph);
 const connectRows = (graph) => cells(graph).reduce(rowConnectR, graph);
 const connectPVectors = (graph) => cells(graph).reduce(posConnectR, graph);
 const connectNVectors = (graph) => cells(graph).reduce(negConnectR, graph);
-const connectAdj = (graph) => cells(graph).reduce(adjConnectR, graph);
 
 const colGraph = (graph) => connectCols(fromElements(...cells(graph)));
 const rowGraph = (graph) => connectRows(fromElements(...cells(graph)));
@@ -48,6 +48,8 @@ module.exports = {
 	colAdj,
 	posAdj,
 	negAdj,
+	adjConnectR,
+	connectAdj,
 	connectCols,
 	connectRows,
 	connectPVectors,

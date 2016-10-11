@@ -44,7 +44,17 @@ fdescribe('Connections', function() {
 			expect(Connections.negAdj(myGraph)(n11)).toBeArray();
 		});
 	});
-
+	describe('adjConnectR', () => {
+		it('creates Edges between a cell and its adjacents', function() {
+			Connections.adjConnectR(myGraph, n11);
+			expect(GameGraph.neighbors(myGraph)(n11)).toBeArray();
+		});
+	});
+	describe('connectAdj', () => {
+		it('creates edges between all adjacent nodes', function() {
+			expect(Connections.connectAdj(myGraph) instanceof Map).toBeTrue();
+		});
+	});
 	describe('connectCols', () => {
 		it('creates edges between colAdj', () => {
 			Connections.connectCols(myGraph);

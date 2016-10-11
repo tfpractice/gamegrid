@@ -21,10 +21,10 @@ const cellByPosition = (graph) => (column = 0, row = 0) =>
 const adjCells = (graph) => (src) => cells(graph).filter(isNeighbor(src));
 
 const addCells = (graph) => (...nodes) =>
-	connectAdjacents(addNodes(graph)(...nodes));
+	(addNodes(graph)(...nodes));
 
 const removeCells = (graph) => (...nodes) =>
-	connectAdjacents(removeNodes(graph)(...nodes));
+	(removeNodes(graph)(...nodes));
 
 const connectAdjR = (graph = new Map, src) =>
 	addEdges(graph)(src, 0)(...adjCells(graph)(src));
@@ -41,9 +41,9 @@ module.exports = Object.assign({}, Graph, {
 	cellsByColumn,
 	cellByPosition,
 	cellsByRow,
-	connectAdjR,
-	connectAdjacents,
-	adjCells,
+	// connectAdjR,
+	// connectAdjacents,
+	// adjCells,
 	transferCells,
 	addCells,
 	removeCells,
