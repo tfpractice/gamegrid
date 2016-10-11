@@ -84,27 +84,27 @@ fdescribe('Connections', function() {
 		});
 	});
 
-	describe('colComponents', function() {
-		it('retrives the compnents of the colGraph', function() {
-			expect(Connections.colComponents(myGraph) instanceof Set).toBeTrue();
-		});
-	});
+	// describe('colComponents', function() {
+	// 	it('retrives the compnents of the colGraph', function() {
+	// 		expect(Connections.colComponents(myGraph) instanceof Set).toBeTrue();
+	// 	});
+	// });
 
-	describe('rowComponents', function() {
-		it('retrives the compnents of the colGraph', function() {
-			expect(Connections.rowComponents(myGraph) instanceof Set).toBeTrue();
-		});
-	});
+	// describe('rowComponents', function() {
+	// 	it('retrives the compnents of the colGraph', function() {
+	// 		expect(Connections.rowComponents(myGraph) instanceof Set).toBeTrue();
+	// 	});
+	// });
 
-	describe('posComponents', function() {
-		it('retrives the compnents of the colGraph', function() {
-			expect(Connections.posComponents(myGraph) instanceof Set).toBeTrue();
-		});
-	});
+	// describe('posComponents', function() {
+	// 	it('retrives the compnents of the colGraph', function() {
+	// 		expect(Connections.posComponents(myGraph) instanceof Set).toBeTrue();
+	// 	});
+	// });
 
-	describe('negComponents', function() {
-		it('retrives the compnents of the colGraph', function() {
-			expect(Connections.negComponents(myGraph) instanceof Set).toBeTrue();
-		});
-	});
+	// describe('negComponents', function() {
+	// 	it('retrives the compnents of the colGraph', function() {
+	// 		expect(Connections.negComponents(myGraph) instanceof Set).toBeTrue();
+	// 	});
+	// });
 });
