@@ -20,16 +20,8 @@ const cellsByRow = (graph) => (row = 0) =>
 const cellByPosition = (graph) => (column = 0, row = 0) =>
 	cells(graph).find(Cell.isEquivalent({ column, row }));
 
-const adjCells = (graph) => (src) => cells(graph).filter(isNeighbor(src));
-
-const addCells = (graph) => (...nodes) =>
-	(addNodes(graph)(...nodes));
-
-const removeCells = (graph) => (...nodes) =>
-	(removeNodes(graph)(...nodes));
-
 const transferCells = (src) => (dest) => (...nodes) =>
-	removeCells(src)(...nodes) && addNodes(dest)(...nodes);
+	removeNodes(src)(...nodes) && addNodes(dest)(...nodes);
 
 // const countComponents = (graph) => componentSet(graph).size;
 
@@ -40,7 +32,6 @@ module.exports = Object.assign({}, Graph, {
 	cellByPosition,
 	cellsByRow,
 	transferCells,
-	addCells,
-	removeCells,
+
 	// countComponents,
 });
