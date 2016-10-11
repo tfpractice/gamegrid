@@ -4,13 +4,13 @@ const { Graph, utils, Traversals } = FGT;
 const { nodes, addNodes, removeNodes, addEdges } = Graph;
 // const { spreadValues } = utils;
 const { componentSet } = Traversals;
-const { sameColumn, sameRow, isNeighbor } = Cell;
+const { sameCol, sameRow, isNeighbor } = Cell;
 const { samePVector, sameNVector } = Cell;
 
 const cells = nodes;
 
 const cellsByColumn = (graph) => (column = 0) =>
-	cells(graph).filter(sameColumn({ column }));
+	cells(graph).filter(sameCol({ column }));
 
 const cellsByRow = (graph) => (row = 0) =>
 	cells(graph).filter(sameRow({ row }));

@@ -2,14 +2,14 @@ const FGT = require('functional_graph_theory');
 const Cell = require('./cell');
 const GameGraph = require('./game_graph');
 const { Traversals: { componentSet } } = FGT;
-const { sameColumn, sameRow, samePVector, sameNVector, isNeighbor } = Cell;
+const { sameCol, sameRow, samePVector, sameNVector, isNeighbor } = Cell;
 const { fromElements, cells, adjCells, addEdges } = GameGraph;
 
 const rowAdj = (graph) => (src) =>
 	adjCells(graph)(src).filter(sameRow(src));
 
 const colAdj = (graph) => (src) =>
-	adjCells(graph)(src).filter(sameColumn(src));
+	adjCells(graph)(src).filter(sameCol(src));
 
 const posAdj = (graph) => (src) =>
 	adjCells(graph)(src).filter(samePVector(src));

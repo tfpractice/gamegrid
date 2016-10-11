@@ -81,9 +81,9 @@ fdescribe('cell', function() {
 			});
 		});
 
-		describe('sameColumn', () => {
+		describe('sameCol', () => {
 			it('checks cell columns a difference of 0', () => {
-				expect(Cell.sameColumn(c00)(c01)).toBeTrue();
+				expect(Cell.sameCol(c00)(c01)).toBeTrue();
 			});
 		});
 		describe('sameRow', () => {
