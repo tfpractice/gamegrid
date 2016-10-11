@@ -53,12 +53,9 @@ module.exports = {
 	connectPVectors,
 	connectNVectors,
 	connectAdj,
-	// colGraph,
-	// rowGraph,
-	// posGraph,
-	// negGraph,
-	colComponents,
-	rowComponents,
-	posComponents,
-	negComponents,
+
+	// colComponents,
+	// rowComponents,
+	// posComponents,
+	// negComponents,
 };
