@@ -6,7 +6,6 @@ const { connectCols, connectRows, connectPVectors, connectNVectors, connectAdj }
 Connections;
 const { sameCol, sameRow, samePlayer, isNeighbor } = Cell;
 const { samePVector, sameNVector } = Cell;
-// console.log(Connections);
 const cells = nodes;
 
 const cellsByColumn = (graph) => (column = 0) =>
@@ -30,8 +29,6 @@ const negGraph = (graph) => connectNVectors(fromElements(...cells(graph)));
 const transferCells = (src) => (dest) => (...nodes) =>
 	removeNodes(src)(...nodes) && addNodes(dest)(...nodes);
 
-// const countComponents = (graph) => componentSet(graph).size;
-
 module.exports = Object.assign({}, FGT.Graph, {
 	cells,
 	cellsByPlayer,
@@ -44,6 +41,4 @@ module.exports = Object.assign({}, FGT.Graph, {
 	rowGraph,
 	posGraph,
 	negGraph,
-
-	// countComponents,
 });

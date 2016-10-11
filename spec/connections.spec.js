@@ -20,7 +20,6 @@ fdescribe('Connections', function() {
 
 	describe('adjCells', () => {
 		it('returns all neighboring nodes', () => {
-			// console.log(Connections.adjCells(myGraph)(n11));
 			expect(Connections.adjCells(myGraph)(n11)).toBeArray();
 		});
 	});
