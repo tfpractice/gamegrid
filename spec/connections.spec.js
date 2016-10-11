@@ -1,4 +1,4 @@
-fdescribe('Connections', function() {
+describe('Connections', function() {
 	beforeAll(function() {
 		console.log('\n.........connections Spec.........');
 	});

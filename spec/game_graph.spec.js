@@ -17,29 +17,29 @@ fdescribe('GameGraph', function() {
 		done();
 	});
 
-	describe('cells', () => {
-		it('returns the cells of the GameGraph', () => {
-			expect(GameGraph.cells(myGraph)).toBeArray();
+	describe('nodes', () => {
+		it('returns the nodes of the GameGraph', () => {
+			expect(GameGraph.nodes(myGraph)).toBeArray();
 		});
 	});
-	describe('cellsByColumn', () => {
-		it('returns the cells of the GameGraph', () => {
-			expect(GameGraph.cellsByColumn(myGraph)(2)).toBeArray();
+	describe('nodesByColumn', () => {
+		it('returns the nodes of the GameGraph', () => {
+			expect(GameGraph.nodesByColumn(myGraph)(2)).toBeArray();
 		});
 	});
-	describe('cellsByRow', () => {
-		it('returns the cells of the GameGraph', () => {
-			expect(GameGraph.cellsByRow(myGraph)(2)).toBeArray();
+	describe('nodesByRow', () => {
+		it('returns the nodes of the GameGraph', () => {
+			expect(GameGraph.nodesByRow(myGraph)(2)).toBeArray();
 		});
 	});
-	describe('cellsByPlayer', () => {
-		it('retrives a cell with the specified row and column', function() {
-			expect(GameGraph.cellsByPlayer(myGraph)(null)).toBeArray();
+	describe('nodesByPlayer', () => {
+		it('retrives a node with the specified row and column', function() {
+			expect(GameGraph.nodesByPlayer(myGraph)(null)).toBeArray();
 		});
 	});
-	describe('cellByPosition', () => {
-		it('retrives a cell with the specified row and column', function() {
-			expect(GameGraph.cellByPosition(myGraph)(0, 3)).toBeObject();
+	describe('nodeByPosition', () => {
+		it('retrives a node with the specified row and column', function() {
+			expect(GameGraph.nodeByPosition(myGraph)(0, 3)).toBeObject();
 		});
 	});
 
@@ -71,10 +71,10 @@ fdescribe('GameGraph', function() {
 			});
 		});
 
-		describe('transferCells', () => {
+		describe('transferNodes', () => {
 			it('transfers nodes from one graph to another', () => {
 				let e3 = evens[3];
-				GameGraph.transferCells(eGraph)(oGraph)(e3);
+				GameGraph.transferNodes(eGraph)(oGraph)(e3);
 				expect(GameGraph.contains(oGraph)(e3)).toBeTrue();
 				expect(GameGraph.contains(eGraph)(e3)).toBeFalse();
 			});

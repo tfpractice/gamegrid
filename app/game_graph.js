@@ -8,37 +8,35 @@ const { sameCol, sameRow, samePlayer, isNeighbor } = Cell;
 const { samePVector, sameNVector } = Cell;
 const cells = nodes;
 
-const cellsByColumn = (graph) => (column = 0) =>
-	cells(graph).filter(sameCol({ column }));
+const nodesByColumn = (graph) => (column = 0) =>
+	nodes(graph).filter(sameCol({ column }));
 
-const cellsByPlayer = (graph) => (player = null) =>
-	cells(graph).filter(samePlayer({ player }));
+const nodesByPlayer = (graph) => (player = null) =>
+	nodes(graph).filter(samePlayer({ player }));
 
-const cellsByRow = (graph) => (row = 0) =>
-	cells(graph).filter(sameRow({ row }));
+const nodesByRow = (graph) => (row = 0) =>
+	nodes(graph).filter(sameRow({ row }));
 
-const cellByPosition = (graph) => (column = 0, row = 0) =>
-	cells(graph).find(Cell.isEquivalent({ column, row }));
+const nodeByPosition = (graph) => (column = 0, row = 0) =>
+	nodes(graph).find(Cell.isEquivalent({ column, row }));
 
-const omniGraph = (graph) => connectAdj(fromElements(...cells(graph)));
-const colGraph = (graph) => connectCols(fromElements(...cells(graph)));
-const rowGraph = (graph) => connectRows(fromElements(...cells(graph)));
-const posGraph = (graph) => connectPVectors(fromElements(...cells(graph)));
-const negGraph = (graph) => connectNVectors(fromElements(...cells(graph)));
+const omniGraph = (graph) => connectAdj(fromElements(...nodes(graph)));
+const colGraph = (graph) => connectCols(fromElements(...nodes(graph)));
+const rowGraph = (graph) => connectRows(fromElements(...nodes(graph)));
+const posGraph = (graph) => connectPVectors(fromElements(...nodes(graph)));
+const negGraph = (graph) => connectNVectors(fromElements(...nodes(graph)));
 
-const transferCells = (src) => (dest) => (...nodes) =>
+const transferNodes = (src) => (dest) => (...nodes) =>
 	removeNodes(src)(...nodes) && addNodes(dest)(...nodes);
 
-module.exports = Object.assign({}, FGT.Graph, {
-	cells,
-	cellsByPlayer,
-	cellsByColumn,
-	cellByPosition,
-	cellsByRow,
-	transferCells,
-	omniGraph,
-	colGraph,
-	rowGraph,
-	posGraph,
-	negGraph,
-});
+module.exports = Object.assign({}, FGT.Graph, { nodes,
+    nodesByPlayer,
+    nodesByColumn,
+    nodeByPosition,
+    nodesByRow,
+    transferNodes,
+    omniGraph,
+    colGraph,
+    rowGraph,
+    posGraph,
+    negGraph, });
