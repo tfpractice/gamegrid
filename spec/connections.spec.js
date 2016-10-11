@@ -1,4 +1,4 @@
-describe('Connections', function() {
+fdescribe('Connections', function() {
 	beforeAll(function() {
 		console.log('\n.........connections Spec.........');
 	});
@@ -10,17 +10,19 @@ describe('Connections', function() {
 		evens = allCells.filter((c, id) => id % 2 === 0);
 		odds = allCells.filter((c, id) => id % 2 !== 0);
 		myCells = allCells.filter((c, id) => id < 18);
-		[n00, n01, n02, n03, n04, n05, n10, n11, n12, n13, n14, n15, ...r] =
-		myCells;
+		[n00, n01, n02, n03, n04, n05,
+			n10, n11, n12, n13, n14, n15,
+			n20, n21, n22,
+		] = myCells;
 		GameGraph.addNodes(myGraph)(...myCells);
 		GameGraph.addNodes(eGraph)(...evens);
 		GameGraph.addNodes(oGraph)(...odds);
 		done();
 	});
 
-	describe('adjCells', () => {
+	describe('adjNodes/adjCells', () => {
 		it('returns all neighboring nodes', () => {
-			expect(Connections.adjCells(myGraph)(n11)).toBeArray();
+			expect(Connections.adjNodes(myGraph)(n11)).toBeArray();
 		});
 	});
 	describe('rowAdj ', () => {

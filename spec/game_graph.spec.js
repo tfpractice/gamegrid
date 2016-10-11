@@ -79,11 +79,5 @@ fdescribe('GameGraph', function() {
 				expect(GameGraph.contains(eGraph)(e3)).toBeFalse();
 			});
 		});
-
-		describe('countComponents', () => {
-			it('returns the length of the components', () => {
-				// expect(GameGraph.countComponents(myGraph)).toBe(1);
-			});
-		});
 	});
 });
