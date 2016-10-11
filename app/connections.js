@@ -5,6 +5,8 @@ const { Traversals: { componentSet } } = FGT;
 const { sameCol, sameRow, samePVector, sameNVector, isNeighbor } = Cell;
 const { fromElements, cells, adjCells, addEdges } = GameGraph;
 
+const adjCells = (graph) => (src) =>
+	cells(graph).filter(isNeighbor(src));
 const rowAdj = (graph) => (src) =>
 	adjCells(graph)(src).filter(sameRow(src));
 
