@@ -48,24 +48,8 @@ fdescribe('GameGraph', function() {
 			expect(GameGraph.cellByPosition(myGraph)(0, 3)).toBeObject();
 		});
 	});
-	describe('connectAdjR', () => {
-		it('creates Edges between a cell and its adjacents', function() {
-			// GameGraph.connectAdjR(myGraph, n30);
-			// expect(GameGraph.neighbors(myGraph)(n30)).toBeArray();
-		});
-	});
+
 	describe('graph methods', () => {
-		describe('adjCells', () => {
-			it('creates an edge between each cell in a column', () => {
-				// GameGraph.connectAdjacents(myGraph);
-				// expect(GameGraph.adjCells(myGraph)(n30)).toBeArray();
-			});
-		});
-		describe('connectAdjacents', () => {
-			it('creates edges between all adjacent nodes', function() {
-				// expect(GameGraph.connectAdjacents(myGraph) instanceof Map).toBeTrue();
-			});
-		});
 		describe('addCells', () => {
 			it('adds nodes to a grid and connects them via adjCells function', () => {
 				expect(myGraph.has(n30)).toBeTrue();
