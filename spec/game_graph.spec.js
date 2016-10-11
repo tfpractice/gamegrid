@@ -10,7 +10,7 @@ fdescribe('GameGraph', function () {
         oGraph = GameGraph.spawn();
         evens = allCells.filter((c, id) => id % 2 === 0);
         odds = allCells.filter((c, id) => id % 2 !== 0);
-		myCells = allCells.filter((c, id) => id < 18);
+        myCells = allCells.filter((c, id) => id < 18);
         GameGraph.addNodes(myGraph)(...myCells);
         GameGraph.addNodes(eGraph)(...evens);
         GameGraph.addNodes(oGraph)(...odds);
@@ -62,7 +62,7 @@ fdescribe('GameGraph', function () {
         });
         describe('removeCells', () => {
             it('removes nodes from a grid and resets edges them via initEdges', () => {
-                GameGraph.removeCells(myGraph)(n30, n32);
+				GameGraph.removeNodes(myGraph)(n30, n32);
                 expect(myGraph.has(n30)).toBeFalse();
             });
         });
