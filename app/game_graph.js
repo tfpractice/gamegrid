@@ -20,6 +20,11 @@ const cellsByRow = (graph) => (row = 0) =>
 const cellByPosition = (graph) => (column = 0, row = 0) =>
 	cells(graph).find(Cell.isEquivalent({ column, row }));
 
+// const colGraph = (graph) => connectCols(fromElements(...cells(graph)));
+// const rowGraph = (graph) => connectRows(fromElements(...cells(graph)));
+// const posGraph = (graph) => connectPVectors(fromElements(...cells(graph)));
+// const negGraph = (graph) => connectNVectors(fromElements(...cells(graph)));
+
 const transferCells = (src) => (dest) => (...nodes) =>
 	removeNodes(src)(...nodes) && addNodes(dest)(...nodes);
 
