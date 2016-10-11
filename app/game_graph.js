@@ -34,8 +34,6 @@ const connectAdjacents = (graph) => cells(graph).reduce(connectAdjR, graph);
 const transferCells = (src) => (dest) => (...nodes) =>
 	removeCells(src)(...nodes) && addNodes(dest)(...nodes);
 
-
-// const components = (graph) => new Set(spreadValues(components(graph)));
 const countComponents = (graph) => componentSet(graph).size;
 
 module.exports = Object.assign({}, Graph, {

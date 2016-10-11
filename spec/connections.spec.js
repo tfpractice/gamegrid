@@ -1,4 +1,4 @@
-describe('Connections', function() {
+fdescribe('Connections', function() {
 	beforeAll(function() {
 		console.log('\n.........connections Spec.........');
 	});
@@ -16,68 +16,68 @@ describe('Connections', function() {
 		done();
 	});
 
-	describe('rowNeighbors ', () => {
+	describe('rowAdj ', () => {
 		it('returns all neighboring nodes adjacent bby row', () => {
-			expect(Connections.rowNeighbors(myGraph)(n30)).toBeArray();
+			expect(Connections.rowAdj(myGraph)(n30)).toBeArray();
 		});
 	});
-	describe('columnNeighbors ', () => {
+	describe('colAdj ', () => {
 		it('returns all neighboring nodes adjacent by column', () => {
-			expect(Connections.columnNeighbors(myGraph)(n30)).toBeArray();
+			expect(Connections.colAdj(myGraph)(n30)).toBeArray();
 		});
 	});
-	describe('posNeighbors ', () => {
+	describe('posAdj ', () => {
 		it('returns all neighboring nodes adjacent bby row', () => {
-			expect(Connections.posNeighbors(myGraph)(n30)).toBeArray();
+			expect(Connections.posAdj(myGraph)(n30)).toBeArray();
 		});
 	});
-	describe('negNeighbors ', () => {
+	describe('negAdj ', () => {
 		it('returns all neighboring nodes adjacent by column', () => {
-			expect(Connections.negNeighbors(myGraph)(n30)).toBeArray();
+			expect(Connections.negAdj(myGraph)(n30)).toBeArray();
 		});
 	});
 
 	describe('connectCols', () => {
-		it('creates edges between columnNeighbors', () => {
+		it('creates edges between colAdj', () => {
 			Connections.connectCols(myGraph);
 		});
 	});
 
 	describe('connectRows', () => {
-		it('creates edges between rowNeighbors', () => {
+		it('creates edges between rowAdj', () => {
 			Connections.connectRows(myGraph);
 		});
 	});
 
 	describe('connectPVectors', () => {
-		it('creates edges between posNeighbors', () => {
+		it('creates edges between posAdj', () => {
 			Connections.connectPVectors(myGraph);
 		});
 	});
 
 	describe('connectNVectors', () => {
-		it('creates edges between negNeighbors', () => {
+		it('creates edges between negAdj', () => {
 			Connections.connectNVectors(myGraph);
 		});
 	});
 	describe('colGraph', () => {
 		it('returns a new Graph with only columns connected', function() {
-			expect(Connections.colGraph(myGraph)).toBeObject();
+			expect(Connections.colGraph(myGraph) instanceof Map).toBeTrue();
 		});
 	});
 	describe('rowGraph', () => {
 		it('returns a new Graph with only columns connected', function() {
-			expect(Connections.rowGraph(myGraph)).toBeObject();
+			expect(Connections.rowGraph(myGraph) instanceof Map).toBeTrue();
 		});
 	});
 	describe('posGraph', () => {
 		it('returns a new Graph with only columns connected', function() {
-			expect(Connections.posGraph(myGraph)).toBeObject();
+			expect(Connections.posGraph(myGraph) instanceof Map).toBeTrue();
 		});
 	});
 	describe('negGraph', () => {
 		it('returns a new Graph with only columns connected', function() {
-			expect(Connections.negGraph(myGraph)).toBeObject();
+			expect(Connections.negGraph(myGraph) instanceof Map).toBeTrue();
 		});
 	});
 	describe('colComponents', function() {

@@ -1,95 +1,70 @@
-// const FGT = require('functional_graph_theory');
-// const Cell = require('./cell');
-// const GameGraph = require('./game_graph');
-// const { Graph } = FGT;
-// const { addEdge } = Graph;
-// const { sameColumn, sameRow } = Cell;
-// const { samePVector, sameNVector } = Cell;
-// const { spawn, cells, adjNodes, getComponents } = GameGraph;
+const FGT = require('functional_graph_theory');
+const Cell = require('./cell');
+const GameGraph = require('./game_graph');
+const { Traversals: { componentSet } } = FGT;
+const { sameColumn, sameRow, samePVector, sameNVector, isNeighbor } = Cell;
+const { fromElements, cells, adjCells, addEdges } = GameGraph;
 
-// const rowNeighbors = (graph) => (src) =>
-// 	adjNodes(graph)(src).filter(sameRow(src));
+const rowAdj = (graph) => (src) =>
+	adjCells(graph)(src).filter(sameRow(src));
 
-// const columnNeighbors = (graph) => (src) =>
-// 	adjNodes(graph)(src).filter(sameColumn(src));
+const colAdj = (graph) => (src) =>
+	adjCells(graph)(src).filter(sameColumn(src));
 
-// const posNeighbors = (graph) => (src) =>
-// 	adjNodes(graph)(src).filter(samePVector(src));
+const posAdj = (graph) => (src) =>
+	adjCells(graph)(src).filter(samePVector(src));
 
-// const negNeighbors = (graph) => (src) =>
-// 	adjNodes(graph)(src).filter(sameNVector(src));
+const negAdj = (graph) => (src) =>
+	adjCells(graph)(src).filter(sameNVector(src));
 
-// const connectCols = (graph) => {
-// 	cells(graph).forEach((prev) =>
-// 		columnNeighbors(graph)(prev).map(n => addEdge(graph)(prev)(n))
-// 	);
-// 	return graph;
-// };
+const allAdj = (graph) => (src) =>
+	adjCells(graph)(src).filter(isNeighbor(src));
 
-// const connectRows = (graph) => {
-// 	cells(graph).forEach((prev) =>
-// 		rowNeighbors(graph)(prev).map(n => addEdge(graph)(prev)(n))
-// 	);
-// 	return graph;
-// };
+const colConnectR = (graph = new Map, src) =>
+	addEdges(graph)(src, 0)(...rowAdj(graph)(src));
 
-// const connectPVectors = (graph) => {
-// 	cells(graph).forEach((prev) =>
-// 		posNeighbors(graph)(prev).map(n => addEdge(graph)(prev)(n))
-// 	);
-// 	return graph;
-// };
+const rowConnectR = (graph = new Map, src) =>
+	addEdges(graph)(src, 0)(...colAdj(graph)(src));
 
-// const connectNVectors = (graph) => {
-// 	cells(graph).forEach((prev) =>
-// 		negNeighbors(graph)(prev).map(n => addEdge(graph)(prev)(n))
-// 	);
-// 	return graph;
-// };
+const posConnectR = (graph = new Map, src) =>
+	addEdges(graph)(src, 0)(...posAdj(graph)(src));
 
-// const colGraph = (graph) => connectCols(spawn(...cells(graph)));
-// const rowGraph = (graph) => connectRows(spawn(...cells(graph)));
-// const posGraph = (graph) => connectPVectors(spawn(...cells(graph)));
-// const negGraph = (graph) => connectNVectors(spawn(...cells(graph)));
-// const colComponents = (graph) => getComponents(colGraph(graph));
-// const rowComponents = (graph) => getComponents(rowGraph(graph));
-// const posComponents = (graph) => getComponents(posGraph(graph));
-// const negComponents = (graph) => getComponents(negGraph(graph));
+const negConnectR = (graph = new Map, src) =>
+	addEdges(graph)(src, 0)(...negAdj(graph)(src));
 
+const adjConnectR = (graph = new Map, src) =>
+	addEdges(graph)(src, 0)(...adjCells(graph)(src));
 
-// // const components = ({ edges }) => {
-// // 	let cMap = new Map();
+const connectCols = (graph) => cells(graph).reduce(colConnectR, graph);
+const connectRows = (graph) => cells(graph).reduce(rowConnectR, graph);
+const connectPVectors = (graph) => cells(graph).reduce(posConnectR, graph);
+const connectNVectors = (graph) => cells(graph).reduce(negConnectR, graph);
+const connectAdj = (graph) => cells(graph).reduce(adjConnectR, graph);
 
-// // 	let visitComponent = (comp = new Set) => (node) => {
-// // 		comp.add(node);
-// // 		cMap.set(node, comp);
-// // 		for (let [nabe, nWeight] of edges.get(node)) {
-// // 			if (!comp.has(nabe)) { visitComponent(comp)(nabe); }
-// // 		}
-// // 	};
+const colGraph = (graph) => connectCols(fromElements(...cells(graph)));
+const rowGraph = (graph) => connectRows(fromElements(...cells(graph)));
+const posGraph = (graph) => connectPVectors(fromElements(...cells(graph)));
+const negGraph = (graph) => connectNVectors(fromElements(...cells(graph)));
+const colComponents = (graph) => componentSet(colGraph(graph));
+const rowComponents = (graph) => componentSet(rowGraph(graph));
+const posComponents = (graph) => componentSet(posGraph(graph));
+const negComponents = (graph) => componentSet(negGraph(graph));
 
-// // 	for (let [node, nabes] of edges) {
-// // 		if (!cMap.has(node)) { visitComponent(new Set)(node); }
-// // 	}
-
-// // 	return cMap;
-// // };
-
-// module.exports = {
-// 	rowNeighbors,
-// 	columnNeighbors,
-// 	posNeighbors,
-// 	negNeighbors,
-// 	connectCols,
-// 	connectRows,
-// 	connectPVectors,
-// 	connectNVectors,
-// 	colGraph,
-// 	rowGraph,
-// 	posGraph,
-// 	negGraph,
-// 	colComponents,
-// 	rowComponents,
-// 	posComponents,
-// 	negComponents,
-// };
+module.exports = {
+	rowAdj,
+	colAdj,
+	posAdj,
+	negAdj,
+	connectCols,
+	connectRows,
+	connectPVectors,
+	connectNVectors,
+	colGraph,
+	rowGraph,
+	posGraph,
+	negGraph,
+	colComponents,
+	rowComponents,
+	posComponents,
+	negComponents,
+};
