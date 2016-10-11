@@ -15,6 +15,12 @@ const nodesByPlayer = (graph) => (player = null) =>
 const nodesByRow = (graph) => (row = 0) =>
 	nodes(graph).filter(sameRow({ row }));
 
+const nodesByPVector = (graph) => (column = 0, row = 0) =>
+	nodes(graph).filter(samePVector({ column, row }));
+
+const nodesByNVector = (graph) => (column = 0, row = 0) =>
+	nodes(graph).filter(sameNVector({ column, row }));
+
 const nodeByPosition = (graph) => (column = 0, row = 0) =>
 	nodes(graph).find(Cell.isEquivalent({ column, row }));
 
@@ -32,6 +38,8 @@ module.exports = Object.assign({}, FGT.Graph, {
 	nodesByPlayer,
 	nodesByColumn,
 	nodeByPosition,
+	nodesByPVector,
+	nodesByNVector,
 	nodesByRow,
 	transferNodes,
 	omniGraph,

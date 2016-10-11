@@ -42,6 +42,16 @@ fdescribe('GameGraph', function() {
 			expect(GameGraph.nodeByPosition(myGraph)(0, 3)).toBeObject();
 		});
 	});
+	describe('nodesByPVector', () => {
+		it('retrives a node with the specified row and column', function() {
+			expect(GameGraph.nodesByPVector(myGraph)(0, 3)).toBeArray();
+		});
+	});
+	describe('nodesByNVector', () => {
+		it('retrives a node with the specified row and column', function() {
+			expect(GameGraph.nodesByNVector(myGraph)(0, 3)).toBeArray();
+		});
+	});
 
 	describe('graph representations', () => {
 		describe('omniGraph', function() {
