@@ -43,7 +43,28 @@ fdescribe('GameGraph', function() {
 		});
 	});
 
-	describe('graph methods', () => {
+	describe('graph representations', () => {
+		describe('colGraph', () => {
+			it('returns a new Graph with only columns connected', function() {
+				expect(GameGraph.colGraph(myGraph) instanceof Map).toBeTrue();
+			});
+		});
+		describe('rowGraph', () => {
+			it('returns a new Graph with only columns connected', function() {
+				expect(GameGraph.rowGraph(myGraph) instanceof Map).toBeTrue();
+			});
+		});
+		describe('posGraph', () => {
+			it('returns a new Graph with only columns connected', function() {
+				expect(GameGraph.posGraph(myGraph) instanceof Map).toBeTrue();
+			});
+		});
+		describe('negGraph', () => {
+			it('returns a new Graph with only columns connected', function() {
+				expect(GameGraph.negGraph(myGraph) instanceof Map).toBeTrue();
+			});
+		});
+
 		describe('transferCells', () => {
 			it('transfers nodes from one graph to another', () => {
 				let e3 = evens[3];

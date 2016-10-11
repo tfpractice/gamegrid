@@ -83,26 +83,7 @@ fdescribe('Connections', function() {
 			Connections.connectAdj(myGraph);
 		});
 	});
-	describe('colGraph', () => {
-		it('returns a new Graph with only columns connected', function() {
-			expect(Connections.colGraph(myGraph) instanceof Map).toBeTrue();
-		});
-	});
-	describe('rowGraph', () => {
-		it('returns a new Graph with only columns connected', function() {
-			expect(Connections.rowGraph(myGraph) instanceof Map).toBeTrue();
-		});
-	});
-	describe('posGraph', () => {
-		it('returns a new Graph with only columns connected', function() {
-			expect(Connections.posGraph(myGraph) instanceof Map).toBeTrue();
-		});
-	});
-	describe('negGraph', () => {
-		it('returns a new Graph with only columns connected', function() {
-			expect(Connections.negGraph(myGraph) instanceof Map).toBeTrue();
-		});
-	});
+
 	describe('colComponents', function() {
 		it('retrives the compnents of the colGraph', function() {
 			expect(Connections.colComponents(myGraph) instanceof Set).toBeTrue();

@@ -1,11 +1,12 @@
 const FGT = require('functional_graph_theory');
 const Cell = require('./cell');
-const { Graph, utils, Traversals } = FGT;
-const { nodes, addNodes, removeNodes, addEdges } = Graph;
-const { componentSet } = Traversals;
+const Connections = require('./connections');
+const { Graph: { nodes, addNodes, removeNodes, fromElements } } = FGT;
+const { connectCols, connectRows, connectPVectors, connectNVectors, } =
+Connections;
 const { sameCol, sameRow, samePlayer, isNeighbor } = Cell;
 const { samePVector, sameNVector } = Cell;
-
+// console.log(Connections);
 const cells = nodes;
 
 const cellsByColumn = (graph) => (column = 0) =>
@@ -20,23 +21,27 @@ const cellsByRow = (graph) => (row = 0) =>
 const cellByPosition = (graph) => (column = 0, row = 0) =>
 	cells(graph).find(Cell.isEquivalent({ column, row }));
 
-// const colGraph = (graph) => connectCols(fromElements(...cells(graph)));
-// const rowGraph = (graph) => connectRows(fromElements(...cells(graph)));
-// const posGraph = (graph) => connectPVectors(fromElements(...cells(graph)));
-// const negGraph = (graph) => connectNVectors(fromElements(...cells(graph)));
+// const omniGraph = (graph)=> connectAdj
+const colGraph = (graph) => connectCols(fromElements(...cells(graph)));
+const rowGraph = (graph) => connectRows(fromElements(...cells(graph)));
+const posGraph = (graph) => connectPVectors(fromElements(...cells(graph)));
+const negGraph = (graph) => connectNVectors(fromElements(...cells(graph)));
 
 const transferCells = (src) => (dest) => (...nodes) =>
 	removeNodes(src)(...nodes) && addNodes(dest)(...nodes);
 
 // const countComponents = (graph) => componentSet(graph).size;
 
-module.exports = Object.assign({}, Graph, {
-	cells,
-	cellsByPlayer,
-	cellsByColumn,
-	cellByPosition,
-	cellsByRow,
+module.exports = Object.assign({}, FGT.Graph, { cells,
+    cellsByPlayer,
+    cellsByColumn,
+    cellByPosition,
+    cellsByRow,
 	transferCells,
+	colGraph,
+	rowGraph,
+    posGraph,
+    negGraph,
 
-	// countComponents,
+    // countComponents,
 });

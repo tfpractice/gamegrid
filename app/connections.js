@@ -1,11 +1,10 @@
 const FGT = require('functional_graph_theory');
 const Cell = require('./cell');
-const GameGraph = require('./game_graph');
-const { Traversals: { componentSet } } = FGT;
+const { Traversals: { componentSet }, Graph: { fromElements, nodes, addEdges } } =
+FGT;
 const { sameCol, sameRow, samePVector, sameNVector, isNeighbor } = Cell;
-const { fromElements, cells, addEdges } = GameGraph;
 
-const adjCells = (graph) => (src) => cells(graph).filter(isNeighbor(src));
+const adjCells = (graph) => (src) => nodes(graph).filter(isNeighbor(src));
 const rowAdj = (graph) => (src) => adjCells(graph)(src).filter(sameRow(src));
 const colAdj = (graph) => (src) => adjCells(graph)(src).filter(sameCol(src));
 const posAdj = (graph) => (src) => adjCells(graph)(src).filter(samePVector(src));
@@ -27,16 +26,15 @@ const posConnectR = (graph = new Map, src) =>
 const negConnectR = (graph = new Map, src) =>
 	addEdges(graph)(src, 0)(...negAdj(graph)(src));
 
-const connectAdj = (graph) => cells(graph).reduce(adjConnectR, graph);
-const connectCols = (graph) => cells(graph).reduce(colConnectR, graph);
-const connectRows = (graph) => cells(graph).reduce(rowConnectR, graph);
-const connectPVectors = (graph) => cells(graph).reduce(posConnectR, graph);
-const connectNVectors = (graph) => cells(graph).reduce(negConnectR, graph);
-
-const colGraph = (graph) => connectCols(fromElements(...cells(graph)));
-const rowGraph = (graph) => connectRows(fromElements(...cells(graph)));
-const posGraph = (graph) => connectPVectors(fromElements(...cells(graph)));
-const negGraph = (graph) => connectNVectors(fromElements(...cells(graph)));
+const connectAdj = (graph) => nodes(graph).reduce(adjConnectR, graph);
+const connectCols = (graph) => nodes(graph).reduce(colConnectR, graph);
+const connectRows = (graph) => nodes(graph).reduce(rowConnectR, graph);
+const connectPVectors = (graph) => nodes(graph).reduce(posConnectR, graph);
+const connectNVectors = (graph) => nodes(graph).reduce(negConnectR, graph);
+const colGraph = (graph) => connectCols(fromElements(...nodes(graph)));
+const rowGraph = (graph) => connectRows(fromElements(...nodes(graph)));
+const posGraph = (graph) => connectPVectors(fromElements(...nodes(graph)));
+const negGraph = (graph) => connectNVectors(fromElements(...nodes(graph)));
 const colComponents = (graph) => componentSet(colGraph(graph));
 const rowComponents = (graph) => componentSet(rowGraph(graph));
 const posComponents = (graph) => componentSet(posGraph(graph));
@@ -55,10 +53,10 @@ module.exports = {
 	connectPVectors,
 	connectNVectors,
 	connectAdj,
-	colGraph,
-	rowGraph,
-	posGraph,
-	negGraph,
+	// colGraph,
+	// rowGraph,
+	// posGraph,
+	// negGraph,
 	colComponents,
 	rowComponents,
 	posComponents,
