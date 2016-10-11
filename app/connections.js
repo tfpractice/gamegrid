@@ -3,24 +3,14 @@ const Cell = require('./cell');
 const GameGraph = require('./game_graph');
 const { Traversals: { componentSet } } = FGT;
 const { sameCol, sameRow, samePVector, sameNVector, isNeighbor } = Cell;
-const { fromElements, cells, adjCells, addEdges } = GameGraph;
+const { fromElements, cells, addEdges } = GameGraph;
 
-const adjCells = (graph) => (src) =>
-	cells(graph).filter(isNeighbor(src));
-const rowAdj = (graph) => (src) =>
-	adjCells(graph)(src).filter(sameRow(src));
-
-const colAdj = (graph) => (src) =>
-	adjCells(graph)(src).filter(sameCol(src));
-
-const posAdj = (graph) => (src) =>
-	adjCells(graph)(src).filter(samePVector(src));
-
-const negAdj = (graph) => (src) =>
-	adjCells(graph)(src).filter(sameNVector(src));
-
-const allAdj = (graph) => (src) =>
-	adjCells(graph)(src).filter(isNeighbor(src));
+const adjCells = (graph) => (src) => cells(graph).filter(isNeighbor(src));
+const rowAdj = (graph) => (src) => adjCells(graph)(src).filter(sameRow(src));
+const colAdj = (graph) => (src) => adjCells(graph)(src).filter(sameCol(src));
+const posAdj = (graph) => (src) => adjCells(graph)(src).filter(samePVector(src));
+const negAdj = (graph) => (src) => adjCells(graph)(src).filter(sameNVector(src));
+const allAdj = (graph) => (src) => adjCells(graph)(src).filter(isNeighbor(src));
 
 const colConnectR = (graph = new Map, src) =>
 	addEdges(graph)(src, 0)(...rowAdj(graph)(src));
@@ -53,11 +43,11 @@ const posComponents = (graph) => componentSet(posGraph(graph));
 const negComponents = (graph) => componentSet(negGraph(graph));
 
 module.exports = {
+	adjCells,
 	rowAdj,
 	colAdj,
 	posAdj,
 	negAdj,
-	allAdj,
 	connectCols,
 	connectRows,
 	connectPVectors,

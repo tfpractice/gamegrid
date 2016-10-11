@@ -10,35 +10,38 @@ fdescribe('Connections', function() {
 		evens = allCells.filter((c, id) => id % 2 === 0);
 		odds = allCells.filter((c, id) => id % 2 !== 0);
 		myCells = allCells.filter((c, id) => id < 18);
+		[n00, n01, n02, n03, n04, n05, n10, n11, n12, n13, n14, n15, ...r] =
+		myCells;
 		GameGraph.addNodes(myGraph)(...myCells);
 		GameGraph.addNodes(eGraph)(...evens);
 		GameGraph.addNodes(oGraph)(...odds);
 		done();
 	});
 
+	describe('adjCells', () => {
+		it('returns all neighboring nodes', () => {
+			// console.log(Connections.adjCells(myGraph)(n11));
+			expect(Connections.adjCells(myGraph)(n11)).toBeArray();
+		});
+	});
 	describe('rowAdj ', () => {
 		it('returns all neighboring nodes adjacent bby row', () => {
-			expect(Connections.rowAdj(myGraph)(n30)).toBeArray();
+			expect(Connections.rowAdj(myGraph)(n11)).toBeArray();
 		});
 	});
 	describe('colAdj ', () => {
 		it('returns all neighboring nodes adjacent by column', () => {
-			expect(Connections.colAdj(myGraph)(n30)).toBeArray();
+			expect(Connections.colAdj(myGraph)(n11)).toBeArray();
 		});
 	});
 	describe('posAdj ', () => {
 		it('returns all neighboring nodes adjacent bby row', () => {
-			expect(Connections.posAdj(myGraph)(n30)).toBeArray();
+			expect(Connections.posAdj(myGraph)(n11)).toBeArray();
 		});
 	});
 	describe('negAdj ', () => {
 		it('returns all neighboring nodes adjacent by column', () => {
-			expect(Connections.negAdj(myGraph)(n30)).toBeArray();
-		});
-	});
-	describe('allAdj', () => {
-		it('creates an edge between each cell in a column', () => {
-			expect(Connections.allAdj(myGraph)(n30)).toBeArray();
+			expect(Connections.negAdj(myGraph)(n11)).toBeArray();
 		});
 	});
 
