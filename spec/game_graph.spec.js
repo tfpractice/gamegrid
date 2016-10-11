@@ -8,9 +8,6 @@ fdescribe('GameGraph', function() {
 		myGraph = GameGraph.spawn();
 		eGraph = GameGraph.spawn();
 		oGraph = GameGraph.spawn();
-		evens = allCells.filter((c, id) => id % 2 === 0);
-		odds = allCells.filter((c, id) => id % 2 !== 0);
-		myCells = allCells.filter((c, id) => id < 18);
 		GameGraph.addNodes(myGraph)(...myCells);
 		GameGraph.addNodes(eGraph)(...evens);
 		GameGraph.addNodes(oGraph)(...odds);

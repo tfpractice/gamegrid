@@ -16,10 +16,10 @@ const adjConnectR = (graph = new Map, src) =>
 	addEdges(graph)(src, 0)(...adjNodes(graph)(src));
 
 const colConnectR = (graph = new Map, src) =>
-	addEdges(graph)(src, 0)(...rowAdj(graph)(src));
+	addEdges(graph)(src, 0)(...colAdj(graph)(src));
 
 const rowConnectR = (graph = new Map, src) =>
-	addEdges(graph)(src, 0)(...colAdj(graph)(src));
+	addEdges(graph)(src, 0)(...rowAdj(graph)(src));
 
 const posConnectR = (graph = new Map, src) =>
 	addEdges(graph)(src, 0)(...posAdj(graph)(src));
@@ -40,16 +40,18 @@ const negComponents = (graph) => componentSet(negGraph(graph));
 //
 const adjCells = adjNodes;
 
-module.exports = { adjNodes,
-    adjCells,
-    rowAdj,
-    colAdj,
-    posAdj,
-    negAdj,
-    adjConnectR,
-    joinAdj,
-    joinCols,
-    joinRows,
-    joinPVectors,
-    joinNVectors,
-    joinAdj, };
+module.exports = {
+	adjNodes,
+	adjCells,
+	rowAdj,
+	colAdj,
+	posAdj,
+	negAdj,
+	adjConnectR,
+	joinAdj,
+	joinCols,
+	joinRows,
+	joinPVectors,
+	joinNVectors,
+	joinAdj,
+};
