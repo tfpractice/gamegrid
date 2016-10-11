@@ -10,6 +10,7 @@ const cells = nodes;
 
 const cellsByColumn = (graph) => (column = 0) =>
 	cells(graph).filter(sameCol({ column }));
+
 const cellsByPlayer = (graph) => (player = null) =>
 	cells(graph).filter(samePlayer({ player }));
 
