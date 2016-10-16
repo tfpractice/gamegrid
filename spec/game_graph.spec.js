@@ -1,82 +1,82 @@
-fdescribe('GameGraph', function() {
+fdescribe('Grid', function() {
 	beforeAll(function() {
-		console.log('\n.........GameGraph Spec.........');
-		({ GameGraph } = app);
+		console.log('\n.........Grid Spec.........');
+		({ Grid } = app);
 	});
 
 	beforeEach(function(done) {
-		myGraph = GameGraph.spawn();
-		eGraph = GameGraph.spawn();
-		oGraph = GameGraph.spawn();
-		allGraph = GameGraph.fromElements(...allCells);
-		GameGraph.addNodes(myGraph)(...myCells);
-		GameGraph.addNodes(eGraph)(...evens);
-		GameGraph.addNodes(oGraph)(...odds);
+		myGraph = Grid.spawn();
+		eGraph = Grid.spawn();
+		oGraph = Grid.spawn();
+		allGraph = Grid.fromElements(...allCells);
+		Grid.addNodes(myGraph)(...myCells);
+		Grid.addNodes(eGraph)(...evens);
+		Grid.addNodes(oGraph)(...odds);
 		done();
 	});
 
 	describe('nodes', () => {
-		it('returns the nodes of the GameGraph', () => {
-			expect(GameGraph.nodes(myGraph)).toBeArray();
+		it('returns the nodes of the Grid', () => {
+			expect(Grid.nodes(myGraph)).toBeArray();
 		});
 	});
 	describe('nodesByColumn', () => {
-		it('returns the nodes of the GameGraph', () => {
-			expect(GameGraph.nodesByColumn(myGraph)(2)).toBeArray();
+		it('returns the nodes of the Grid', () => {
+			expect(Grid.nodesByColumn(myGraph)(2)).toBeArray();
 		});
 	});
 	describe('nodesByRow', () => {
-		it('returns the nodes of the GameGraph', () => {
-			expect(GameGraph.nodesByRow(myGraph)(2)).toBeArray();
+		it('returns the nodes of the Grid', () => {
+			expect(Grid.nodesByRow(myGraph)(2)).toBeArray();
 		});
 	});
 	describe('nodesByPlayer', () => {
 		it('retrives a node with the specified row and column', function() {
-			expect(GameGraph.nodesByPlayer(myGraph)(null)).toBeArray();
+			expect(Grid.nodesByPlayer(myGraph)(null)).toBeArray();
 		});
 	});
 	describe('nodeByPosition', () => {
 		it('retrives a node with the specified row and column', function() {
-			expect(GameGraph.nodeByPosition(myGraph)(0, 3)).toBeObject();
+			expect(Grid.nodeByPosition(myGraph)(0, 3)).toBeObject();
 		});
 	});
 	describe('nodesByPVector', () => {
 		it('retrives a node with the specified row and column', function() {
-			expect(GameGraph.nodesByPVector(myGraph)(0, 3)).toBeArray();
+			expect(Grid.nodesByPVector(myGraph)(0, 3)).toBeArray();
 		});
 	});
 	describe('nodesByNVector', () => {
 		it('retrives a node with the specified row and column', function() {
-			expect(GameGraph.nodesByNVector(myGraph)(0, 3)).toBeArray();
+			expect(Grid.nodesByNVector(myGraph)(0, 3)).toBeArray();
 		});
 	});
 	describe('colIDs', function() {
 		it('returns a set of column IDs', function() {
-			expect(GameGraph.colIDs(allGraph) instanceof Set).toBeTrue();
-			expect(GameGraph.colIDs(allGraph).size).toBe(6);
+			expect(Grid.colIDs(allGraph) instanceof Set).toBeTrue();
+			expect(Grid.colIDs(allGraph).size).toBe(6);
 		});
 	});
 
 	describe('rowIDs', function() {
 		it('returns a set of column IDs', function() {
-			expect(GameGraph.rowIDs(allGraph) instanceof Set).toBeTrue();
-			expect(GameGraph.rowIDs(allGraph).size).toBe(6);
+			expect(Grid.rowIDs(allGraph) instanceof Set).toBeTrue();
+			expect(Grid.rowIDs(allGraph).size).toBe(6);
 		});
 	});
 
 	describe('graph representations', () => {
 		describe('playerGraph', () => {
 			it('returns a new Graph of only nodes belonging to a player', () => {
-				expect(GameGraph.playerGraph(myGraph)(null) instanceof Map).toBeTrue();
+				expect(Grid.playerGraph(myGraph)(null) instanceof Map).toBeTrue();
 			});
 		});
 
 		describe('transferNodes', () => {
 			it('transfers nodes from one graph to another', () => {
 				let e3 = evens[3];
-				GameGraph.transferNodes(eGraph)(oGraph)(e3);
-				expect(GameGraph.contains(oGraph)(e3)).toBeTrue();
-				expect(GameGraph.contains(eGraph)(e3)).toBeFalse();
+				Grid.transferNodes(eGraph)(oGraph)(e3);
+				expect(Grid.contains(oGraph)(e3)).toBeTrue();
+				expect(Grid.contains(eGraph)(e3)).toBeFalse();
 			});
 		});
 	});
