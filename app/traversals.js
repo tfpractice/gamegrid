@@ -3,25 +3,25 @@ const Connex = require('./connections');
 const { joinCols, joinRows, joinPVectors, joinNVectors, joinAdj } = Connex;
 const { Traversals: { componentSet }, Graph: { fromElements, nodes } } = FGT;
 
-const omniGraph = (graph) => joinAdj(fromElements(...nodes(graph)));
-const colGraph = (graph) => joinCols(fromElements(...nodes(graph)));
-const rowGraph = (graph) => joinRows(fromElements(...nodes(graph)));
-const posGraph = (graph) => joinPVectors(fromElements(...nodes(graph)));
-const negGraph = (graph) => joinNVectors(fromElements(...nodes(graph)));
+const omniGraph = (grid) => joinAdj(fromElements(...nodes(grid)));
+const colGraph = (grid) => joinCols(fromElements(...nodes(grid)));
+const rowGraph = (grid) => joinRows(fromElements(...nodes(grid)));
+const posGraph = (grid) => joinPVectors(fromElements(...nodes(grid)));
+const negGraph = (grid) => joinNVectors(fromElements(...nodes(grid)));
 
-const colComponents = (graph) => componentSet(colGraph(graph));
-const rowComponents = (graph) => componentSet(rowGraph(graph));
-const posComponents = (graph) => componentSet(posGraph(graph));
-const negComponents = (graph) => componentSet(negGraph(graph));
+const colComponents = (grid) => componentSet(colGraph(grid));
+const rowComponents = (grid) => componentSet(rowGraph(grid));
+const posComponents = (grid) => componentSet(posGraph(grid));
+const negComponents = (grid) => componentSet(negGraph(grid));
 
 module.exports = Object.assign({}, FGT.Traversals, {
-	omniGraph,
-	colGraph,
-	rowGraph,
-	posGraph,
-	negGraph,
-	colComponents,
-	rowComponents,
-	posComponents,
-	negComponents,
+    omniGraph,
+    colGraph,
+    rowGraph,
+    posGraph,
+    negGraph,
+    colComponents,
+    rowComponents,
+    posComponents,
+    negComponents,
 });

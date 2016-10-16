@@ -15,30 +15,29 @@ const initCells = (cNum = 0, rNum = 0) => {
 	return fromElements(...cells);
 };
 
-const fromGrid = (graph) => initCells(colIDs(graph).size, rowIDs(graph).size);
+const fromGrid = (grid) => initCells(colIDs(grid).size, rowIDs(grid).size);
 
-// module.exports = { spawn};
-const nodesByColumn = (graph) => (column = 0) =>
-	nodes(graph).filter(sameCol({ column }));
+const nodesByColumn = (grid) => (column = 0) =>
+	nodes(grid).filter(sameCol({ column }));
 
-const nodesByPlayer = (graph) => (player = null) =>
-	nodes(graph).filter(samePlayer({ player }));
+const nodesByPlayer = (grid) => (player = null) =>
+	nodes(grid).filter(samePlayer({ player }));
 
-const nodesByRow = (graph) => (row = 0) =>
-	nodes(graph).filter(sameRow({ row }));
+const nodesByRow = (grid) => (row = 0) =>
+	nodes(grid).filter(sameRow({ row }));
 
-const nodesByPVector = (graph) => (column = 0, row = 0) =>
-	nodes(graph).filter(samePVector({ column, row }));
+const nodesByPVector = (grid) => (column = 0, row = 0) =>
+	nodes(grid).filter(samePVector({ column, row }));
 
-const nodesByNVector = (graph) => (column = 0, row = 0) =>
-	nodes(graph).filter(sameNVector({ column, row }));
+const nodesByNVector = (grid) => (column = 0, row = 0) =>
+	nodes(grid).filter(sameNVector({ column, row }));
 
-const nodeByPosition = (graph) => (column = 0, row = 0) =>
-	nodes(graph).find(Cell.isEquivalent({ column, row }));
+const nodeByPosition = (grid) => (column = 0, row = 0) =>
+	nodes(grid).find(Cell.isEquivalent({ column, row }));
 
-const playerGraph = (graph) => (p) => (fromElements(...nodesByPlayer(graph)(p)));
-const colIDs = (graph) => new Set(nodes(graph).map(Cell.column));
-const rowIDs = (graph) => new Set(nodes(graph).map(Cell.row));
+const playerGraph = (grid) => (p) => (fromElements(...nodesByPlayer(grid)(p)));
+const colIDs = (grid) => new Set(nodes(grid).map(Cell.column));
+const rowIDs = (grid) => new Set(nodes(grid).map(Cell.row));
 const transferNodes = (src) => (dest) => (...nodes) =>
 	removeNodes(src)(...nodes) && addNodes(dest)(...nodes);
 
