@@ -1,6 +1,6 @@
 const FGT = require('functional_graph_theory');
 const Cell = require('./cell');
-const { Traversals: { componentSet }, Graph: { fromElements, nodes, addEdges } } =
+const { Graph: { fromElements, nodes, addEdges } } =
 FGT;
 const { sameCol, sameRow, samePVector, sameNVector, isNeighbor } = Cell;
 
