@@ -7,8 +7,8 @@ const column = ({ column }) => column;
 const row = ({ row }) => row;
 const player = ({ player }) => player;
 const cellString = ({ column, row }) => `{ cell::${column}_${row} }`;
-const claim = (cell) => (player = null) => Object.assign(cell, { player });
-const unclaim = (cell) => claim(cell)(null);
+// const claim = (cell) => (player = null) => Object.assign(cell, { player });
+// const unclaim = (cell) => claim(cell)(null);
 
 const colDiff = ({ column: c0 }) => ({ column: c1 }) => (c0 - c1);
 const rowDiff = ({ row: r0 }) => ({ row: r1 }) => (r0 - r1);
@@ -50,6 +50,6 @@ module.exports = {
 	x_isEquivalent,
 	sameCol,
 	sameRow,
-	claim,
-	unclaim,
+	// claim,
+	// unclaim,
 };

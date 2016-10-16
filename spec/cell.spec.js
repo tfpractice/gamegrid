@@ -44,18 +44,18 @@ describe('Cell', function() {
 		});
 	});
 	describe('operators', () => {
-		describe('claim', () => {
-			it('sets the objects player attribute', () => {
-				Cell.claim(c00)({ name: 'jack' });
-				expect(Cell.player(c00)).not.toBeNull();
-			});
-		});
-		describe('unclaim', () => {
-			it('sets the objects player attribute', () => {
-				Cell.unclaim(c00);
-				expect(Cell.player(c00)).toBeNull();
-			});
-		});
+		// describe('claim', () => {
+		// 	it('sets the objects player attribute', () => {
+		// 		Cell.claim(c00)({ name: 'jack' });
+		// 		expect(Cell.player(c00)).not.toBeNull();
+		// 	});
+		// });
+		// describe('unclaim', () => {
+		// 	it('sets the objects player attribute', () => {
+		// 		Cell.unclaim(c00);
+		// 		expect(Cell.player(c00)).toBeNull();
+		// 	});
+		// });
 		describe('colDiff', () => {
 			it('returns the difference in column attributes', () => {
 				expect(Cell.colDiff(c00)(c01)).toBe(0);
