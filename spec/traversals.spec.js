@@ -6,7 +6,7 @@ fdescribe('Traversals', function() {
 
 	beforeEach(function() {
 		myGraph = GameGraph.spawn();
-		GameGraph.addNodes(myGraph)(...myCells);
+		GameGraph.addNodes(myGraph)(...allCells);
 	});
 
 	describe('graph representations', () => {
@@ -39,8 +39,8 @@ fdescribe('Traversals', function() {
 		describe('colComponents', function() {
 			it('returns the connected components in a column graph', () => {
 				console.log('****colComponents****');
-				[...Traversals.colComponents(myGraph)].map(c => console.log('comp',
-					c));
+				[...Traversals.colComponents(myGraph)]
+				.map(c => console.log('comp', GT.Utils.Strings.pathString(c)));
 				expect(Traversals.colComponents(myGraph) instanceof Set).toBeTrue();
 			});
 		});
@@ -48,8 +48,8 @@ fdescribe('Traversals', function() {
 		describe('rowComponents', function() {
 			it('returns the connected components in a column graph', () => {
 				console.log('****rowComponents****');
-				[...Traversals.rowComponents(myGraph)].map(c => console.log('comp',
-					c));
+				[...Traversals.rowComponents(myGraph)]
+				.map(c => console.log('comp', GT.Utils.Strings.pathString(c)));
 				expect(Traversals.rowComponents(myGraph) instanceof Set).toBeTrue();
 			});
 		});
@@ -57,8 +57,8 @@ fdescribe('Traversals', function() {
 		describe('posComponents', function() {
 			it('returns the connected components in a column graph', () => {
 				console.log('****posComponents****');
-				[...Traversals.posComponents(myGraph)].map(c => console.log('comp',
-					c));
+				[...Traversals.posComponents(myGraph)]
+				.map(c => console.log('comp', GT.Utils.Strings.pathString(c)));
 				expect(Traversals.posComponents(myGraph) instanceof Set).toBeTrue();
 			});
 		});
@@ -66,8 +66,8 @@ fdescribe('Traversals', function() {
 		describe('negComponents', function() {
 			it('returns the connected components in a column graph', () => {
 				console.log('****negComponents****');
-				[...Traversals.negComponents(myGraph)].map(c => console.log('comp',
-					c));
+				[...Traversals.negComponents(myGraph)]
+				.map(c => console.log('comp', GT.Utils.Strings.pathString(c)));
 				expect(Traversals.negComponents(myGraph) instanceof Set).toBeTrue();
 			});
 		});
