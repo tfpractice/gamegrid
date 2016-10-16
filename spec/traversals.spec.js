@@ -38,36 +38,36 @@ fdescribe('Traversals', function() {
 		});
 		describe('colComponents', function() {
 			it('returns the connected components in a column graph', () => {
-				console.log('****colComponents****');
-				[...Traversals.colComponents(myGraph)]
-				.map(c => console.log('comp', GT.Utils.Strings.pathString(c)));
+				// console.log('****colComponents****');
+				// [...Traversals.colComponents(myGraph)]
+				// .map(c => console.log('comp', GT.Utils.Strings.pathString(c)));
 				expect(Traversals.colComponents(myGraph) instanceof Set).toBeTrue();
 			});
 		});
 
 		describe('rowComponents', function() {
 			it('returns the connected components in a column graph', () => {
-				console.log('****rowComponents****');
-				[...Traversals.rowComponents(myGraph)]
-				.map(c => console.log('comp', GT.Utils.Strings.pathString(c)));
+				// console.log('****rowComponents****');
+				// [...Traversals.rowComponents(myGraph)]
+				// .map(c => console.log('comp', GT.Utils.Strings.pathString(c)));
 				expect(Traversals.rowComponents(myGraph) instanceof Set).toBeTrue();
 			});
 		});
 
 		describe('posComponents', function() {
 			it('returns the connected components in a column graph', () => {
-				console.log('****posComponents****');
-				[...Traversals.posComponents(myGraph)]
-				.map(c => console.log('comp', GT.Utils.Strings.pathString(c)));
+				// console.log('****posComponents****');
+				// [...Traversals.posComponents(myGraph)]
+				// .map(c => console.log('comp', GT.Utils.Strings.pathString(c)));
 				expect(Traversals.posComponents(myGraph) instanceof Set).toBeTrue();
 			});
 		});
 
 		describe('negComponents', function() {
 			it('returns the connected components in a column graph', () => {
-				console.log('****negComponents****');
-				[...Traversals.negComponents(myGraph)]
-				.map(c => console.log('comp', GT.Utils.Strings.pathString(c)));
+				// console.log('****negComponents****');
+				// [...Traversals.negComponents(myGraph)]
+				// .map(c => console.log('comp', GT.Utils.Strings.pathString(c)));
 				expect(Traversals.negComponents(myGraph) instanceof Set).toBeTrue();
 			});
 		});

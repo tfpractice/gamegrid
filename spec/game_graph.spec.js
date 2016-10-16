@@ -8,6 +8,7 @@ fdescribe('GameGraph', function() {
 		myGraph = GameGraph.spawn();
 		eGraph = GameGraph.spawn();
 		oGraph = GameGraph.spawn();
+		allGraph = GameGraph.fromElements(...allCells);
 		GameGraph.addNodes(myGraph)(...myCells);
 		GameGraph.addNodes(eGraph)(...evens);
 		GameGraph.addNodes(oGraph)(...odds);
@@ -47,6 +48,19 @@ fdescribe('GameGraph', function() {
 	describe('nodesByNVector', () => {
 		it('retrives a node with the specified row and column', function() {
 			expect(GameGraph.nodesByNVector(myGraph)(0, 3)).toBeArray();
+		});
+	});
+	describe('colIDs', function() {
+		it('returns a set of column IDs', function() {
+			expect(GameGraph.colIDs(allGraph) instanceof Set).toBeTrue();
+			expect(GameGraph.colIDs(allGraph).size).toBe(6);
+		});
+	});
+
+	describe('rowIDs', function() {
+		it('returns a set of column IDs', function() {
+			expect(GameGraph.rowIDs(allGraph) instanceof Set).toBeTrue();
+			expect(GameGraph.rowIDs(allGraph).size).toBe(6);
 		});
 	});
 

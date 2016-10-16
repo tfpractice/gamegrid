@@ -36,11 +36,7 @@ fdescribe('Cell', function() {
 				expect(Cell.column(c00)).toBe(0);
 			});
 		});
-		describe('player', () => {
-			it('returns the player attribute', () => {
-				expect(Cell.player(c00)).toBeNull();
-			});
-		});
+
 		describe('cellString(cell)', () => {
 			it('returns a string representation', () => {
 				expect(Cell.cellString(c00)).toBeString();
