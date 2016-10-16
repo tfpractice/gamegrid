@@ -1,20 +1,17 @@
 const { atan, abs, PI } = Math;
 
-const spawn = (column = null, row = null, player = null) =>
-	({ column, row, player, toString: () => cellString({ column, row }) });
+const spawn = (column = null, row = null) =>
+	({ column, row, toString: () => cellString({ column, row }) });
 
 const column = ({ column }) => column;
 const row = ({ row }) => row;
-const player = ({ player }) => player;
 const cellString = ({ column, row }) => `{ cell::${column}_${row} }`;
-// const claim = (cell) => (player = null) => Object.assign(cell, { player });
-// const unclaim = (cell) => claim(cell)(null);
 
 const colDiff = ({ column: c0 }) => ({ column: c1 }) => (c0 - c1);
 const rowDiff = ({ row: r0 }) => ({ row: r1 }) => (r0 - r1);
 const tangent = (n0) => (n1) => (rowDiff(n0)(n1)) / (colDiff(n0)(n1));
 const angleBetween = (n0) => (n1) => ((atan(tangent(n0)(n1)) % PI) + PI) % PI;
-// const samePlayer = ({ player: p0 }) => ({ player: p1 }) => p0 === p1;
+
 const sameCol = (n0) => (n1) => abs(colDiff(n0)(n1)) === 0;
 const sameRow = (n0) => (n1) => abs(rowDiff(n0)(n1)) === 0;
 const samePVector = (n0) => (n1) => angleBetween(n0)(n1) === PI * 0.25;
@@ -33,7 +30,6 @@ module.exports = {
 	spawn,
 	column,
 	row,
-	player,
 	cellString,
 	colDiff,
 	rowDiff,
@@ -41,7 +37,6 @@ module.exports = {
 	angleBetween,
 	samePVector,
 	sameNVector,
-	// samePlayer,
 	cAdj,
 	rAdj,
 	isNeighbor,
@@ -49,6 +44,4 @@ module.exports = {
 	x_isEquivalent,
 	sameCol,
 	sameRow,
-	// claim,
-	// unclaim,
 };

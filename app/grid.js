@@ -42,14 +42,14 @@ const transferNodes = (src) => (dest) => (...nodes) =>
 	removeNodes(src)(...nodes) && addNodes(dest)(...nodes);
 
 module.exports = Object.assign({}, FGT.Graph, {
-	nodesByPlayer,
+	// nodesByPlayer,
 	nodesByColumn,
 	nodeByPosition,
 	nodesByPVector,
 	nodesByNVector,
 	nodesByRow,
 	transferNodes,
-	playerGraph,
+	// playerGraph,
 	colIDs,
 	rowIDs,
 	fromGrid,
