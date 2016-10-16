@@ -1,4 +1,4 @@
-fdescribe('Cell', function() {
+describe('Cell', function() {
 	beforeAll(function() {
 		console.log('\n.........Cell Spec.........');
 		({ Cell } = app);
