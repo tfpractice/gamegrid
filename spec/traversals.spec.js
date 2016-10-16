@@ -10,64 +10,48 @@ describe('Traversals', function() {
 	});
 
 	describe('graph representations', () => {
-		describe('omniGraph', function() {
-			it('returns a new Graph with all neighbors joined', function() {
+		describe('omniGraph', () => {
+			it('returns a new Graph with all neighbors joined', () => {
 				expect(Traversals.omniGraph(myGraph) instanceof Map).toBeTrue();
 			});
 		});
-
 		describe('colGraph', () => {
-			it('returns a new Graph with only columns joined', function() {
+			it('returns a new Graph with only columns joined', () => {
 				expect(Traversals.colGraph(myGraph) instanceof Map).toBeTrue();
 			});
 		});
 		describe('rowGraph', () => {
-			it('returns a new Graph with only columns joined', function() {
+			it('returns a new Graph with only columns joined', () => {
 				expect(Traversals.rowGraph(myGraph) instanceof Map).toBeTrue();
 			});
 		});
 		describe('posGraph', () => {
-			it('returns a new Graph with only columns joined', function() {
+			it('returns a new Graph with only columns joined', () => {
 				expect(Traversals.posGraph(myGraph) instanceof Map).toBeTrue();
 			});
 		});
 		describe('negGraph', () => {
-			it('returns a new Graph with only columns joined', function() {
+			it('returns a new Graph with only columns joined', () => {
 				expect(Traversals.negGraph(myGraph) instanceof Map).toBeTrue();
 			});
 		});
-		describe('colComponents', function() {
+		describe('colComponents', () => {
 			it('returns the connected components in a column graph', () => {
-				// console.log('****colComponents****');
-				// [...Traversals.colComponents(myGraph)]
-				// .map(c => console.log('comp', GT.Utils.Strings.pathString(c)));
 				expect(Traversals.colComponents(myGraph) instanceof Set).toBeTrue();
 			});
 		});
-
-		describe('rowComponents', function() {
+		describe('rowComponents', () => {
 			it('returns the connected components in a column graph', () => {
-				// console.log('****rowComponents****');
-				// [...Traversals.rowComponents(myGraph)]
-				// .map(c => console.log('comp', GT.Utils.Strings.pathString(c)));
 				expect(Traversals.rowComponents(myGraph) instanceof Set).toBeTrue();
 			});
 		});
-
-		describe('posComponents', function() {
+		describe('posComponents', () => {
 			it('returns the connected components in a column graph', () => {
-				// console.log('****posComponents****');
-				// [...Traversals.posComponents(myGraph)]
-				// .map(c => console.log('comp', GT.Utils.Strings.pathString(c)));
 				expect(Traversals.posComponents(myGraph) instanceof Set).toBeTrue();
 			});
 		});
-
-		describe('negComponents', function() {
+		describe('negComponents', () => {
 			it('returns the connected components in a column graph', () => {
-				// console.log('****negComponents****');
-				// [...Traversals.negComponents(myGraph)]
-				// .map(c => console.log('comp', GT.Utils.Strings.pathString(c)));
 				expect(Traversals.negComponents(myGraph) instanceof Set).toBeTrue();
 			});
 		});

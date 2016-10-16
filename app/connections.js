@@ -32,11 +32,6 @@ const joinRows = (grid) => nodes(grid).reduce(rowConnectR, grid);
 const joinPVectors = (grid) => nodes(grid).reduce(posConnectR, grid);
 const joinNVectors = (grid) => nodes(grid).reduce(negConnectR, grid);
 
-const colComponents = (grid) => componentSet(colGraph(grid));
-const rowComponents = (grid) => componentSet(rowGraph(grid));
-const posComponents = (grid) => componentSet(posGraph(grid));
-const negComponents = (grid) => componentSet(negGraph(grid));
-
 module.exports = {
 	adjNodes,
 	rowAdj,

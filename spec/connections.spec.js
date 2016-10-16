@@ -7,12 +7,15 @@ describe('Connections', function() {
 		myGraph = Grid.spawn();
 		eGraph = Grid.spawn();
 		oGraph = Grid.spawn();
-		evens = allCells.filter((c, id) => id % 2 === 0);
-		odds = allCells.filter((c, id) => id % 2 !== 0);
-		myCells = allCells.filter((c, id) => id < 18);
+		centGrid = Grid.initCells(10, 10);
+		centCells = Grid.nodes(centGrid);
+		evens = centCells.filter((c, id) => id % 2 === 0);
+		odds = centCells.filter((c, id) => id % 2 !== 0);
+		myCells = allCells;
 		[n00, n01, n02, n03, n04, n05,
 			n10, n11, n12, n13, n14, n15,
-			n20, n21, n22,
+			n20, n21, n22, n23, n24, n25,
+			n30, n31, n32, n33, n34, n35,
 		] = myCells;
 		Grid.addNodes(myGraph)(...myCells);
 		Grid.addNodes(eGraph)(...evens);
@@ -22,66 +25,68 @@ describe('Connections', function() {
 
 	describe('adjNodes/adjCells', () => {
 		it('returns all neighboring nodes', () => {
-			expect(Connections.adjNodes(myGraph)(n11)).toBeArray();
+			expect(Conn.adjNodes(myGraph)(n11)).toBeArray();
 		});
 	});
 	describe('rowAdj ', () => {
 		it('returns all neighboring nodes adjacent bby row', () => {
-			expect(Connections.rowAdj(myGraph)(n11)).toBeArray();
+			expect(Conn.rowAdj(myGraph)(n11)).toBeArray();
 		});
 	});
 	describe('colAdj ', () => {
 		it('returns all neighboring nodes adjacent by column', () => {
-			expect(Connections.colAdj(myGraph)(n11)).toBeArray();
+			expect(Conn.colAdj(myGraph)(n11)).toBeArray();
 		});
 	});
 	describe('posAdj ', () => {
 		it('returns all neighboring nodes adjacent bby row', () => {
-			expect(Connections.posAdj(myGraph)(n11)).toBeArray();
+			expect(Conn.posAdj(myGraph)(n11)).toBeArray();
 		});
 	});
 	describe('negAdj ', () => {
 		it('returns all neighboring nodes adjacent by column', () => {
-			expect(Connections.negAdj(myGraph)(n11)).toBeArray();
+			expect(Conn.negAdj(myGraph)(n11)).toBeArray();
 		});
 	});
 	describe('adjConnectR', () => {
 		it('creates Edges between a cell and its adjacents', function() {
-			Connections.adjConnectR(myGraph, n11);
+			Conn.adjConnectR(myGraph, n11);
 			expect(Grid.neighbors(myGraph)(n11)).toBeArray();
 		});
 	});
 	describe('joinAdj', () => {
 		it('creates edges between all adjacent nodes', function() {
-			expect(Connections.joinAdj(myGraph) instanceof Map).toBeTrue();
+			expect(Conn.joinAdj(myGraph) instanceof Map).toBeTrue();
 		});
 	});
 	describe('joinCols', () => {
 		it('creates edges between colAdj', () => {
-			Connections.joinCols(myGraph);
+			let centralNabes = Grid.neighbors(Conn.joinCols(myGraph))(n22);
+			expect(centralNabes.length).toBe(2);
 		});
 	});
-
 	describe('joinRows', () => {
 		it('creates edges between rowAdj', () => {
-			Connections.joinRows(myGraph);
+			let centralNabes = Grid.neighbors(Conn.joinRows(myGraph))(n22);
+			expect(centralNabes.length).toBe(2);
 		});
 	});
-
 	describe('joinPVectors', () => {
 		it('creates edges between posAdj', () => {
-			Connections.joinPVectors(myGraph);
+			let centralNabes = Grid.neighbors(Conn.joinPVectors(myGraph))(n22);
+			expect(centralNabes.length).toBe(2);
 		});
 	});
-
 	describe('joinNVectors', () => {
 		it('creates edges between negAdj', () => {
-			Connections.joinNVectors(myGraph);
+			let centralNabes = Grid.neighbors(Conn.joinNVectors(myGraph))(n22);
+			expect(centralNabes.length).toBe(2);
 		});
 	});
 	describe('joinAdj', () => {
 		it('creates edges between all adjacent cells', () => {
-			Connections.joinAdj(myGraph);
+			let centralNabes = Grid.neighbors(Conn.joinAdj(myGraph))(n22);
+			expect(centralNabes.length).toBe(8);
 		});
 	});
 });
