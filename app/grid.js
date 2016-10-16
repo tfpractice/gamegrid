@@ -20,8 +20,8 @@ const fromGrid = (grid) => initCells(colIDs(grid).size, rowIDs(grid).size);
 const nodesByColumn = (grid) => (column = 0) =>
 	nodes(grid).filter(sameCol({ column }));
 
-const nodesByPlayer = (grid) => (player = null) =>
-	nodes(grid).filter(samePlayer({ player }));
+// const nodesByPlayer = (grid) => (player = null) =>
+// nodes(grid).filter(samePlayer({ player }));
 
 const nodesByRow = (grid) => (row = 0) =>
 	nodes(grid).filter(sameRow({ row }));
@@ -35,7 +35,7 @@ const nodesByNVector = (grid) => (column = 0, row = 0) =>
 const nodeByPosition = (grid) => (column = 0, row = 0) =>
 	nodes(grid).find(Cell.isEquivalent({ column, row }));
 
-const playerGraph = (grid) => (p) => (fromElements(...nodesByPlayer(grid)(p)));
+// const playerGraph = (grid) => (p) => (fromElements(...nodesByPlayer(grid)(p)));
 const colIDs = (grid) => new Set(nodes(grid).map(Cell.column));
 const rowIDs = (grid) => new Set(nodes(grid).map(Cell.row));
 const transferNodes = (src) => (dest) => (...nodes) =>
