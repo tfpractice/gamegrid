@@ -1,7 +1,6 @@
 const FGT = require('functional_graph_theory');
 const Cell = require('./cell');
-const { Graph: { fromElements, nodes, addEdges } } =
-FGT;
+const { Graph: { fromElements, nodes, addEdges } } = FGT;
 const { sameCol, sameRow, samePVector, sameNVector, isNeighbor } = Cell;
 
 const adjNodes = (grid) => (src) => nodes(grid).filter(isNeighbor(src));
@@ -37,11 +36,9 @@ const colComponents = (grid) => componentSet(colGraph(grid));
 const rowComponents = (grid) => componentSet(rowGraph(grid));
 const posComponents = (grid) => componentSet(posGraph(grid));
 const negComponents = (grid) => componentSet(negGraph(grid));
-const adjCells = adjNodes;
 
 module.exports = {
 	adjNodes,
-	adjCells,
 	rowAdj,
 	colAdj,
 	posAdj,
