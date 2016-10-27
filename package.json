@@ -28,9 +28,6 @@
   },
   "dependencies": {
     "core-js": "^2.4.1",
-    "functional_graph_theory": "git://github.com/tfpractice/functional_graph_theory.git",
-    "inquirer": "^1.2.1",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "functional_graph_theory": "git://github.com/tfpractice/functional_graph_theory.git"
   }
 }
