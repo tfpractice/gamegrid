@@ -1,0 +1,13 @@
+{
+    "presets": [["latest", { "es2015": { "modules": false } }]],
+    "env": { "test": { "presets": [["latest"]] } },
+    "plugins": [["module-resolver", {
+            "root": ["./"],
+            "alias": {
+              "graphs": "./src",
+              "src": "src",
+              "config": "./config",
+            }
+        }],
+    ],
+}
