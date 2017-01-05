@@ -419,11 +419,11 @@ var Comparitors = comparitors;
 var Commands = commands;
 var Strings = strings;
 
-var index$9 = { Queries: Queries, Comparitors: Comparitors, Strings: Strings, Commands: Commands };
+var index$8 = { Queries: Queries, Comparitors: Comparitors, Strings: Strings, Commands: Commands };
 
 var _slicedToArray$4 = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-var Utils$3 = index$9;
+var Utils$3 = index$8;
 var _Utils$Commands$1 = Utils$3.Commands;
 var triple$2 = _Utils$Commands$1.triple;
 var rmColl$1 = _Utils$Commands$1.rmColl;
@@ -514,7 +514,7 @@ var reducers = {
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-var Utils$2 = index$9;
+var Utils$2 = index$8;
 var _Utils$Commands = Utils$2.Commands;
 var spread = _Utils$Commands.spread;
 var spreadK = _Utils$Commands.spreadK;
@@ -790,7 +790,7 @@ var async_operators = {
 
 var _slicedToArray$6 = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-var Utils$4 = index$9;
+var Utils$4 = index$8;
 var _Utils$Commands$2 = Utils$4.Commands;
 var spread$6 = _Utils$Commands$2.spread;
 var spreadK$5 = _Utils$Commands$2.spreadK;
@@ -995,28 +995,28 @@ var traversals = {
 
 var Graph = graph;
 var Reducers = reducers;
-var Utils$1 = index$9;
+var Utils$1 = index$8;
 var AsyncOps = async_operators;
-var Traversals$1 = traversals;
+var Traversals = traversals;
 
-var index$7 = {
+var index$6 = {
 	Graph: Graph,
 	Reducers: Reducers,
 	Utils: Utils$1,
 	AsyncOps: AsyncOps,
-	Traversals: Traversals$1
+	Traversals: Traversals
 };
 
-var index$4 = index$7;
+var index$3 = index$6;
 
 
 
-var index$6 = Object.freeze({
-	default: index$4,
-	__moduleExports: index$4
+var index$5 = Object.freeze({
+	default: index$3,
+	__moduleExports: index$3
 });
 
-var require$$0 = ( index$6 && index$6['default'] ) || index$6;
+var require$$0 = ( index$5 && index$5['default'] ) || index$5;
 
 var require$$1$3 = ( cell && cell['default'] ) || cell;
 
@@ -1025,15 +1025,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var FGT = require$$0;
-var Cell$1 = require$$1$3;
+var Cell = require$$1$3;
 var _FGT$Graph = FGT.Graph;
 var nodes = _FGT$Graph.nodes;
 var addEdges = _FGT$Graph.addEdges;
-var sameCol$1 = Cell$1.sameCol;
-var sameRow$1 = Cell$1.sameRow;
-var samePVector$1 = Cell$1.samePVector;
-var sameNVector$1 = Cell$1.sameNVector;
-var isNeighbor$1 = Cell$1.isNeighbor;
+var sameCol$1 = Cell.sameCol;
+var sameRow$1 = Cell.sameRow;
+var samePVector$1 = Cell.samePVector;
+var sameNVector$1 = Cell.sameNVector;
+var isNeighbor$1 = Cell.isNeighbor;
 
 
 var adjNodes = function adjNodes(grid) {
@@ -1181,16 +1181,16 @@ var traversals$2 = Object.assign({}, FGT$1.Traversals, {
 function _toConsumableArray$3(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var FGT$2 = require$$0;
-var Cell$2 = require$$1$3;
+var Cell$1 = require$$1$3;
 var _FGT$Graph$2 = FGT$2.Graph;
 var nodes$3 = _FGT$Graph$2.nodes;
 var addNodes$2 = _FGT$Graph$2.addNodes;
 var removeNodes$2 = _FGT$Graph$2.removeNodes;
 var fromElements$3 = _FGT$Graph$2.fromElements;
-var sameCol$2 = Cell$2.sameCol;
-var sameRow$2 = Cell$2.sameRow;
-var samePVector$2 = Cell$2.samePVector;
-var sameNVector$2 = Cell$2.sameNVector;
+var sameCol$2 = Cell$1.sameCol;
+var sameRow$2 = Cell$1.sameRow;
+var samePVector$2 = Cell$1.samePVector;
+var sameNVector$2 = Cell$1.sameNVector;
 
 
 var cellArray = function cellArray() {
@@ -1200,7 +1200,7 @@ var cellArray = function cellArray() {
 	var cells = [];
 	for (var c = cols - 1; c >= 0; c--) {
 		for (var r = rows - 1; r >= 0; r--) {
-			cells.unshift(Cell$2.spawn(c, r));
+			cells.unshift(Cell$1.spawn(c, r));
 		}
 	}
 
@@ -1208,10 +1208,10 @@ var cellArray = function cellArray() {
 };
 
 var cIDs = function cIDs(grid) {
-	return new Set(nodes$3(grid).map(Cell$2.column));
+	return new Set(nodes$3(grid).map(Cell$1.column));
 };
 var rIDs = function rIDs(grid) {
-	return new Set(nodes$3(grid).map(Cell$2.row));
+	return new Set(nodes$3(grid).map(Cell$1.row));
 };
 
 var initCells = function initCells() {
@@ -1258,7 +1258,7 @@ var nodeByPosition = function nodeByPosition(grid) {
 	return function () {
 		var column = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 		var row = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-		return nodes$3(grid).find(Cell$2.isEquivalent({ column: column, row: row }));
+		return nodes$3(grid).find(Cell$1.isEquivalent({ column: column, row: row }));
 	};
 };
 
@@ -1284,24 +1284,20 @@ var grid = Object.assign({}, FGT$2.Graph, {
 	initCells: initCells
 });
 
-var Utils = require$$0.Utils;
+var _require = require('functional_graph_theory');
+var Utils = _require.Utils;
 
-var Utils_1 = Utils;
+exports.Utils = Utils;
 
-var Cell = require$$1$3;
-var Connections = connections;
-var Traversals = traversals$2;
-var Grid = grid;
 
-var index$2 = {
-	Utils: Utils_1,
-	Cell: Cell,
-	Connections: Connections,
-	Traversals: Traversals,
-	Grid: Grid
-};
 
-var index = index$2;
+var index$2 = Object.freeze({
+	Cell: cell
+});
+
+var require$$0$5 = ( index$2 && index$2['default'] ) || index$2;
+
+var index = require$$0$5;
 
 export default index;
 //# sourceMappingURL=bundle.es6.js.map
