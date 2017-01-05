@@ -50,6 +50,22 @@
     "rollup-plugin-visualizer": "^0.1.5",
     "webpack": "^1.13.2"
   },
+  "jest": {
+    "collectCoverage": "true",
+    "collectCoverageFrom": [
+      "src/**"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "testPathDirs": [
+      "spec/"
+    ],
+    "unmockedModulePathPatterns": [
+      "jasmine-expect"
+    ]
+  },
   "dependencies": {
     "core-js": "^2.4.1",
     "functional_graph_theory": "git://github.com/tfpractice/functional_graph_theory.git"
