@@ -2,8 +2,10 @@
   "name": "game_grid",
   "version": "1.0.0",
   "description": "grid",
-  "main": "index.js",
-  "scripts": {
+  "main": "dist/bundle.umd.js",
+  "module": "dist/bundle.es6.js",
+  "modules.root": "src",
+    "scripts": {
     "prebuild": "rimraf dist",
     "build": "yarn run build:umd && yarn run build:es6",
     "build:es6": "NODE_ENV=production rollup -c rollup.es6.config.js",
