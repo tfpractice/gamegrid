@@ -4,6 +4,12 @@
   "description": "grid",
   "main": "index.js",
   "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "yarn run build:umd && yarn run build:es6",
+    "build:es6": "NODE_ENV=production rollup -c rollup.es6.config.js",
+    "build:umd": "NODE_ENV=production rollup -c rollup.config.js",
+    "build:dev": "rollup -c rollup.es6.config.js",
+    "coverage": "yarn test && cat coverage/lcov.info | coveralls",
     "start": "webpack --config config/webpack.config.js",
     "test": "jasmine"
   },
