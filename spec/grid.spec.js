@@ -1,17 +1,27 @@
+import * as Grid from 'src/grid';
+
+// import * as Graph from 'graph-curry';
+// console.log('Graph', Graph);
+console.log('Grid', Grid);
+describe('lol', () => {
+  it('is a string', () => {
+    expect(true).toBeTruthy();
+  });
+});
+
+// const myGraph = Graph.spawn();
+// const eGraph = Graph.spawn();
+// const oGraph = Graph.spawn();
+// const allGraph = Graph.fromElements(...allCells);
+//
+// Grid.addNodes(myGraph)(...myCells);
+// Grid.addNodes(eGraph)(...evens);
+// Grid.addNodes(oGraph)(...odds);
 xdescribe('Grid', () => {
   beforeAll(() => {
     console.log('\n.........Grid Spec.........');
-    ({ Grid } = app);
-  });
 
-  beforeEach(() => {
-    myGraph = Grid.spawn();
-    eGraph = Grid.spawn();
-    oGraph = Grid.spawn();
-    allGraph = Grid.fromElements(...allCells);
-    Grid.addNodes(myGraph)(...myCells);
-    Grid.addNodes(eGraph)(...evens);
-    Grid.addNodes(oGraph)(...odds);
+    // ({ Grid } = app);
   });
 
   describe('cellArray', () => {
