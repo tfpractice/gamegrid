@@ -4,7 +4,7 @@
     "plugins": [["module-resolver", {
             "root": ["./"],
             "alias": {
-              "graphs": "./src",
+              "game-grid": "./index",
               "src": "src",
               "config": "./config",
             }

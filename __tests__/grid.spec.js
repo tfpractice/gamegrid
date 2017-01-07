@@ -1,7 +1,7 @@
 import 'jasmine-expect';
-import * as Grid from 'src/grid';
+import * as Grid from 'game-grid';
 
-import * as Graph from 'graph-curry';
+// import Graph from 'graph-curry';
 
 console.log('Graph', Graph);
 console.log('Grid', Grid);

@@ -2,7 +2,7 @@ const { atan, abs, PI } = Math;
 
 export const spawn = (column = null, row = null) =>
  ({ column, row, toString: () => cellString({ column, row }) });
-
+export default spawn;
 export const column = ({ column }) => column;
 export const row = ({ row }) => row;
 export const cellString = ({ column, row }) => `{ cell::${column}_${row} }`;
