@@ -1906,9 +1906,9 @@ function-bind@^1.0.2:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.0.tgz#16176714c801798e4e8f2cf7f7529467bb4a5771"
 
-"functional_graph_theory@git://github.com/tfpractice/functional_graph_theory.git":
+"graph-curry@git://github.com/tfpractice/graph-curry.git":
   version "1.0.0"
-  resolved "git://github.com/tfpractice/functional_graph_theory.git#104801df9a2032f600bcb5adf8e23cd0d169d063"
+  resolved "git://github.com/tfpractice/graph-curry.git#104801df9a2032f600bcb5adf8e23cd0d169d063"
 
 gauge@~2.6.0:
   version "2.6.0"

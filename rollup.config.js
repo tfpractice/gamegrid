@@ -14,7 +14,8 @@ export default {
   moduleId: 'game-grid',
   moduleName: 'game-grid',
   sourceMap: true,
-  external: [ 'turmeric', 'functional_graph_theory', ],
+  exports: 'named',
+  external: [ 'turmeric', 'graph-curry', ],
   plugins: [
     progress({ clearLine: false, }),
     filesize(),

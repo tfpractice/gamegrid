@@ -1,7 +1,7 @@
 // beforeAll(function() {
 // 	require('jasmine-expect');
 // 	app = require('../../index');
-// 	GT = require('functional_graph_theory');
+// 	GT = require('graph-curry');
 // 	({ Cell, Grid, Connections: Conn } = app);
 // });
 //

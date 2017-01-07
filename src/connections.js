@@ -1,4 +1,4 @@
-const FGT = require('functional_graph_theory');
+const FGT = require('graph-curry');
 const Cell = require('./cell');
 const { Graph: { fromElements, nodes, addEdges } } = FGT;
 const { sameCol, sameRow, samePVector, sameNVector, isNeighbor } = Cell;

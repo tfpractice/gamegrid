@@ -1,4 +1,4 @@
-const { Utils } = require('functional_graph_theory');
+const { Utils } = require('graph-curry');
 
 import * as Cell from './cell';
 import * as Connections from './connections';

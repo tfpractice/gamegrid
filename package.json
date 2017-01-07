@@ -5,7 +5,7 @@
   "main": "dist/bundle.umd.js",
   "module": "dist/bundle.es6.js",
   "modules.root": "src",
-    "scripts": {
+  "scripts": {
     "prebuild": "rimraf dist",
     "build": "yarn run build:umd && yarn run build:es6",
     "build:es6": "NODE_ENV=production rollup -c rollup.es6.config.js",
@@ -76,6 +76,6 @@
   },
   "dependencies": {
     "core-js": "^2.4.1",
-    "functional_graph_theory": "git://github.com/tfpractice/functional_graph_theory.git"
+    "graph-curry": "git://github.com/tfpractice/graph-curry.git"
   }
 }

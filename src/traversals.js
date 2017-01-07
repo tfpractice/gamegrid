@@ -1,4 +1,4 @@
-const FGT = require('functional_graph_theory');
+const FGT = require('graph-curry');
 const Connex = require('./connections');
 const { joinCols, joinRows, joinPVectors, joinNVectors, joinAdj } = Connex;
 const { Traversals: { componentSet }, Graph: { fromElements, nodes }} = FGT;
