@@ -1,4 +1,4 @@
-import 'functional_graph_theory';
+import 'graph-curry';
 
 var atan = Math.atan;
 var abs = Math.abs;
@@ -1284,7 +1284,7 @@ var grid = Object.assign({}, FGT$2.Graph, {
 	initCells: initCells
 });
 
-var _require = require('functional_graph_theory');
+var _require = require('graph-curry');
 var Utils = _require.Utils;
 
 exports.Utils = Utils;
