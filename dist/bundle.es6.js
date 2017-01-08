@@ -1,4 +1,4 @@
-import { addNodes, fromElements, nodes, removeNodes } from 'graph-curry';
+import { fromElements, nodes } from 'graph-curry';
 
 var atan = Math.atan;
 var abs = Math.abs;
@@ -123,8 +123,6 @@ var cell$1 = Object.freeze({
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-// const FGT = require('graph-curry');
-// export export const Cell = require('./cell');
 var cellArray = function cellArray() {
   var cols = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
   var rows = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
@@ -141,10 +139,10 @@ var cellArray = function cellArray() {
 };
 
 var cIDs = function cIDs(grid) {
-  return new Set(nodes(grid).map(Cell.column));
+  return new Set(nodes(grid).map(column));
 };
 var rIDs = function rIDs(grid) {
-  return new Set(nodes(grid).map(Cell.row));
+  return new Set(nodes(grid).map(row));
 };
 
 var initCells = function initCells() {
@@ -152,9 +150,8 @@ var initCells = function initCells() {
   var r = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
   return fromElements.apply(undefined, _toConsumableArray(cellArray(c, r)));
 };
-
 var fromGrid = function fromGrid(grid) {
-  return fromElements.apply(undefined, _toConsumableArray(cellArray(cIDs(grid).size, rIDs(grid).size)));
+  return fromElements.apply(undefined, _toConsumableArray(nodes(grid)));
 };
 
 var nodesByColumn = function nodesByColumn(grid) {
@@ -191,31 +188,11 @@ var nodeByPosition = function nodeByPosition(grid) {
   return function () {
     var column$$1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
     var row$$1 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    return nodes(grid).find(Cell.isEquivalent({ column: column$$1, row: row$$1 }));
+    return nodes(grid).find(isEquivalent({ column: column$$1, row: row$$1 }));
   };
 };
 
-var transferNodes = function transferNodes(src) {
-  return function (dest) {
-    return function () {
-      return removeNodes(src).apply(undefined, arguments) && addNodes(dest).apply(undefined, arguments);
-    };
-  };
-};
 
-// module.exports = Object.assign({}, FGT.Graph, {
-// nodesByColumn,
-// nodeByPosition,
-// nodesByPVector,
-// nodesByNVector,
-// nodesByRow,
-// transferNodes,
-// cIDs,
-// rIDs,
-// fromGrid,
-// cellArray,
-// initCells,
-// });
 
 var grid = Object.freeze({
 	cellArray: cellArray,
@@ -228,7 +205,8 @@ var grid = Object.freeze({
 	nodesByPVector: nodesByPVector,
 	nodesByNVector: nodesByNVector,
 	nodeByPosition: nodeByPosition,
-	transferNodes: transferNodes
+	default: initCells,
+	nodes: nodes
 });
 
 // const { Utils } = require('graph-curry');
