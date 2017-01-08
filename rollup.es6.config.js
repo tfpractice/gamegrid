@@ -12,7 +12,7 @@ export default {
     moduleId: 'game-grid',
     moduleName: 'game-grid',
     exports: 'named',
-    external: [ 'graph-curry', ],
+    external: [ 'graph-curry' ],
     sourceMap: true,
     plugins: [
       progress({ clearLine: false, }),
@@ -20,5 +20,8 @@ export default {
       nodeResolve(),
       commonjs(),
       visualizer({ filename: 'stats.es6.html', }),
-      babel({}), ],
+      babel({
+        exclude: 'node_modules/**',
+        plugins:  [ 'external-helpers' ],
+      }), ],
 };
