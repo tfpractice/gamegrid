@@ -4,7 +4,7 @@ import { addNodes, fromElements, nodes, removeNodes, } from 'graph-curry' ;
 import cell, { isNeighbor, sameCol, sameNVector, samePlayer, samePVector, sameRow, }
 from './cell';
 
-const cellArray = (cols = 0, rows = 0) => {
+export const cellArray = (cols = 0, rows = 0) => {
   const cells = [];
 
   for (let c = cols - 1; c >= 0; c--) {

@@ -2,7 +2,8 @@
   "name": "game_grid",
   "version": "1.0.0",
   "description": "grid",
-  "main": "dist/bundle.umd.js",
+  "main": "dist/bundle.cjs.js",
+  "browser": "dist/bundle.umd.js",
   "module": "dist/bundle.es6.js",
   "modules.root": "src",
   "scripts": {
@@ -67,15 +68,11 @@
       "js",
       "jsx"
     ],
-    "testPathDirs": [
-      "spec/"
-    ],
     "unmockedModulePathPatterns": [
       "jasmine-expect"
     ]
   },
   "dependencies": {
-    "core-js": "^2.4.1",
-    "graph-curry": "git://github.com/tfpractice/graph-curry.git"
+    "graph-curry": "^1.2.1"
   }
 }

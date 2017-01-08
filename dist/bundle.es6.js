@@ -13,12 +13,12 @@ var spawn = function spawn() {
     } };
 };
 var column = function column(_ref) {
-  var _column = _ref.column;
-  return _column;
+  var column = _ref.column;
+  return column;
 };
 var row = function row(_ref2) {
-  var _row = _ref2.row;
-  return _row;
+  var row = _ref2.row;
+  return row;
 };
 var cellString = function cellString(_ref3) {
   var column = _ref3.column,
@@ -218,6 +218,7 @@ var transferNodes = function transferNodes(src) {
 // });
 
 var grid = Object.freeze({
+	cellArray: cellArray,
 	cIDs: cIDs,
 	rIDs: rIDs,
 	initCells: initCells,

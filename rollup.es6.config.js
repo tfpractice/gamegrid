@@ -12,7 +12,7 @@ export default {
     moduleId: 'game-grid',
     moduleName: 'game-grid',
     exports: 'named',
-    external: [ 'turmeric', 'graph-curry', ],
+    external: [ 'graph-curry', ],
     sourceMap: true,
     plugins: [
       progress({ clearLine: false, }),

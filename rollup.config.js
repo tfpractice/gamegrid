@@ -9,13 +9,15 @@ import visualizer from 'rollup-plugin-visualizer';
 
 export default {
   entry: 'index.js',
-  format: 'umd',
-  dest: 'dist/bundle.umd.js',
+  targets: [
+  { dest: 'dist/bundle.cjs.js', format: 'cjs', },
+  { dest: 'dist/bundle.umd.js', format: 'umd', },
+  ],
   moduleId: 'game-grid',
   moduleName: 'game-grid',
   sourceMap: true,
   exports: 'named',
-  external: [ 'turmeric', 'graph-curry', ],
+  external: [ 'graph-curry', ],
   plugins: [
     progress({ clearLine: false, }),
     filesize(),

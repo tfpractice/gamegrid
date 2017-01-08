@@ -1,7 +1,7 @@
 import 'jasmine-expect';
 import * as Grid from 'game-grid';
 
-// import Graph from 'graph-curry';
+import * as Graph from 'graph-curry';
 
 console.log('Graph', Graph);
 console.log('Grid', Grid);
@@ -11,6 +11,7 @@ describe('lol', () => {
   });
 });
 
+//
 // const myGraph = Graph.spawn();
 // const eGraph = Graph.spawn();
 // const oGraph = Graph.spawn();
