@@ -2,9 +2,9 @@ const { atan, abs, PI } = Math;
 
 export const column = ({ column }) => column;
 export const row = ({ row }) => row;
-export const cellString = ({ column, row }) => `{ cell::${column}_${row} }`;
+export const nodeString = ({ column, row }) => `{ node::${column}_${row} }`;
 export const spawn = (column = null, row = null) =>
- ({ column, row, toString: () => cellString({ column, row }) });
+ ({ column, row, toString: () => nodeString({ column, row }) });
 
 export const colDiff = ({ column: c0 }) => ({ column: c1 }) => (c0 - c1);
 export const rowDiff = ({ row: r0 }) => ({ row: r1 }) => (r0 - r1);

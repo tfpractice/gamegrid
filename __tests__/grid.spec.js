@@ -1,18 +1,18 @@
 import 'jasmine-expect';
-import grid, { cellArray, cIDs, fromGrid, initCells, nodeByPosition, nodes,
+import grid, { cIDs, fromGrid, initNodes, nodeArray, nodeByPosition, nodes,
   nodesByColumn, nodesByNVector, nodesByPVector, nodesByRow, rIDs, } from 'src/grid';
 
 const myGrid = grid(10, 10);
 
 describe('Grid', () => {
-  describe('cellArray', () => {
+  describe('nodeArray', () => {
     it('retunrn an object wtih cNum and rNum attributes', () => {
-      expect(cellArray(6, 6)).toBeArray();
+      expect(nodeArray(6, 6)).toBeArray();
     });
   });
-  describe('initCells({cNum, rNum})', () => {
+  describe('initNodes({cNum, rNum})', () => {
     it('returns a grid{Map} of cNum and rNum cols and rows attributes', () => {
-      expect(initCells(6, 6) instanceof Map).toBeTrue();
+      expect(initNodes(6, 6) instanceof Map).toBeTrue();
     });
   });
   describe('fromGrid', () => {

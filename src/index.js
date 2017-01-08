@@ -1,6 +1,6 @@
 // const { Utils } = require('graph-curry');
 
-import * as Cell from './cell';
+import * as Node from './node';
 
 // import * as Connections from './connections';
 // import * as Traversals from './traversals';
@@ -8,8 +8,8 @@ import * as Grid from './grid';
 
 // exports.Utils = Utils;
 
-// exports.Cell = require('./cell');
+// exports.Node = require('./node');
 // exports.Connections = require('./connections');
 // exports.Traversals = require('./traversals');
 // exports.Grid = require('./grid');
-export { Cell, Grid, };
+export { Node, Grid, };

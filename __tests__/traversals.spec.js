@@ -6,7 +6,7 @@ xdescribe('Traversals', () => {
 
   beforeEach(() => {
     myGraph = Grid.spawn();
-    Grid.addNodes(myGraph)(...allCells);
+    Grid.addNodes(myGraph)(...allNodes);
   });
 
   describe('graph representations', () => {
