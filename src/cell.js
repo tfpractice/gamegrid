@@ -1,11 +1,10 @@
 const { atan, abs, PI } = Math;
 
-export const spawn = (column = null, row = null) =>
- ({ column, row, toString: () => cellString({ column, row }) });
-export default spawn;
 export const column = ({ column }) => column;
 export const row = ({ row }) => row;
 export const cellString = ({ column, row }) => `{ cell::${column}_${row} }`;
+export const spawn = (column = null, row = null) =>
+ ({ column, row, toString: () => cellString({ column, row }) });
 
 export const colDiff = ({ column: c0 }) => ({ column: c1 }) => (c0 - c1);
 export const rowDiff = ({ row: r0 }) => ({ row: r1 }) => (r0 - r1);
@@ -25,3 +24,4 @@ export const xEquivalent = src => alt => !isEquivalent(src)(alt);
 
 export const isNeighbor = n0 => n1 =>
  xEquivalent(n0)(n1) && cAdj(n0)(n1) && rAdj(n0)(n1);
+export default spawn;

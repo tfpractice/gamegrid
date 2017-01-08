@@ -1,19 +1,19 @@
 import 'jasmine-expect';
-import * as Cell from 'src/cell';
+import cell, * as Cell from 'src/cell';
 
-const c00 = Cell.spawn(0, 0);
-const c01 = Cell.spawn(0, 1);
-const c22 = Cell.spawn(2, 2);
-const c31 = Cell.spawn(3, 1);
-const c33 = Cell.spawn(3, 3);
+const c00 = cell(0, 0);
+const c01 = cell(0, 1);
+const c22 = cell(2, 2);
+const c31 = cell(3, 1);
+const c33 = cell(3, 3);
 
 describe('spawn', () => {
   it('is a function', () => {
-    expect(Cell.spawn).toBeFunction();
+    expect(cell).toBeFunction();
   });
   describe('when given a row and column indices', () => {
     it('returns an Object with row and column properties', () => {
-      expect(Cell.spawn(2, 3)).toBeObject();
+      expect(cell(2, 3)).toBeObject();
       expect(c01.column).toBe(0);
       expect(c01.row).toBe(1);
     });
