@@ -1,13 +1,13 @@
 import 'jasmine-expect';
-import grid, { cIDs, fromGrid, initNodes, nodeArray, nodeByPosition, nodes,
+import grid, { cIDs, fromGrid, genNodes, initNodes, nodeByPosition, nodes,
   nodesByColumn, nodesByNVector, nodesByPVector, nodesByRow, rIDs, } from 'src/grid';
 
 const myGrid = grid(10, 10);
 
 describe('Grid', () => {
-  describe('nodeArray', () => {
+  describe('genNodes', () => {
     it('retunrn an object wtih cNum and rNum attributes', () => {
-      expect(nodeArray(6, 6)).toBeArray();
+      expect(genNodes(6, 6)).toBeArray();
     });
   });
   describe('initNodes({cNum, rNum})', () => {

@@ -1,10 +1,9 @@
-import { fromElements, nodes, removeNodes, } from 'graph-curry';
-import node, { column as getCol, row as getRow, isEquivalent, isNeighbor, sameCol,
-sameNVector, samePlayer, samePVector, sameRow, }
-from './node';
+import { fromElements, nodes, } from 'graph-curry';
+import node, { column as getCol, row as getRow, isEquivalent, sameCol,
+sameNVector, samePVector, sameRow, } from './node';
 
 export { nodes, neighbors, } from 'graph-curry';
-export const nodeArray = (cols = 0, rows = 0) => {
+export const genNodes = (cols = 0, rows = 0) => {
   const nodes = [];
 
   for (let c = cols - 1; c >= 0; c--) {
@@ -19,7 +18,7 @@ export const nodeArray = (cols = 0, rows = 0) => {
 export const cIDs = grid => new Set(nodes(grid).map(getCol));
 export const rIDs = grid => new Set(nodes(grid).map(getRow));
 
-export const initNodes = (c = 0, r = 0) => fromElements(...nodeArray(c, r));
+export const initNodes = (c = 0, r = 0) => fromElements(...genNodes(c, r));
 export const fromGrid = grid => fromElements(...nodes(grid));
 
 export const nodesByColumn = grid => (column = 0) =>

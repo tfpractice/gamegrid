@@ -1,4 +1,4 @@
-import { addEdges, fromElements, neighbors, nodes } from 'graph-curry';
+import { addEdges, componentSet, fromElements, neighbors, nodes } from 'graph-curry';
 
 var atan = Math.atan;
 var abs = Math.abs;
@@ -223,6 +223,61 @@ var connections = Object.freeze({
 
 function _toConsumableArray$1(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
+var omniGraph = function omniGraph(grid) {
+  return joinAdj(fromElements.apply(undefined, _toConsumableArray$1(nodes(grid))));
+};
+var colGraph = function colGraph(grid) {
+  return joinCols(fromElements.apply(undefined, _toConsumableArray$1(nodes(grid))));
+};
+var rowGraph = function rowGraph(grid) {
+  return joinRows(fromElements.apply(undefined, _toConsumableArray$1(nodes(grid))));
+};
+var posGraph = function posGraph(grid) {
+  return joinPVectors(fromElements.apply(undefined, _toConsumableArray$1(nodes(grid))));
+};
+var negGraph = function negGraph(grid) {
+  return joinNVectors(fromElements.apply(undefined, _toConsumableArray$1(nodes(grid))));
+};
+
+var colComponents = function colComponents(grid) {
+  return componentSet(colGraph(grid));
+};
+var rowComponents = function rowComponents(grid) {
+  return componentSet(rowGraph(grid));
+};
+var posComponents = function posComponents(grid) {
+  return componentSet(posGraph(grid));
+};
+var negComponents = function negComponents(grid) {
+  return componentSet(negGraph(grid));
+};
+
+// module.exports = Object.assign({}, FGT.Traversals, {
+//     omniGraph,
+//     colGraph,
+//     rowGraph,
+//     posGraph,
+//     negGraph,
+//     colComponents,
+//     rowComponents,
+//     posComponents,
+//     negComponents,
+// });
+
+var traversals = Object.freeze({
+	omniGraph: omniGraph,
+	colGraph: colGraph,
+	rowGraph: rowGraph,
+	posGraph: posGraph,
+	negGraph: negGraph,
+	colComponents: colComponents,
+	rowComponents: rowComponents,
+	posComponents: posComponents,
+	negComponents: negComponents
+});
+
+function _toConsumableArray$2(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var nodeArray = function nodeArray() {
   var cols = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
   var rows = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
@@ -248,10 +303,10 @@ var rIDs = function rIDs(grid) {
 var initNodes = function initNodes() {
   var c = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
   var r = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  return fromElements.apply(undefined, _toConsumableArray$1(nodeArray(c, r)));
+  return fromElements.apply(undefined, _toConsumableArray$2(nodeArray(c, r)));
 };
 var fromGrid = function fromGrid(grid) {
-  return fromElements.apply(undefined, _toConsumableArray$1(nodes(grid)));
+  return fromElements.apply(undefined, _toConsumableArray$2(nodes(grid)));
 };
 
 var nodesByColumn = function nodesByColumn(grid) {
@@ -312,13 +367,13 @@ var grid = Object.freeze({
 
 // const { Utils } = require('graph-curry');
 
-// import * as Traversals from './traversals';
 
 
 var index$2 = Object.freeze({
-	Node: node$1,
+	Connections: connections,
 	Grid: grid,
-	Connections: connections
+	Node: node$1,
+	Traversals: traversals
 });
 
 var require$$0 = ( index$2 && index$2['default'] ) || index$2;
