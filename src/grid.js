@@ -1,9 +1,10 @@
-// const FGT = require('graph-curry');
-// export export const Cell = require('./cell');
-import { addNodes, fromElements, nodes, removeNodes, } from 'graph-curry' ;
-import cell, { isNeighbor, sameCol, sameNVector, samePlayer, samePVector, sameRow, }
+import { fromElements, nodes, removeNodes, } from 'graph-curry';
+import cell, { column as getCol, row as getRow, isEquivalent, isNeighbor, sameCol,
+sameNVector, samePlayer, samePVector, sameRow, }
 from './cell';
 
+// export default fromElements;
+export { nodes, } from 'graph-curry';
 export const cellArray = (cols = 0, rows = 0) => {
   const cells = [];
 
@@ -16,13 +17,11 @@ export const cellArray = (cols = 0, rows = 0) => {
   return cells;
 };
 
-export const cIDs = grid => new Set(nodes(grid).map(Cell.column));
-export const rIDs = grid => new Set(nodes(grid).map(Cell.row));
+export const cIDs = grid => new Set(nodes(grid).map(getCol));
+export const rIDs = grid => new Set(nodes(grid).map(getRow));
 
 export const initCells = (c = 0, r = 0) => fromElements(...cellArray(c, r));
-
-export const fromGrid = grid =>
-  fromElements(...cellArray(cIDs(grid).size, rIDs(grid).size));
+export const fromGrid = grid => fromElements(...nodes(grid));
 
 export const nodesByColumn = grid => (column = 0) =>
   nodes(grid).filter(sameCol({ column }));
@@ -37,21 +36,6 @@ export const nodesByNVector = grid => (column = 0, row = 0) =>
   nodes(grid).filter(sameNVector({ column, row }));
 
 export const nodeByPosition = grid => (column = 0, row = 0) =>
-  nodes(grid).find(Cell.isEquivalent({ column, row }));
+  nodes(grid).find(isEquivalent({ column, row }));
 
-export const transferNodes = src => dest => (...nodes) =>
-  removeNodes(src)(...nodes) && addNodes(dest)(...nodes);
-
-// module.exports = Object.assign({}, FGT.Graph, {
-  // nodesByColumn,
-  // nodeByPosition,
-  // nodesByPVector,
-  // nodesByNVector,
-  // nodesByRow,
-  // transferNodes,
-  // cIDs,
-  // rIDs,
-  // fromGrid,
-  // cellArray,
-  // initCells,
-// });
+export default initCells;
