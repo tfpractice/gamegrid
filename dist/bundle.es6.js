@@ -1,4 +1,4 @@
-import { fromElements, nodes } from 'graph-curry';
+import { addEdges, fromElements, neighbors, nodes } from 'graph-curry';
 
 var atan = Math.atan;
 var abs = Math.abs;
@@ -124,6 +124,105 @@ var node$1 = Object.freeze({
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
+var adjNodes = function adjNodes(grid) {
+  return function (src) {
+    return nodes(grid).filter(isNeighbor(src));
+  };
+};
+
+var rowAdj = function rowAdj(grid) {
+  return function (src) {
+    return adjNodes(grid)(src).filter(sameRow(src));
+  };
+};
+var colAdj = function colAdj(grid) {
+  return function (src) {
+    return adjNodes(grid)(src).filter(sameCol(src));
+  };
+};
+var posAdj = function posAdj(grid) {
+  return function (src) {
+    return adjNodes(grid)(src).filter(samePVector(src));
+  };
+};
+var negAdj = function negAdj(grid) {
+  return function (src) {
+    return adjNodes(grid)(src).filter(sameNVector(src));
+  };
+};
+var allAdj = function allAdj(grid) {
+  return function (src) {
+    return adjNodes(grid)(src).filter(isNeighbor(src));
+  };
+};
+
+var joinAdjBin = function joinAdjBin() {
+  var grid = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Map();
+  var src = arguments[1];
+  return addEdges(grid)(src, 0).apply(undefined, _toConsumableArray(adjNodes(grid)(src)));
+};
+
+var joinColsBin = function joinColsBin() {
+  var grid = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Map();
+  var src = arguments[1];
+  return addEdges(grid)(src, 0).apply(undefined, _toConsumableArray(colAdj(grid)(src)));
+};
+
+var joinRowsBin = function joinRowsBin() {
+  var grid = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Map();
+  var src = arguments[1];
+  return addEdges(grid)(src, 0).apply(undefined, _toConsumableArray(rowAdj(grid)(src)));
+};
+
+var joinPVectorsBin = function joinPVectorsBin() {
+  var grid = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Map();
+  var src = arguments[1];
+  return addEdges(grid)(src, 0).apply(undefined, _toConsumableArray(posAdj(grid)(src)));
+};
+
+var joinNVectorsBin = function joinNVectorsBin() {
+  var grid = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Map();
+  var src = arguments[1];
+  return addEdges(grid)(src, 0).apply(undefined, _toConsumableArray(negAdj(grid)(src)));
+};
+
+var joinAdj = function joinAdj(grid) {
+  return nodes(grid).reduce(joinAdjBin, grid);
+};
+var joinCols = function joinCols(grid) {
+  return nodes(grid).reduce(joinColsBin, grid);
+};
+var joinRows = function joinRows(grid) {
+  return nodes(grid).reduce(joinRowsBin, grid);
+};
+var joinPVectors = function joinPVectors(grid) {
+  return nodes(grid).reduce(joinPVectorsBin, grid);
+};
+var joinNVectors = function joinNVectors(grid) {
+  return nodes(grid).reduce(joinNVectorsBin, grid);
+};
+
+var connections = Object.freeze({
+	adjNodes: adjNodes,
+	rowAdj: rowAdj,
+	colAdj: colAdj,
+	posAdj: posAdj,
+	negAdj: negAdj,
+	allAdj: allAdj,
+	joinAdjBin: joinAdjBin,
+	joinColsBin: joinColsBin,
+	joinRowsBin: joinRowsBin,
+	joinPVectorsBin: joinPVectorsBin,
+	joinNVectorsBin: joinNVectorsBin,
+	joinAdj: joinAdj,
+	joinCols: joinCols,
+	joinRows: joinRows,
+	joinPVectors: joinPVectors,
+	joinNVectors: joinNVectors
+});
+
+function _toConsumableArray$1(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var nodeArray = function nodeArray() {
   var cols = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
   var rows = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
@@ -149,10 +248,10 @@ var rIDs = function rIDs(grid) {
 var initNodes = function initNodes() {
   var c = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
   var r = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  return fromElements.apply(undefined, _toConsumableArray(nodeArray(c, r)));
+  return fromElements.apply(undefined, _toConsumableArray$1(nodeArray(c, r)));
 };
 var fromGrid = function fromGrid(grid) {
-  return fromElements.apply(undefined, _toConsumableArray(nodes(grid)));
+  return fromElements.apply(undefined, _toConsumableArray$1(nodes(grid)));
 };
 
 var nodesByColumn = function nodesByColumn(grid) {
@@ -207,18 +306,19 @@ var grid = Object.freeze({
 	nodesByNVector: nodesByNVector,
 	nodeByPosition: nodeByPosition,
 	default: initNodes,
-	nodes: nodes
+	nodes: nodes,
+	neighbors: neighbors
 });
 
 // const { Utils } = require('graph-curry');
 
-// import * as Connections from './connections';
 // import * as Traversals from './traversals';
 
 
 var index$2 = Object.freeze({
 	Node: node$1,
-	Grid: grid
+	Grid: grid,
+	Connections: connections
 });
 
 var require$$0 = ( index$2 && index$2['default'] ) || index$2;
