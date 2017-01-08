@@ -1,27 +1,25 @@
-const FGT = require('graph-curry');
-const Connex = require('./connections');
-const { joinCols, joinRows, joinPVectors, joinNVectors, joinAdj } = Connex;
-const { Traversals: { componentSet }, Graph: { fromElements, nodes }} = FGT;
+import { componentSet, fromElements, nodes, } from 'graph-curry';
+import { joinAdj, joinCols, joinNVectors, joinPVectors, joinRows, } from 'src/connections';
 
-const omniGraph = grid => joinAdj(fromElements(...nodes(grid)));
-const colGraph = grid => joinCols(fromElements(...nodes(grid)));
-const rowGraph = grid => joinRows(fromElements(...nodes(grid)));
-const posGraph = grid => joinPVectors(fromElements(...nodes(grid)));
-const negGraph = grid => joinNVectors(fromElements(...nodes(grid)));
+export const omniGraph = grid => joinAdj(fromElements(...nodes(grid)));
+export const colGraph = grid => joinCols(fromElements(...nodes(grid)));
+export const rowGraph = grid => joinRows(fromElements(...nodes(grid)));
+export const posGraph = grid => joinPVectors(fromElements(...nodes(grid)));
+export const negGraph = grid => joinNVectors(fromElements(...nodes(grid)));
 
-const colComponents = grid => componentSet(colGraph(grid));
-const rowComponents = grid => componentSet(rowGraph(grid));
-const posComponents = grid => componentSet(posGraph(grid));
-const negComponents = grid => componentSet(negGraph(grid));
+export const colComponents = grid => componentSet(colGraph(grid));
+export const rowComponents = grid => componentSet(rowGraph(grid));
+export const posComponents = grid => componentSet(posGraph(grid));
+export const negComponents = grid => componentSet(negGraph(grid));
 
-module.exports = Object.assign({}, FGT.Traversals, {
-    omniGraph,
-    colGraph,
-    rowGraph,
-    posGraph,
-    negGraph,
-    colComponents,
-    rowComponents,
-    posComponents,
-    negComponents,
-});
+// module.exports = Object.assign({}, FGT.Traversals, {
+//     omniGraph,
+//     colGraph,
+//     rowGraph,
+//     posGraph,
+//     negGraph,
+//     colComponents,
+//     rowComponents,
+//     posComponents,
+//     negComponents,
+// });

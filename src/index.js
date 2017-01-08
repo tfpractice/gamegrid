@@ -4,7 +4,7 @@ import * as Node from './node';
 
 import * as Connections from './connections';
 
-// import * as Traversals from './traversals';
+import * as Traversals from './traversals';
 import * as Grid from './grid';
 
 // exports.Utils = Utils;
@@ -13,4 +13,4 @@ import * as Grid from './grid';
 // exports.Connections = require('./connections');
 // exports.Traversals = require('./traversals');
 // exports.Grid = require('./grid');
-export { Node, Grid, Connections, };
+export { Connections, Grid, Node, Traversals, };
