@@ -14,7 +14,8 @@
     "build:dev": "rollup -c rollup.es6.config.js",
     "coverage": "yarn test && cat coverage/lcov.info | coveralls",
     "start": "webpack --config config/webpack.config.js",
-    "test": "NODE_ENV=test jest"
+    "test": "NODE_ENV=test jest",
+    "pre-commit":"yarn build && yarn test",
   },
   "repository": {
     "type": "git",

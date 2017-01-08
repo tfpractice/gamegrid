@@ -2,24 +2,10 @@ import 'jasmine-expect';
 import * as gg from 'game-grid';
 console.log('gg', gg);
 import grid, * as Grid from 'src/grid';
-import { adjNodes,
-allAdj,
-colAdj,
-joinAdj,
-joinAdjBin,
-joinCols,
-joinColsBin,
-joinNVectors,
-joinNVectorsBin,
-joinPVectors,
-joinPVectorsBin,
-joinRows,
-joinRowsBin,
-negAdj,
-posAdj,
-rowAdj, } from 'src/connections';
+import { adjNodes, allAdj, colAdj, joinAdj, joinAdjBin, joinCols, joinColsBin,
+  joinNVectors, joinNVectorsBin, joinPVectors, joinPVectorsBin, joinRows,
+  joinRowsBin, negAdj, posAdj, rowAdj, } from 'src/connections';
 
-// const centGrid = grid();
 const eGraph = grid();
 const oGraph = grid();
 const centGrid = grid(10, 10);
@@ -29,13 +15,6 @@ const odds = centNodes.filter((c, id) => id % 2 !== 0);
 const myNodes = centNodes;
 const [ n00, n01, n02, n03, n04, n05, n10, n11, n12, n13, n14, n15,
       n20, n21, n22, n23, n24, n25, n30, n31, n32, n33, n34, n35, ] = myNodes;
-
-// Grid.addNodes(centGrid)(...myNodes);
-// Grid.addNodes(eGraph)(...evens);
-// Grid.addNodes(oGraph)(...odds);
-
-  // done();
-// });
 
 describe('adjNodes/adjNodes', () => {
   it('returns all neighboring nodes', () => {
