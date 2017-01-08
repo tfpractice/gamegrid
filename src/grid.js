@@ -3,8 +3,7 @@ import node, { column as getCol, row as getRow, isEquivalent, isNeighbor, sameCo
 sameNVector, samePlayer, samePVector, sameRow, }
 from './node';
 
-// export default fromElements;
-export { nodes, } from 'graph-curry';
+export { nodes, neighbors, } from 'graph-curry';
 export const nodeArray = (cols = 0, rows = 0) => {
   const nodes = [];
 

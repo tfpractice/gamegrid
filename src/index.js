@@ -2,7 +2,8 @@
 
 import * as Node from './node';
 
-// import * as Connections from './connections';
+import * as Connections from './connections';
+
 // import * as Traversals from './traversals';
 import * as Grid from './grid';
 
@@ -12,4 +13,4 @@ import * as Grid from './grid';
 // exports.Connections = require('./connections');
 // exports.Traversals = require('./traversals');
 // exports.Grid = require('./grid');
-export { Node, Grid, };
+export { Node, Grid, Connections, };
