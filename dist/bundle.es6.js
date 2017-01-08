@@ -278,7 +278,7 @@ var traversals = Object.freeze({
 
 function _toConsumableArray$2(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-var nodeArray = function nodeArray() {
+var genNodes = function genNodes() {
   var cols = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
   var rows = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
@@ -303,7 +303,7 @@ var rIDs = function rIDs(grid) {
 var initNodes = function initNodes() {
   var c = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
   var r = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  return fromElements.apply(undefined, _toConsumableArray$2(nodeArray(c, r)));
+  return fromElements.apply(undefined, _toConsumableArray$2(genNodes(c, r)));
 };
 var fromGrid = function fromGrid(grid) {
   return fromElements.apply(undefined, _toConsumableArray$2(nodes(grid)));
@@ -350,7 +350,7 @@ var nodeByPosition = function nodeByPosition(grid) {
 
 
 var grid = Object.freeze({
-	nodeArray: nodeArray,
+	genNodes: genNodes,
 	cIDs: cIDs,
 	rIDs: rIDs,
 	initNodes: initNodes,
