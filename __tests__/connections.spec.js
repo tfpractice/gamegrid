@@ -1,7 +1,5 @@
 import 'jasmine-expect';
 import { neighbors, nodes, } from 'game-grid';
-import * as gg from 'game-grid';
-console.log('gg', gg);
 import grid from 'src/grid';
 import { adjNodes, allAdj, colAdj, joinAdj, joinAdjBin, joinCols, joinColsBin,
   joinNVectors, joinNVectorsBin, joinPVectors, joinPVectorsBin, joinRows,
