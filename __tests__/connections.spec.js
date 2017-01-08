@@ -1,4 +1,6 @@
 import 'jasmine-expect';
+import * as gg from 'game-grid';
+console.log('gg', gg);
 import grid, * as Grid from 'src/grid';
 import { adjNodes,
 allAdj,

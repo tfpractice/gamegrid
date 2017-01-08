@@ -1,4 +1,4 @@
-import { addEdges, componentSet, fromElements, neighbors, nodes } from 'graph-curry';
+import { Connections, Grid, Node, Traversals, addEdges, componentSet, fromElements, neighbors, nodes } from 'graph-curry';
 
 var atan = Math.atan;
 var abs = Math.abs;
@@ -252,18 +252,6 @@ var negComponents = function negComponents(grid) {
   return componentSet(negGraph(grid));
 };
 
-// module.exports = Object.assign({}, FGT.Traversals, {
-//     omniGraph,
-//     colGraph,
-//     rowGraph,
-//     posGraph,
-//     negGraph,
-//     colComponents,
-//     rowComponents,
-//     posComponents,
-//     negComponents,
-// });
-
 var traversals = Object.freeze({
 	omniGraph: omniGraph,
 	colGraph: colGraph,
@@ -365,20 +353,14 @@ var grid = Object.freeze({
 	neighbors: neighbors
 });
 
-// const { Utils } = require('graph-curry');
 
 
-
-var index$2 = Object.freeze({
+var src$1 = Object.freeze({
 	Connections: connections,
 	Grid: grid,
 	Node: node$1,
 	Traversals: traversals
 });
 
-var require$$0 = ( index$2 && index$2['default'] ) || index$2;
-
-var index = require$$0;
-
-export default index;
+export { Connections, Grid, Node, Traversals };export default src$1;
 //# sourceMappingURL=bundle.es6.js.map

@@ -11,15 +11,3 @@ export const colComponents = grid => componentSet(colGraph(grid));
 export const rowComponents = grid => componentSet(rowGraph(grid));
 export const posComponents = grid => componentSet(posGraph(grid));
 export const negComponents = grid => componentSet(negGraph(grid));
-
-// module.exports = Object.assign({}, FGT.Traversals, {
-//     omniGraph,
-//     colGraph,
-//     rowGraph,
-//     posGraph,
-//     negGraph,
-//     colComponents,
-//     rowComponents,
-//     posComponents,
-//     negComponents,
-// });
