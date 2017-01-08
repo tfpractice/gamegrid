@@ -133,75 +133,6 @@ var toConsumableArray = function (arr) {
   }
 };
 
-var genNodes = function genNodes() {
-  var cols = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-  var rows = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-
-  var nodes$$1 = [];
-
-  for (var c = cols - 1; c >= 0; c--) {
-    for (var r = rows - 1; r >= 0; r--) {
-      nodes$$1.unshift(node(c, r));
-    }
-  }
-
-  return nodes$$1;
-};
-
-var cIDs = function cIDs(grid) {
-  return new Set(nodes(grid).map(column));
-};
-var rIDs = function rIDs(grid) {
-  return new Set(nodes(grid).map(row));
-};
-
-var initNodes = function initNodes() {
-  var c = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-  var r = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  return fromElements.apply(undefined, toConsumableArray(genNodes(c, r)));
-};
-var fromGrid = function fromGrid(grid) {
-  return fromElements.apply(undefined, toConsumableArray(nodes(grid)));
-};
-
-var nodesByColumn = function nodesByColumn(grid) {
-  return function () {
-    var column$$1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    return nodes(grid).filter(sameCol({ column: column$$1 }));
-  };
-};
-
-var nodesByRow = function nodesByRow(grid) {
-  return function () {
-    var row$$1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    return nodes(grid).filter(sameRow({ row: row$$1 }));
-  };
-};
-
-var nodesByPVector = function nodesByPVector(grid) {
-  return function () {
-    var column$$1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    var row$$1 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    return nodes(grid).filter(samePVector({ column: column$$1, row: row$$1 }));
-  };
-};
-
-var nodesByNVector = function nodesByNVector(grid) {
-  return function () {
-    var column$$1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    var row$$1 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    return nodes(grid).filter(sameNVector({ column: column$$1, row: row$$1 }));
-  };
-};
-
-var nodeByPosition = function nodeByPosition(grid) {
-  return function () {
-    var column$$1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    var row$$1 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    return nodes(grid).find(isEquivalent({ column: column$$1, row: row$$1 }));
-  };
-};
-
 var adjNodes = function adjNodes(grid) {
   return function (src) {
     return nodes(grid).filter(isNeighbor(src));
@@ -309,11 +240,81 @@ var negComponents = function negComponents(grid) {
   return componentSet(negGraph(grid));
 };
 
+var genNodes = function genNodes() {
+  var cols = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var rows = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+  var nodes$$1 = [];
+
+  for (var c = cols - 1; c >= 0; c--) {
+    for (var r = rows - 1; r >= 0; r--) {
+      nodes$$1.unshift(node(c, r));
+    }
+  }
+
+  return nodes$$1;
+};
+
+var cIDs = function cIDs(grid) {
+  return new Set(nodes(grid).map(column));
+};
+var rIDs = function rIDs(grid) {
+  return new Set(nodes(grid).map(row));
+};
+
+var initNodes = function initNodes() {
+  var c = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var r = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  return fromElements.apply(undefined, toConsumableArray(genNodes(c, r)));
+};
+var fromGrid = function fromGrid(grid) {
+  return fromElements.apply(undefined, toConsumableArray(nodes(grid)));
+};
+
+var nodesByColumn = function nodesByColumn(grid) {
+  return function () {
+    var column$$1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    return nodes(grid).filter(sameCol({ column: column$$1 }));
+  };
+};
+
+var nodesByRow = function nodesByRow(grid) {
+  return function () {
+    var row$$1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    return nodes(grid).filter(sameRow({ row: row$$1 }));
+  };
+};
+
+var nodesByPVector = function nodesByPVector(grid) {
+  return function () {
+    var column$$1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var row$$1 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    return nodes(grid).filter(samePVector({ column: column$$1, row: row$$1 }));
+  };
+};
+
+var nodesByNVector = function nodesByNVector(grid) {
+  return function () {
+    var column$$1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var row$$1 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    return nodes(grid).filter(sameNVector({ column: column$$1, row: row$$1 }));
+  };
+};
+
+var nodeByPosition = function nodeByPosition(grid) {
+  return function () {
+    var column$$1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var row$$1 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    return nodes(grid).find(isEquivalent({ column: column$$1, row: row$$1 }));
+  };
+};
+
 
 
 var src$1 = Object.freeze({
-	Grid: initNodes,
 	Node: node$2,
+	grid: initNodes,
+	node: node,
 	adjNodes: adjNodes,
 	rowAdj: rowAdj,
 	colAdj: colAdj,
@@ -351,5 +352,5 @@ var src$1 = Object.freeze({
 	nodeByPosition: nodeByPosition
 });
 
-export { initNodes as Grid, node$2 as Node, adjNodes, rowAdj, colAdj, posAdj, negAdj, allAdj, joinAdjBin, joinColsBin, joinRowsBin, joinPVectorsBin, joinNVectorsBin, joinAdj, joinCols, joinRows, joinPVectors, joinNVectors, omniGraph, colGraph, rowGraph, posGraph, negGraph, colComponents, rowComponents, posComponents, negComponents, genNodes, cIDs, rIDs, initNodes, fromGrid, nodesByColumn, nodesByRow, nodesByPVector, nodesByNVector, nodeByPosition };export default src$1;
+export { node$2 as Node, initNodes as grid, node, adjNodes, rowAdj, colAdj, posAdj, negAdj, allAdj, joinAdjBin, joinColsBin, joinRowsBin, joinPVectorsBin, joinNVectorsBin, joinAdj, joinCols, joinRows, joinPVectors, joinNVectors, omniGraph, colGraph, rowGraph, posGraph, negGraph, colComponents, rowComponents, posComponents, negComponents, genNodes, cIDs, rIDs, initNodes, fromGrid, nodesByColumn, nodesByRow, nodesByPVector, nodesByNVector, nodeByPosition };export default src$1;
 //# sourceMappingURL=bundle.es6.js.map

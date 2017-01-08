@@ -1,5 +1,5 @@
 import 'jasmine-expect';
-import { nodes, } from 'game-grid';
+import { nodes, } from 'graph-curry';
 import grid, { cIDs, fromGrid, genNodes, initNodes, nodeByPosition,
   nodesByColumn, nodesByNVector, nodesByPVector, nodesByRow, rIDs, } from 'src/grid';
 

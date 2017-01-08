@@ -1,5 +1,6 @@
 import 'jasmine-expect';
-import { neighbors, nodes, } from 'game-grid';
+import { neighbors, nodes, } from 'graph-curry';
+
 import grid from 'src/grid';
 import { adjNodes, allAdj, colAdj, joinAdj, joinAdjBin, joinCols, joinColsBin,
   joinNVectors, joinNVectorsBin, joinPVectors, joinPVectorsBin, joinRows,
