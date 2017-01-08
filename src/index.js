@@ -1,7 +1,6 @@
-
 import * as Node from './node';
-import * as Connections from './connections';
-import * as Traversals from './traversals';
-import * as Grid from './grid';
-
-export { Connections, Grid, Node, Traversals, };
+import { default as Grid, } from './grid';
+export * from './connections';
+export * from './traversals';
+export * from './grid';
+export { Grid, Node, };

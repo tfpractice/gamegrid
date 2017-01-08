@@ -1,14 +1,7 @@
 import 'jasmine-expect';
 import grid from 'src/grid';
-import { colComponents,
-colGraph,
-negComponents,
-negGraph,
-omniGraph,
-posComponents,
-posGraph,
-rowComponents,
-rowGraph, } from 'src/traversals';
+import { colComponents, colGraph, negComponents, negGraph, omniGraph,
+   posComponents, posGraph, rowComponents, rowGraph, } from 'src/traversals';
 
 const myGraph = grid(10, 10);
 

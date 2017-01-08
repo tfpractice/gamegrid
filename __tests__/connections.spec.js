@@ -1,7 +1,8 @@
 import 'jasmine-expect';
+import { neighbors, nodes, } from 'game-grid';
 import * as gg from 'game-grid';
 console.log('gg', gg);
-import grid, * as Grid from 'src/grid';
+import grid from 'src/grid';
 import { adjNodes, allAdj, colAdj, joinAdj, joinAdjBin, joinCols, joinColsBin,
   joinNVectors, joinNVectorsBin, joinPVectors, joinPVectorsBin, joinRows,
   joinRowsBin, negAdj, posAdj, rowAdj, } from 'src/connections';
@@ -9,7 +10,7 @@ import { adjNodes, allAdj, colAdj, joinAdj, joinAdjBin, joinCols, joinColsBin,
 const eGraph = grid();
 const oGraph = grid();
 const centGrid = grid(10, 10);
-const centNodes = Grid.nodes(centGrid);
+const centNodes = nodes(centGrid);
 const evens = centNodes.filter((c, id) => id % 2 === 0);
 const odds = centNodes.filter((c, id) => id % 2 !== 0);
 const myNodes = centNodes;
@@ -50,35 +51,35 @@ describe('joinAdj', () => {
 });
 describe('joinCols', () => {
   it('creates edges between colAdj', () => {
-    const centralNabes = Grid.neighbors(joinCols(centGrid))(n22);
+    const centralNabes = neighbors(joinCols(centGrid))(n22);
 
     expect(centralNabes.length).toBe(2);
   });
 });
 describe('joinRows', () => {
   it('creates edges between rowAdj', () => {
-    const centralNabes = Grid.neighbors(joinRows(centGrid))(n22);
+    const centralNabes = neighbors(joinRows(centGrid))(n22);
 
     expect(centralNabes.length).toBe(2);
   });
 });
 describe('joinPVectors', () => {
   it('creates edges between posAdj', () => {
-    const centralNabes = Grid.neighbors(joinPVectors(centGrid))(n22);
+    const centralNabes = neighbors(joinPVectors(centGrid))(n22);
 
     expect(centralNabes.length).toBe(2);
   });
 });
 describe('joinNVectors', () => {
   it('creates edges between negAdj', () => {
-    const centralNabes = Grid.neighbors(joinNVectors(centGrid))(n22);
+    const centralNabes = neighbors(joinNVectors(centGrid))(n22);
 
     expect(centralNabes.length).toBe(2);
   });
 });
 describe('joinAdj', () => {
   it('creates edges between all adjacent nodes', () => {
-    const centralNabes = Grid.neighbors(joinAdj(centGrid))(n22);
+    const centralNabes = neighbors(joinAdj(centGrid))(n22);
 
     expect(centralNabes.length).toBe(8);
   });

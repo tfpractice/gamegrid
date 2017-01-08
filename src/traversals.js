@@ -1,5 +1,5 @@
 import { componentSet, fromElements, nodes, } from 'graph-curry';
-import { joinAdj, joinCols, joinNVectors, joinPVectors, joinRows, } from 'src/connections';
+import { joinAdj, joinCols, joinNVectors, joinPVectors, joinRows, } from './connections';
 
 export const omniGraph = grid => joinAdj(fromElements(...nodes(grid)));
 export const colGraph = grid => joinCols(fromElements(...nodes(grid)));

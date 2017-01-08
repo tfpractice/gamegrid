@@ -1,5 +1,6 @@
 import 'jasmine-expect';
-import grid, { cIDs, fromGrid, genNodes, initNodes, nodeByPosition, nodes,
+import { nodes, } from 'game-grid';
+import grid, { cIDs, fromGrid, genNodes, initNodes, nodeByPosition,
   nodesByColumn, nodesByNVector, nodesByPVector, nodesByRow, rIDs, } from 'src/grid';
 
 const myGrid = grid(10, 10);

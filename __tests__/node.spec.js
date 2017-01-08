@@ -7,7 +7,7 @@ const c22 = node(2, 2);
 const c31 = node(3, 1);
 const c33 = node(3, 3);
 
-describe('spawn', () => {
+describe('node', () => {
   it('is a function', () => {
     expect(node).toBeFunction();
   });

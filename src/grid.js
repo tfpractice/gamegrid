@@ -2,7 +2,6 @@ import { fromElements, nodes, } from 'graph-curry';
 import node, { column as getCol, row as getRow, isEquivalent, sameCol,
 sameNVector, samePVector, sameRow, } from './node';
 
-export { nodes, neighbors, } from 'graph-curry';
 export const genNodes = (cols = 0, rows = 0) => {
   const nodes = [];
 
@@ -35,5 +34,4 @@ export const nodesByNVector = grid => (column = 0, row = 0) =>
 
 export const nodeByPosition = grid => (column = 0, row = 0) =>
   nodes(grid).find(isEquivalent({ column, row }));
-
 export default initNodes;

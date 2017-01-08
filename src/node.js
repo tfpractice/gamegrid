@@ -3,7 +3,7 @@ const { atan, abs, PI } = Math;
 export const column = ({ column }) => column;
 export const row = ({ row }) => row;
 export const nodeString = ({ column, row }) => `{ node::${column}_${row} }`;
-export const spawn = (column = null, row = null) =>
+export const node = (column = null, row = null) =>
  ({ column, row, toString: () => nodeString({ column, row }) });
 
 export const colDiff = ({ column: c0 }) => ({ column: c1 }) => (c0 - c1);
@@ -24,4 +24,5 @@ export const xEquivalent = src => alt => !isEquivalent(src)(alt);
 
 export const isNeighbor = n0 => n1 =>
  xEquivalent(n0)(n1) && cAdj(n0)(n1) && rAdj(n0)(n1);
-export default spawn;
+
+export default node;
