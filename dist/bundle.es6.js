@@ -351,5 +351,5 @@ var src$1 = Object.freeze({
 	nodeByPosition: nodeByPosition
 });
 
-export default src$1;
+export { initNodes as Grid, node$2 as Node, adjNodes, rowAdj, colAdj, posAdj, negAdj, allAdj, joinAdjBin, joinColsBin, joinRowsBin, joinPVectorsBin, joinNVectorsBin, joinAdj, joinCols, joinRows, joinPVectors, joinNVectors, omniGraph, colGraph, rowGraph, posGraph, negGraph, colComponents, rowComponents, posComponents, negComponents, genNodes, cIDs, rIDs, initNodes, fromGrid, nodesByColumn, nodesByRow, nodesByPVector, nodesByNVector, nodeByPosition };export default src$1;
 //# sourceMappingURL=bundle.es6.js.map

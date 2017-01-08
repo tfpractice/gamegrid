@@ -37,6 +37,7 @@
     "eslint-config-airbnb-base": "^11.0.0",
     "eslint-import-resolver-babel-module": "^2.2.1",
     "eslint-plugin-import": "^2.2.0",
+    "graph-curry": "^1.2.1",
     "jasmine": "^2.5.2",
     "jasmine-expect": "^3.0.1",
     "jest": "^18.1.0",
@@ -68,7 +69,5 @@
       "jasmine-expect"
     ]
   },
-  "dependencies": {
-    "graph-curry": "^1.2.1"
-  }
+  "dependencies": {}
 }
