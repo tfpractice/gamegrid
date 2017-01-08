@@ -1,6 +1,6 @@
 {
   "name": "game_grid",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "grid",
   "main": "dist/bundle.cjs.js",
   "browser": "dist/bundle.umd.js",
