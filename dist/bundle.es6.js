@@ -5,13 +5,6 @@ var abs = Math.abs;
 var PI = Math.PI;
 
 
-var spawn = function spawn() {
-  var column = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var row = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  return { column: column, row: row, toString: function toString() {
-      return cellString({ column: column, row: row });
-    } };
-};
 var column = function column(_ref) {
   var column = _ref.column;
   return column;
@@ -20,10 +13,17 @@ var row = function row(_ref2) {
   var row = _ref2.row;
   return row;
 };
-var cellString = function cellString(_ref3) {
+var nodeString = function nodeString(_ref3) {
   var column = _ref3.column,
       row = _ref3.row;
-  return "{ cell::" + column + "_" + row + " }";
+  return "{ node::" + column + "_" + row + " }";
+};
+var spawn = function spawn() {
+  var column = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var row = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  return { column: column, row: row, toString: function toString() {
+      return nodeString({ column: column, row: row });
+    } };
 };
 
 var colDiff = function colDiff(_ref4) {
@@ -100,12 +100,12 @@ var isNeighbor = function isNeighbor(n0) {
   };
 };
 
-var cell$1 = Object.freeze({
-	spawn: spawn,
-	default: spawn,
+
+var node$1 = Object.freeze({
 	column: column,
 	row: row,
-	cellString: cellString,
+	nodeString: nodeString,
+	spawn: spawn,
 	colDiff: colDiff,
 	rowDiff: rowDiff,
 	tangent: tangent,
@@ -118,24 +118,25 @@ var cell$1 = Object.freeze({
 	rAdj: rAdj,
 	isEquivalent: isEquivalent,
 	xEquivalent: xEquivalent,
-	isNeighbor: isNeighbor
+	isNeighbor: isNeighbor,
+	default: spawn
 });
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-var cellArray = function cellArray() {
+var nodeArray = function nodeArray() {
   var cols = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
   var rows = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
-  var cells = [];
+  var nodes$$1 = [];
 
   for (var c = cols - 1; c >= 0; c--) {
     for (var r = rows - 1; r >= 0; r--) {
-      cells.unshift(spawn(c, r));
+      nodes$$1.unshift(spawn(c, r));
     }
   }
 
-  return cells;
+  return nodes$$1;
 };
 
 var cIDs = function cIDs(grid) {
@@ -145,10 +146,10 @@ var rIDs = function rIDs(grid) {
   return new Set(nodes(grid).map(row));
 };
 
-var initCells = function initCells() {
+var initNodes = function initNodes() {
   var c = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
   var r = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  return fromElements.apply(undefined, _toConsumableArray(cellArray(c, r)));
+  return fromElements.apply(undefined, _toConsumableArray(nodeArray(c, r)));
 };
 var fromGrid = function fromGrid(grid) {
   return fromElements.apply(undefined, _toConsumableArray(nodes(grid)));
@@ -195,17 +196,17 @@ var nodeByPosition = function nodeByPosition(grid) {
 
 
 var grid = Object.freeze({
-	cellArray: cellArray,
+	nodeArray: nodeArray,
 	cIDs: cIDs,
 	rIDs: rIDs,
-	initCells: initCells,
+	initNodes: initNodes,
 	fromGrid: fromGrid,
 	nodesByColumn: nodesByColumn,
 	nodesByRow: nodesByRow,
 	nodesByPVector: nodesByPVector,
 	nodesByNVector: nodesByNVector,
 	nodeByPosition: nodeByPosition,
-	default: initCells,
+	default: initNodes,
 	nodes: nodes
 });
 
@@ -216,7 +217,7 @@ var grid = Object.freeze({
 
 
 var index$2 = Object.freeze({
-	Cell: cell$1,
+	Node: node$1,
 	Grid: grid
 });
 
