@@ -1,6 +1,6 @@
 import 'jasmine-expect';
 import { grid, } from 'src/grid';
-import { colComps, negComps, posComps, rowComps, } from 'src/components';
+import { colComps, negComps, omniComps, posComps, rowComps, } from 'src/components';
 
 const myGrid = grid(10, 10);
 
@@ -23,6 +23,11 @@ describe('Components', () => {
   describe('negComps', () => {
     it('returns the connected components in a column Grid', () => {
       expect(negComps(myGrid) instanceof Set).toBeTrue();
+    });
+  });
+  describe('omniComps', () => {
+    it('returns a set of all components in all directions', () => {
+      expect(omniComps(myGrid) instanceof Set).toBeTrue();
     });
   });
 });
