@@ -1,29 +1,30 @@
-// import { addEdges, nodes, } from 'graph-curry';
 import { Graph, } from 'graph-curry';
 import { isNeighbor, sameCol, sameNVector, samePVector, sameRow, } from './node';
 const { addEdges, nodes, } = Graph;
 
-export const adjNodes = grid => src => nodes(grid).filter(isNeighbor(src));
+import { copy, } from './grid';
 
-export const rowAdj = grid => src => adjNodes(grid)(src).filter(sameRow(src));
-export const colAdj = grid => src => adjNodes(grid)(src).filter(sameCol(src));
-export const posAdj = grid => src => adjNodes(grid)(src).filter(samePVector(src));
-export const negAdj = grid => src => adjNodes(grid)(src).filter(sameNVector(src));
-export const allAdj = grid => src => adjNodes(grid)(src).filter(isNeighbor(src));
+export const adjNodes = g => src => nodes(copy(g)).filter(isNeighbor(src));
 
-export const joinAdjBin = (grid = new Map, src) =>
+export const rowAdj = g => src => adjNodes(g)(src).filter(sameRow(src));
+export const colAdj = g => src => adjNodes(g)(src).filter(sameCol(src));
+export const posAdj = g => src => adjNodes(g)(src).filter(samePVector(src));
+export const negAdj = g => src => adjNodes(g)(src).filter(sameNVector(src));
+export const allAdj = g => src => adjNodes(g)(src).filter(isNeighbor(src));
+
+export const joinAdjBin = (grid, src) =>
   addEdges(grid)(src, 0)(...adjNodes(grid)(src));
 
-export const joinColsBin = (grid = new Map, src) =>
+export const joinColsBin = (grid, src) =>
   addEdges(grid)(src, 0)(...colAdj(grid)(src));
 
-export const joinRowsBin = (grid = new Map, src) =>
+export const joinRowsBin = (grid, src) =>
   addEdges(grid)(src, 0)(...rowAdj(grid)(src));
 
-export const joinPVectorsBin = (grid = new Map, src) =>
+export const joinPVectorsBin = (grid, src) =>
   addEdges(grid)(src, 0)(...posAdj(grid)(src));
 
-export const joinNVectorsBin = (grid = new Map, src) =>
+export const joinNVectorsBin = (grid, src) =>
   addEdges(grid)(src, 0)(...negAdj(grid)(src));
 
 export const joinAdj = grid => nodes(grid).reduce(joinAdjBin, grid);

@@ -1,10 +1,12 @@
 import 'jasmine-expect';
-import { neighbors, nodes, } from 'graph-curry';
+import { Graph, } from 'graph-curry';
 import { node, } from 'src/node';
-import grid from 'src/grid';
+import { grid, } from 'src/grid';
 import { adjNodes, allAdj, colAdj, joinAdj, joinAdjBin, joinCols, joinColsBin,
   joinNVectors, joinNVectorsBin, joinPVectors, joinPVectorsBin, joinRows,
   joinRowsBin, negAdj, posAdj, rowAdj, } from 'src/connections';
+
+const { neighbors, nodes, } = Graph;
 
 //
 // const myPositions = [[ 0, 0 ], [ 0, 1 ], [ 0, 2 ], [ 0, 3 ], [ 0, 4 ], [ 0, 5 ], [ 1, 0 ], [ 1, 1 ],
