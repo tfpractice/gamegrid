@@ -37,5 +37,3 @@ export const nodesByNVector = grid => (column = 0, row = 0) =>
 
 export const nodeByPosition = grid => (column = 0, row = 0) =>
   nodes(grid).find(isEquivalent({ column, row }));
-
-// export default initNodes;

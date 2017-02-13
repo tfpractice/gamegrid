@@ -9,7 +9,7 @@ export const copy = n => node(column(n), row(n));
 
 export const colDiff = ({ column: c0 }) => ({ column: c1 }) => (c0 - c1);
 export const rowDiff = ({ row: r0 }) => ({ row: r1 }) => (r0 - r1);
-export const tangent = n0 => n1 => (rowDiff(n0)(n1)) / (colDiff(n0)(n1));
+export const tangent = n0 => n1 => rowDiff(n0)(n1) / colDiff(n0)(n1);
 export const angleBetween = n0 => n1 => ((atan(tangent(n0)(n1)) % PI) + PI) % PI;
 
 export const sameCol = n0 => n1 => abs(colDiff(n0)(n1)) === 0;
