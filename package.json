@@ -70,6 +70,6 @@
     ]
   },
   "dependencies": {
-    "graph-curry": "^1.2.1"
+    "graph-curry": "^2.0.0"
   }
 }

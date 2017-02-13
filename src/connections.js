@@ -1,5 +1,7 @@
-import { addEdges, nodes, } from 'graph-curry';
+// import { addEdges, nodes, } from 'graph-curry';
+import { Graph, } from 'graph-curry';
 import { isNeighbor, sameCol, sameNVector, samePVector, sameRow, } from './node';
+const { addEdges, nodes, } = Graph;
 
 export const adjNodes = grid => src => nodes(grid).filter(isNeighbor(src));
 
