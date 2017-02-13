@@ -3,20 +3,11 @@ import { allAdj, colAdj, negAdj, posAdj, rowAdj, } from './adj';
 
 const { addEdges, nodes, } = Graph;
 
-export const joinAdj = (grid, src) =>
-  addEdges(grid)(src, 0)(...allAdj(grid)(src));
-
-export const joinCols = (grid, src) =>
-  addEdges(grid)(src, 0)(...colAdj(grid)(src));
-
-export const joinRows = (grid, src) =>
-  addEdges(grid)(src, 0)(...rowAdj(grid)(src));
-
-export const joinPVectors = (grid, src) =>
-  addEdges(grid)(src, 0)(...posAdj(grid)(src));
-
-export const joinNVectors = (grid, src) =>
-  addEdges(grid)(src, 0)(...negAdj(grid)(src));
+export const joinAdj = (g, src) => addEdges(g)(src, 0)(...allAdj(g)(src));
+export const joinCols = (g, src) => addEdges(g)(src, 0)(...colAdj(g)(src));
+export const joinRows = (g, src) => addEdges(g)(src, 0)(...rowAdj(g)(src));
+export const joinPVectors = (g, src) => addEdges(g)(src, 0)(...posAdj(g)(src));
+export const joinNVectors = (g, src) => addEdges(g)(src, 0)(...negAdj(g)(src));
 
 export const joinGrid = grid => nodes(grid).reduce(joinAdj, grid);
 export const colGrid = grid => nodes(grid).reduce(joinCols, grid);
