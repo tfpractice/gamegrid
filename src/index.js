@@ -1,4 +1,7 @@
 import * as Node from './node';
+import * as connections from './connections';
+import * as Grid from './grid';
+import * as Components from './traversals';
 export * from './connections';
 export * from './traversals';
 export * from './grid';

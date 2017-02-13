@@ -1,54 +1,54 @@
 import 'jasmine-expect';
-import grid from 'src/grid';
-import { colComponents, colGraph, negComponents, negGraph, omniGraph,
-   posComponents, posGraph, rowComponents, rowGraph, } from 'src/traversals';
+import { grid, } from 'src/grid';
+import { colComponents, colGrid, negComponents, negGrid, omniGrid,
+   posComponents, posGrid, rowComponents, rowGrid, } from 'src/traversals';
 
-const myGraph = grid(10, 10);
+const myGrid = grid(10, 10);
 
-describe('graph representations', () => {
-  describe('omniGraph', () => {
-    it('returns a new Graph with all neighbors joined', () => {
-      expect(omniGraph(myGraph) instanceof Map).toBeTrue();
+describe('Grid representations', () => {
+  describe('omniGrid', () => {
+    it('returns a new Grid with all neighbors joined', () => {
+      expect(omniGrid(myGrid) instanceof Map).toBeTrue();
     });
   });
-  describe('colGraph', () => {
-    it('returns a new Graph with only columns joined', () => {
-      expect(colGraph(myGraph) instanceof Map).toBeTrue();
+  describe('colGrid', () => {
+    it('returns a new Grid with only columns joined', () => {
+      expect(colGrid(myGrid) instanceof Map).toBeTrue();
     });
   });
-  describe('rowGraph', () => {
-    it('returns a new Graph with only columns joined', () => {
-      expect(rowGraph(myGraph) instanceof Map).toBeTrue();
+  describe('rowGrid', () => {
+    it('returns a new Grid with only columns joined', () => {
+      expect(rowGrid(myGrid) instanceof Map).toBeTrue();
     });
   });
-  describe('posGraph', () => {
-    it('returns a new Graph with only columns joined', () => {
-      expect(posGraph(myGraph) instanceof Map).toBeTrue();
+  describe('posGrid', () => {
+    it('returns a new Grid with only columns joined', () => {
+      expect(posGrid(myGrid) instanceof Map).toBeTrue();
     });
   });
-  describe('negGraph', () => {
-    it('returns a new Graph with only columns joined', () => {
-      expect(negGraph(myGraph) instanceof Map).toBeTrue();
+  describe('negGrid', () => {
+    it('returns a new Grid with only columns joined', () => {
+      expect(negGrid(myGrid) instanceof Map).toBeTrue();
     });
   });
   describe('colComponents', () => {
-    it('returns the connected components in a column graph', () => {
-      expect(colComponents(myGraph) instanceof Set).toBeTrue();
+    it('returns the connected components in a column Grid', () => {
+      expect(colComponents(myGrid) instanceof Set).toBeTrue();
     });
   });
   describe('rowComponents', () => {
-    it('returns the connected components in a column graph', () => {
-      expect(rowComponents(myGraph) instanceof Set).toBeTrue();
+    it('returns the connected components in a column Grid', () => {
+      expect(rowComponents(myGrid) instanceof Set).toBeTrue();
     });
   });
   describe('posComponents', () => {
-    it('returns the connected components in a column graph', () => {
-      expect(posComponents(myGraph) instanceof Set).toBeTrue();
+    it('returns the connected components in a column Grid', () => {
+      expect(posComponents(myGrid) instanceof Set).toBeTrue();
     });
   });
   describe('negComponents', () => {
-    it('returns the connected components in a column graph', () => {
-      expect(negComponents(myGraph) instanceof Set).toBeTrue();
+    it('returns the connected components in a column Grid', () => {
+      expect(negComponents(myGrid) instanceof Set).toBeTrue();
     });
   });
 });
