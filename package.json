@@ -16,7 +16,8 @@
     "precoverage": "yarn test",
     "coverage": "cat coverage/lcov.info | coveralls",
     "prepublish": "yarn build",
-    "test": "NODE_ENV=test jest"
+    "test": "NODE_ENV=test jest",
+    "doc": "docco src/*"
   },
   "repository": {
     "type": "git",
