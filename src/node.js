@@ -25,4 +25,4 @@ export const xEquivalent = src => alt => !isEquivalent(src)(alt);
 export const isNeighbor = n0 => n1 =>
  xEquivalent(n0)(n1) && cAdj(n0)(n1) && rAdj(n0)(n1);
 
-export default node;
+// export default node;

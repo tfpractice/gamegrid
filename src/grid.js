@@ -1,5 +1,5 @@
 import { fromElements, nodes, } from 'graph-curry';
-import node, { column as getCol, row as getRow, isEquivalent, sameCol,
+import { column as getCol, row as getRow, isEquivalent, node, sameCol,
 sameNVector, samePVector, sameRow, } from './node';
 
 export const genNodes = (cols = 0, rows = 0) => {
