@@ -1,6 +1,6 @@
 import 'jasmine-expect';
 import { grid, } from 'src/grid';
-import { allComponents, colComponents, negComponents, posComponents, rowComponents, } from 'src/traversals';
+import { colComponents, negComponents, posComponents, rowComponents, } from 'src/components';
 
 const myGrid = grid(10, 10);
 
