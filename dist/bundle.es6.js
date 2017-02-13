@@ -365,15 +365,5 @@ var Join = Object.freeze({
 	negGrid: negGrid$1
 });
 
-
-
-var src$1 = Object.freeze({
-	Adj: adj,
-	Components: components,
-	Grid: grid$1,
-	Join: Join,
-	Node: node$1
-});
-
-export { adj as Adj, components as Components, grid$1 as Grid, Join, node$1 as Node };export default src$1;
+export { adj as Adj, components as Components, grid$1 as Grid, Join, node$1 as Node };
 //# sourceMappingURL=bundle.es6.js.map
