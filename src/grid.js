@@ -1,18 +1,18 @@
 import { Graph, } from 'graph-curry';
 import { column as getCol, row as getRow, isEquivalent, node, sameCol,
-sameNVector, samePVector, sameRow, } from './node';
+  sameNVector, samePVector, sameRow, } from './node';
 
 const { fromElements, nodes, } = Graph;
 
 export const genNodes = (cols = 0, rows = 0) => {
   const nArr = [];
-
+  
   for (let c = cols - 1; c >= 0; c--) {
     for (let r = rows - 1; r >= 0; r--) {
       nArr.unshift(node(c, r));
     }
   }
-
+  
   return nArr;
 };
 
