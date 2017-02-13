@@ -2,7 +2,7 @@ import 'jasmine-expect';
 import { Graph, } from 'graph-curry';
 const { nodes } = Graph;
 
-import { cIDs, fromGrid, genNodes, grid, initNodes, nodeByPosition,
+import { cIDs, copy, genNodes, grid, initNodes, nodeByPosition,
   nodesByColumn, nodesByNVector, nodesByPVector, nodesByRow, rIDs, } from 'src/grid';
 
 const myGrid = grid(10, 10);
@@ -24,7 +24,7 @@ describe('Grid', () => {
   });
   describe('fromGrid', () => {
     it('returns a copy of the grid  ', () => {
-      expect(fromGrid(grid(3, 3)) instanceof Map).toBeTrue();
+      expect(copy(grid(3, 3)) instanceof Map).toBeTrue();
     });
   });
   describe('nodes', () => {

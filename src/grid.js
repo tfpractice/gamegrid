@@ -21,7 +21,7 @@ export const rIDs = grid => new Set(nodes(grid).map(getRow));
 
 export const initNodes = (c = 0, r = 0) => fromElements(...genNodes(c, r));
 export const grid = (c = 0, r = 0) => fromElements(...genNodes(c, r));
-export const fromGrid = grid => fromElements(...nodes(grid));
+export const copy = grid => fromElements(...nodes(grid));
 
 export const nodesByColumn = grid => (column = 0) =>
   nodes(grid).filter(sameCol({ column }));
