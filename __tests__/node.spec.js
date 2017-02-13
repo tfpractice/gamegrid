@@ -1,8 +1,8 @@
 import 'jasmine-expect';
 
 // import node, * as Node from 'src/node';
-import { angleBetween, cAdj, colDiff, column, isEquivalent, isNeighbor, node,
-  nodeString, rAdj, row, rowDiff, sameCol, sameNVector, samePVector, sameRow,
+import { angleBetween, cAdj, colDiff, column, copy, isEquivalent, isNeighbor,
+  node, nodeString, rAdj, row, rowDiff, sameCol, sameNVector, samePVector, sameRow,
    tangent, xEquivalent, } from 'src/node';
    
 const c00 = node(0, 0);
@@ -23,7 +23,13 @@ describe('node', () => {
     });
   });
 });
-
+describe('copy', () => {
+  it('returns a copy of the node with the same properties', () => {
+    expect(copy(node(2, 3))).toBeObject();
+    expect(copy(c01).column).toBe(0);
+    expect(copy(c01).row).toBe(1);
+  });
+});
 describe('queries', () => {
   describe('row(node)', () => {
     it('retuns the row index', () => {

@@ -5,6 +5,7 @@ export const row = ({ row }) => row;
 export const nodeString = ({ column, row }) => `{ node::${column}_${row} }`;
 export const node = (column = null, row = null) =>
  ({ column, row, toString: () => nodeString({ column, row }) });
+export const copy = n => node(column(n), row(n));
 
 export const colDiff = ({ column: c0 }) => ({ column: c1 }) => (c0 - c1);
 export const rowDiff = ({ row: r0 }) => ({ row: r1 }) => (r0 - r1);
