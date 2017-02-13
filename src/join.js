@@ -3,23 +3,23 @@ import { allAdj, colAdj, negAdj, posAdj, rowAdj, } from './adj';
 
 const { addEdges, nodes, } = Graph;
 
-export const joinAdjBin = (grid, src) =>
+export const joinAdj = (grid, src) =>
   addEdges(grid)(src, 0)(...allAdj(grid)(src));
 
-export const joinColsBin = (grid, src) =>
+export const joinCols = (grid, src) =>
   addEdges(grid)(src, 0)(...colAdj(grid)(src));
 
-export const joinRowsBin = (grid, src) =>
+export const joinRows = (grid, src) =>
   addEdges(grid)(src, 0)(...rowAdj(grid)(src));
 
-export const joinPVectorsBin = (grid, src) =>
+export const joinPVectors = (grid, src) =>
   addEdges(grid)(src, 0)(...posAdj(grid)(src));
 
-export const joinNVectorsBin = (grid, src) =>
+export const joinNVectors = (grid, src) =>
   addEdges(grid)(src, 0)(...negAdj(grid)(src));
 
-export const joinAdj = grid => nodes(grid).reduce(joinAdjBin, grid);
-export const joinCols = grid => nodes(grid).reduce(joinColsBin, grid);
-export const joinRows = grid => nodes(grid).reduce(joinRowsBin, grid);
-export const joinPVectors = grid => nodes(grid).reduce(joinPVectorsBin, grid);
-export const joinNVectors = grid => nodes(grid).reduce(joinNVectorsBin, grid);
+export const joinGrid = grid => nodes(grid).reduce(joinAdj, grid);
+export const colGrid = grid => nodes(grid).reduce(joinCols, grid);
+export const rowGrid = grid => nodes(grid).reduce(joinRows, grid);
+export const posGrid = grid => nodes(grid).reduce(joinPVectors, grid);
+export const negGrid = grid => nodes(grid).reduce(joinNVectors, grid);

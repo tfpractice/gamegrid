@@ -1,5 +1,5 @@
 import * as Node from './node';
-import * as connections from './connections';
+import * as Join from './Join';
 import * as Adj from './adj';
 import * as Grid from './grid';
 import * as Components from './traversals';
