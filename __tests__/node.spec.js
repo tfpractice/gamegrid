@@ -1,6 +1,4 @@
 import 'jasmine-expect';
-
-// import node, * as Node from 'src/node';
 import { angleBetween, cAdj, colDiff, column, copy, isEquivalent, isNeighbor,
   node, nodeString, rAdj, row, rowDiff, sameCol, sameNVector, samePVector, sameRow,
    tangent, xEquivalent, } from 'src/node';

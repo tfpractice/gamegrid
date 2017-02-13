@@ -1,23 +1,26 @@
-import { fromElements, nodes, } from 'graph-curry';
+import { Graph, } from 'graph-curry';
 import { column as getCol, row as getRow, isEquivalent, node, sameCol,
 sameNVector, samePVector, sameRow, } from './node';
 
+const { fromElements, nodes, } = Graph;
+
 export const genNodes = (cols = 0, rows = 0) => {
-  const nodes = [];
+  const nArr = [];
 
   for (let c = cols - 1; c >= 0; c--) {
     for (let r = rows - 1; r >= 0; r--) {
-      nodes.unshift(node(c, r));
+      nArr.unshift(node(c, r));
     }
   }
 
-  return nodes;
+  return nArr;
 };
 
 export const cIDs = grid => new Set(nodes(grid).map(getCol));
 export const rIDs = grid => new Set(nodes(grid).map(getRow));
 
 export const initNodes = (c = 0, r = 0) => fromElements(...genNodes(c, r));
+export const grid = (c = 0, r = 0) => fromElements(...genNodes(c, r));
 export const fromGrid = grid => fromElements(...nodes(grid));
 
 export const nodesByColumn = grid => (column = 0) =>
@@ -34,4 +37,5 @@ export const nodesByNVector = grid => (column = 0, row = 0) =>
 
 export const nodeByPosition = grid => (column = 0, row = 0) =>
   nodes(grid).find(isEquivalent({ column, row }));
-export default initNodes;
+
+// export default initNodes;

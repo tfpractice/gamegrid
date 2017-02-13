@@ -1,6 +1,8 @@
 import 'jasmine-expect';
-import { nodes, } from 'graph-curry';
-import grid, { cIDs, fromGrid, genNodes, initNodes, nodeByPosition,
+import { Graph, } from 'graph-curry';
+const { nodes } = Graph;
+
+import { cIDs, fromGrid, genNodes, grid, initNodes, nodeByPosition,
   nodesByColumn, nodesByNVector, nodesByPVector, nodesByRow, rIDs, } from 'src/grid';
 
 const myGrid = grid(10, 10);
@@ -11,7 +13,11 @@ describe('Grid', () => {
       expect(genNodes(6, 6)).toBeArray();
     });
   });
-  describe('initNodes({cNum, rNum})', () => {
+  describe('grid({cNum, rNum})', () => {
+    it('returns a grid{Map} of cNum and rNum cols and rows attributes', () => {
+      expect(grid(6, 6) instanceof Map).toBeTrue();
+    });
+  }); describe('initNodes({cNum, rNum})', () => {
     it('returns a grid{Map} of cNum and rNum cols and rows attributes', () => {
       expect(initNodes(6, 6) instanceof Map).toBeTrue();
     });
