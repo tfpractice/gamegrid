@@ -3,3 +3,9 @@ node_js:
   - 'node'
 script: yarn build
 after_success: yarn coverage
+before_deploy: yarn doc
+deploy:
+  provider: surge
+  project: ./docs/
+  domain: tfp-gamegrid.surge.sh
+  skip_cleanup: true
