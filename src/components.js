@@ -19,6 +19,11 @@ export const posComps = grid => componentSet(posGrid(grid));
 export const negComps = grid => componentSet(negGrid(grid));
 
 // **omniComps** `::  Map<edge>  -> Set<edge>`
-// returns a set of all negative connected components
+// returns a set of all connected components
 export const omniComps = grid => [ colComps, negComps, posComps, rowComps, ]
   .map(f => f(grid)).reduce((set, next) => new Set(set).add(next), new Set);
+  
+// **splitComps** `::  Map<edge>  -> Set<edge>`
+// returns a map of all connected components by direction
+export const splitComps = g => new Map().set('row', rowComps(g))
+  .set('col', colComps(g)).set('pos', posComps(g)).set('neg', negComps(g));
