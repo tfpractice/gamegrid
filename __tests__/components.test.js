@@ -1,28 +1,28 @@
 import 'jasmine-expect';
 import { grid, } from 'src/grid';
-import { colComponents, negComponents, posComponents, rowComponents, } from 'src/components';
+import { colComps, negComps, posComps, rowComps, } from 'src/components';
 
 const myGrid = grid(10, 10);
 
 describe('Components', () => {
-  describe('colComponents', () => {
+  describe('colComps', () => {
     it('returns the connected components in a column Grid', () => {
-      expect(colComponents(myGrid) instanceof Set).toBeTrue();
+      expect(colComps(myGrid) instanceof Set).toBeTrue();
     });
   });
-  describe('rowComponents', () => {
+  describe('rowComps', () => {
     it('returns the connected components in a column Grid', () => {
-      expect(rowComponents(myGrid) instanceof Set).toBeTrue();
+      expect(rowComps(myGrid) instanceof Set).toBeTrue();
     });
   });
-  describe('posComponents', () => {
+  describe('posComps', () => {
     it('returns the connected components in a column Grid', () => {
-      expect(posComponents(myGrid) instanceof Set).toBeTrue();
+      expect(posComps(myGrid) instanceof Set).toBeTrue();
     });
   });
-  describe('negComponents', () => {
+  describe('negComps', () => {
     it('returns the connected components in a column Grid', () => {
-      expect(negComponents(myGrid) instanceof Set).toBeTrue();
+      expect(negComps(myGrid) instanceof Set).toBeTrue();
     });
   });
 });
