@@ -32,7 +32,6 @@ describe('Components', () => {
   });
   describe('splitComps', () => {
     it('returns a map of all components keyed by direction', () => {
-      console.log(splitComps(myGrid));
       expect(splitComps(myGrid) instanceof Map).toBeTrue();
     });
   });
