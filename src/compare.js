@@ -1,9 +1,8 @@
-import { column, copy, id, import, node, row, } from './node';
+import { column, row, } from './node';
 const { atan, abs, PI } = Math;
 
 // **colDiff** `::  Node-> Node -> Number`
 // returns the difference of two nodes column properties
-
 export const colDiff = n0 => n1 => column(n0) - column(n1);
 
 // **rowDiff** `::  Node-> Node -> Number`
