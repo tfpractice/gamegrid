@@ -33,8 +33,7 @@ export const copy = grid => graph(...nodes(grid));
 
 // **nodesByColumn** `::  Map<edge> ->  Number  -> [Node]`
 // returns an array of nodes  with the specified column id
-export const nodesByColumn = grid => (column = 0) =>
-  nodes(grid).filter(sameCol({ column }));
+export const nodesByColumn = grid => (column = 0) => byCol(nodes(grid))(column);
 
 // **nodesByRow** `::  Map<edge> ->  Number  -> [Node]`
 // returns an array of nodes  with the specified row id
