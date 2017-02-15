@@ -1,6 +1,7 @@
 import 'jasmine-expect';
 import { node, } from 'src/node';
-import { byCol, byNVec, byPosition, byPVec, byRow, cIDs, generate, rIDs, } from 'src/filter';
+import { byAdj, byCol, byNVec, byPosition, byPVec, byRow, cIDs, colAdj,
+generate, negAdj, posAdj, rIDs, rowAdj, } from 'src/filter';
 
 const c00 = node(0, 0);
 const c01 = node(0, 1);
@@ -43,6 +44,43 @@ describe('filters', () => {
   describe('byPosition', () => {
     it('returns the node with the given position', () => {
       expect(byPosition(myNodes)(0, 0)).toBeObject();
+    });
+  });
+  
+  describe('byAdj', () => {
+    it('returns all neighboring nodes', () => {
+      expect(byAdj(myNodes)(c22)).toBeArray();
+
+      // expect(byAdj(myNodes)(c22).length).toBe(5);
+    });
+  });
+
+  describe('rowAdj ', () => {
+    it('returns all neighboring nodes adjacent bby row', () => {
+      expect(rowAdj(myNodes)(c22)).toBeArray();
+
+      // expect(rowAdj(myNodes)(c22).length).toBe(1);
+    });
+  });
+  describe('colAdj ', () => {
+    it('returns all neighboring nodes adjacent by column', () => {
+      expect(colAdj(myNodes)(c22)).toBeArray();
+
+      // expect(colAdj(myNodes)(c22).length).toBe(2);
+    });
+  });
+  describe('posAdj ', () => {
+    it('returns all neighboring nodes adjacent bby row', () => {
+      expect(posAdj(myNodes)(c22)).toBeArray();
+
+      // expect(posAdj(myNodes)(c22).length).toBe(1);
+    });
+  });
+  describe('negAdj ', () => {
+    it('returns all neighboring nodes adjacent by column', () => {
+      expect(negAdj(myNodes)(c22)).toBeArray();
+
+      // expect(negAdj(myNodes)(c22).length).toBe(1);
     });
   });
 });

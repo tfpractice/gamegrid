@@ -47,3 +47,23 @@ export const generate = (cols = 0, rows = 0) => {
 
   return nArr;
 };
+
+// **byAdj** `::  Map<edge> ->  node  -> Map<edge>`
+// returns a graph with edges connecting all nodes
+export const byAdj = nodes => src => filter(nodes)(isNeighbor(src));
+
+// **rowAdj** `::  Map<edge> ->  node  -> Map<edge>`
+// returns a graph with edges connecting all rows
+export const rowAdj = nodes => src => filter(byAdj(nodes)(src))(sameRow(src));
+
+// **colAdj** `::  Map<edge> ->  node  -> Map<edge>`
+// returns a graph with edges connecting all columns
+export const colAdj = nodes => src => filter(byAdj(nodes)(src))(sameCol(src));
+
+// **posAdj** `::  Map<edge> ->  node  -> Map<edge>`
+// returns a graph with edges connecting all positive diagonals
+export const posAdj = nodes => src => filter(byAdj(nodes)(src))(samePVector(src));
+
+// **negAdj** `::  Map<edge> ->  node  -> Map<edge>`
+// returns a graph with edges connecting all negative diagonal
+export const negAdj = nodes => src => filter(byAdj(nodes)(src))(sameNVector(src));
