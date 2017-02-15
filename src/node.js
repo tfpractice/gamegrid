@@ -1,6 +1,6 @@
 import { asSet, spread, } from 'fenugreek-collections';
 const { atan, abs, PI } = Math;
-const init = { column: null, row: null, id: nodeString() };
+const init = { column: null, row: null, id: '' };
 
 // **column** `::  Node ->  Number`
 // returns a node's column property

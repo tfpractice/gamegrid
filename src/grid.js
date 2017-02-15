@@ -1,7 +1,7 @@
 import { Graph, } from 'graph-curry';
 import { column as getCol, row as getRow, isEquivalent, node, sameCol,
   sameNVector, samePVector, sameRow, } from './node';
-
+import { joinAdj, joinCols, joinPVectors, joinRows, } from './join';
 const { fromElements, nodes, } = Graph;
 
 // **genNodes** `::  (Number, Number) -> [Node]`
@@ -58,3 +58,23 @@ export const nodesByNVector = grid => (column = 0, row = 0) =>
 // returns a node at the specified position
 export const nodeByPosition = grid => (column = 0, row = 0) =>
   nodes(grid).find(isEquivalent({ column, row }));
+
+  // **joinGrid** `::  Map<edge>  -> Map<edge>`
+  // returns a copy of a grid with edges joining all nodes with all their neighbors
+export const joinGrid = grid => nodes(grid).reduce(joinAdj, grid);
+
+  // **colGrid** `::  Map<edge> -> Map<edge>`
+  // returns a copy of a grid with edges joining all nodes with all their column eighbors
+export const colGrid = grid => nodes(grid).reduce(joinCols, grid);
+
+  // **rowGrid** `::  Map<edge>  -> Map<edge>`
+  // returns a copy of a grid with edges joining all nodes with all their row neighbors
+export const rowGrid = grid => nodes(grid).reduce(joinRows, grid);
+
+  // **posGrid** `::  Map<edge>  -> Map<edge>`
+  // returns a copy of a grid with edges joining all nodes with all their positive neighbors
+export const posGrid = grid => nodes(grid).reduce(joinPVectors, grid);
+
+  // **negGrid** `::  (Map<edge>, node)  -> Map<edge>`
+  // returns a copy of a grid with edges joining all nodes with all their negative neighbors
+export const negGrid = grid => nodes(grid).reduce(joinNVectors, grid);
