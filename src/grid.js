@@ -4,6 +4,9 @@ import { column as getCol, row as getRow, isEquivalent, node, sameCol,
 import { joinAdj, joinCols, joinNVectors, joinPVectors, joinRows, } from './join';
 const { graph, nodes, } = Graph;
 
+import { byAdj, byCol, byNVec, byPosition, byPVec, byRow, cIDs, colAdj,
+generate, negAdj, posAdj, rIDs, rowAdj, } from './filter';
+
 // **genNodes** `::  (Number, Number) -> [Node]`
 // returns an array of nodes the specified number of columns and rows
 export const genNodes = (cols = 0, rows = 0) => {
