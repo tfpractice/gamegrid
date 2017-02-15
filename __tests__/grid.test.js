@@ -2,10 +2,9 @@ import 'jasmine-expect';
 import { Graph, } from 'graph-curry';
 const { neighbors, nodes, } = Graph;
 
-import { colGrid, copy, genNodes, grid, joinGrid, negGrid, posGrid, rowGrid, }
-from 'src/grid';
+import { colGrid, colNodes, copy, findNode, genNodes, grid, joinGrid, negGrid,
+   negNodes, posGrid, posNodes, rowGrid, rowNodes, } from 'src/grid';
 
-// const myGrid = grid(10, 10);
 const myGrid = grid(10, 10);
 const centNodes = nodes(myGrid);
 
@@ -55,45 +54,35 @@ describe('Grid', () => {
     });
   });
 
-  // describe('nodes', () => {
-  //   it('returns the nodes of the Grid', () => {
-  //     expect(nodes(myGrid)).toBeArray();
-  //   });
-  // });
+  describe('nodes', () => {
+    it('returns the nodes of the Grid', () => {
+      expect(nodes(myGrid)).toBeArray();
+    });
+  });
   
-  // describe('nodesByColumn', () => {
-  //   it('returns the nodes of the Grid', () => {
-  //     expect(nodesByColumn(myGrid)(2)).toBeArray();
-  //   });
-  // });
-  // describe('nodesByRow', () => {
-  //   it('returns the nodes of the Grid', () => {
-  //     expect(nodesByRow(myGrid)(2)).toBeArray();
-  //   });
-  // });
-  // describe('nodeByPosition', () => {
-  //   it('retrives a node with the specified row and column', () => {
-  //     expect(nodeByPosition(myGrid)(0, 3)).toBeObject();
-  //   });
-  // });
-  // describe('nodesByPVector', () => {
-  //   it('retrives a node with the specified row and column', () => {
-  //     expect(nodesByPVector(myGrid)(0, 3)).toBeArray();
-  //   });
-  // });
-  // describe('nodesByNVector', () => {
-  //   it('retrives a node with the specified row and column', () => {
-  //     expect(nodesByNVector(myGrid)(0, 3)).toBeArray();
-  //   });
-  // });
-  // describe('cIDs', () => {
-  //   it('returns a set of column IDs', () => {
-  //     expect(cIDs(myGrid) instanceof Set).toBeTrue();
-  //   });
-  // });
-  // describe('rIDs', () => {
-  //   it('returns a set of column IDs', () => {
-  //     expect(rIDs(myGrid) instanceof Set).toBeTrue();
-  //   });
-  // });
+  describe('colNodes', () => {
+    it('returns the nodes of the Grid', () => {
+      expect(colNodes(myGrid)(2)).toBeArray();
+    });
+  });
+  describe('rowNodes', () => {
+    it('returns the nodes of the Grid', () => {
+      expect(rowNodes(myGrid)(2)).toBeArray();
+    });
+  });
+  describe('findNode', () => {
+    it('retrives a node with the specified row and column', () => {
+      expect(findNode(myGrid)(0, 3)).toBeObject();
+    });
+  });
+  describe('posNodes', () => {
+    it('retrives a node with the specified row and column', () => {
+      expect(posNodes(myGrid)(0, 3)).toBeArray();
+    });
+  });
+  describe('negNodes', () => {
+    it('retrives a node with the specified row and column', () => {
+      expect(negNodes(myGrid)(0, 3)).toBeArray();
+    });
+  });
 });

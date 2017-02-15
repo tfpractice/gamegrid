@@ -11,13 +11,13 @@ generate, negAdj, posAdj, rIDs, rowAdj, } from './filter';
 // returns an array of nodes the specified number of columns and rows
 export const genNodes = (cols = 0, rows = 0) => {
   const nArr = [];
-
+  
   for (let c = cols - 1; c >= 0; c--) {
     for (let r = rows - 1; r >= 0; r--) {
       nArr.unshift(node(c, r));
     }
   }
-
+  
   return nArr;
 };
 
@@ -31,29 +31,25 @@ export const setNodes = (...nodes) => g => graph(...genNodes(c, r));
 // returns a copy of a grid
 export const copy = grid => graph(...nodes(grid));
 
-// **nodesByColumn** `::  Map<edge> ->  Number  -> [Node]`
+// **colNodes** `::  Map<edge> ->  Number  -> [Node]`
 // returns an array of nodes  with the specified column id
-export const nodesByColumn = grid => (column = 0) => byCol(nodes(grid))(column);
+export const colNodes = grid => (c = 0) => byCol(nodes(grid))(c);
 
-// **nodesByRow** `::  Map<edge> ->  Number  -> [Node]`
+// **rowNodes** `::  Map<edge> ->  Number  -> [Node]`
 // returns an array of nodes  with the specified row id
-export const nodesByRow = grid => (row = 0) =>
-  nodes(grid).filter(sameRow({ row }));
+export const rowNodes = grid => (r = 0) => byRow(nodes(grid))(r);
 
-// **nodesByPVector** `:: Map<edge> ->  (Number, Number)  -> [Node]`
+// **posNodestor** `:: Map<edge> ->  (Number, Number)  -> [Node]`
 // returns an array of nodes on the specified postive diagonal
-export const nodesByPVector = grid => (column = 0, row = 0) =>
-  nodes(grid).filter(samePVector({ column, row }));
+export const posNodes = grid => (c = 0, r = 0) => byPVec(nodes(grid))(c, r);
 
-// **nodesByNVector** `:: Map<edge> ->  (Number, Number)  -> [Node]`
+// **negNodestor** `:: Map<edge> ->  (Number, Number)  -> [Node]`
 // returns an array of nodes on the specified negative diagonal
-export const nodesByNVector = grid => (column = 0, row = 0) =>
-  nodes(grid).filter(sameNVector({ column, row }));
+export const negNodes = grid => (c = 0, r = 0) => byNVec(nodes(grid))(c, r);
 
-// **nodeByPosition** `::  Map<edge> ->  node  -> Node`
+// **findNode** `::  Map<edge> ->  node  -> Node`
 // returns a node at the specified position
-export const nodeByPosition = grid => (column = 0, row = 0) =>
-  nodes(grid).find(isEquivalent({ column, row }));
+export const findNode = grid => (c = 0, r = 0) => byPosition(nodes(grid))(c, r);
 
   // **joinGrid** `::  Map<edge>  -> Map<edge>`
   // returns a copy of a grid with edges joining all nodes with all their neighbors
