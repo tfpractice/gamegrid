@@ -1,29 +1,38 @@
-import { filter, } from 'fenugreek-collections';
+import { asSet, filter, map, spread, } from 'fenugreek-collections';
+import { column, row, } from './node';
 import { angleBetween, cAdj, colDiff, diffPos, isNeighbor, rAdj, rowDiff,
    sameCol, sameNVector, samePos, samePVector, sameRow, tangent, } from './compare';
    
 // **byCol** `::  [Node] ->  Number  -> [Node]`
 // returns an array of nodes  with the specified column id
-export const byCol = nodes => (column = 0) => nodes.filter(sameCol({ column }));
+export const byCol = nodes => (column = 0) => filter(nodes)(sameCol({ column }));
 
 // **byRow** `::  [Node] ->  Number  -> [Node]`
 // returns an array of nodes  with the specified row id
-export const byRow = nodes => (row = 0) => nodes.filter(sameRow({ row }));
+export const byRow = nodes => (row = 0) => filter(nodes)(sameRow({ row }));
 
 // **byPVec** `:: [Node] ->  (Number, Number)  -> [Node]`
 // returns an array of nodes on the specified postive diagonal
 export const byPVec = nodes => (column = 0, row = 0) =>
-    nodes.filter(samePVector({ column, row }));
+    filter(nodes)(samePVector({ column, row }));
 
 // **byNVec** `:: [Node] ->  (Number, Number)  -> [Node]`
 // returns an array of nodes on the specified negative diagonal
 export const byNVec = nodes => (column = 0, row = 0) =>
-     nodes.filter(sameNVector({ column, row }));
+     filter(nodes)(sameNVector({ column, row }));
 
 // **byPosition** `::  [Node] ->  node  -> Node`
 // returns a node at the specified position
 export const byPosition = nodes => (column = 0, row = 0) =>
-     nodes.find(isEquivalent({ column, row }));
+  spread(nodes).find(samePos({ column, row }));
+  
+// **cIDs** `::  [Node] -> Set<Number>`
+// returns a Set of a grid's columns
+export const cIDs = nodes => spread(asSet(map(nodes)(column)));
+
+// **rIDs** `::  [Node] -> Set<Number>`
+// returns a Set of a grid's rows
+export const rIDs = nodes => spread(asSet(map(nodes)(row)));
 
 // **genNodes** `::  (Number, Number) -> [Node]`
 // returns an array of nodes the specified number of columns and rows

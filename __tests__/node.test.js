@@ -49,48 +49,6 @@ describe('queries', () => {
 });
 
 describe('comparitors', () => {
-  describe('cAdj', () => {
-    it('checks if the colDiff is < 2', () => {
-      expect(cAdj(c00)(c01)).toBeTrue();
-    });
-  });
-  describe('rAdj', () => {
-    it('checks if the colDiff is < 2', () => {
-      expect(rAdj(c00)(c01)).toBeTrue();
-    });
-  });
-  
-  describe('sameNVector', () => {
-    it('checks if the anglebetween two nodes is PI/4', () => {
-      expect(sameNVector(c31)(c22)).toBeTrue();
-    });
-  });
-  
-  describe('sameCol', () => {
-    it('checks node columns a difference of 0', () => {
-      expect(sameCol(c00)(c01)).toBeTrue();
-    });
-  });
-  describe('sameRow', () => {
-    it('checks node rows a difference of 0', () => {
-      expect(sameRow(c00)(c01)).toBeFalse();
-    });
-  });
-  describe('isNeighbor', () => {
-    it('checks for colDiff and rowDiff <2', () => {
-      expect(isNeighbor(c00)(c01)).toBeTrue();
-    });
-  });
-  describe('isEquivalent', () => {
-    it('checks if nodes share both row and column', () => {
-      expect(isEquivalent(c00)(c00)).toBeTrue();
-    });
-  });
-  describe('xEquivalent', () => {
-    it('checks if nodes share both row and column', () => {
-      expect(xEquivalent(c00)(c01)).toBeTrue();
-    });
-  });
   describe('cIDs', () => {
     it('returns an array of columns', () => {
       expect(cIDs(myNodes)).toBeArray();

@@ -1,30 +1,82 @@
 import { Components, Graph } from 'graph-curry';
 
+// **isIterable** `:: obj -> bool`  
+// checks if an object is iterable
+var isIterable = function isIterable(o) {
+  return !!o[Symbol.iterator];
+};
+
+// **iterify** `:: obj -> iterable`  
+// returns the object or an Iterable<a> containging the object
+var iterify = function iterify(o) {
+  return isIterable(o) ? o : [o];
+};
+
+var toConsumableArray = function (arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+    return arr2;
+  } else {
+    return Array.from(arr);
+  }
+};
+
+// requires [iterify](iterable.html)
+// **spread** `:: Iterable<a> -> Iterable<a>`  
+// returns an Iterable<a> of the collections default iterator
+var spread = function spread() {
+  var coll = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  return [].concat(toConsumableArray(iterify(coll)));
+};
+
+// **asSet** `:: Iterable<a> -> Set[a]`  
+// returns an Iterable<a> of the collections default iterator
+var asSet = function asSet(c) {
+  return new Set(spread(c));
+};
+
 var atan = Math.atan;
 var abs = Math.abs;
 var PI = Math.PI;
 
+var init = { column: null, row: null, id: '' };
+
 // **column** `::  Node ->  Number`
 // returns a node's column property
+var column = function column() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : init,
+      column = _ref.column;
 
-var column = function column(_ref) {
-  var column = _ref.column;
   return column;
 };
 
 // **row** `::  Node ->  Number`
 // returns a node's row property
-var row = function row(_ref2) {
-  var row = _ref2.row;
+var row = function row() {
+  var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : init,
+      row = _ref2.row;
+
   return row;
+};
+
+// **id** `::  Node ->  String`
+// returns a node's row property
+var id = function id() {
+  var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : init,
+      id = _ref3.id;
+
+  return id;
 };
 
 // **nodeString** `::  Node ->  String`
 // returns a string representation of a node
-var nodeString = function nodeString(_ref3) {
-  var column = _ref3.column,
-      row = _ref3.row;
-  return "{ node::" + column + "_" + row + " }";
+var nodeString = function nodeString() {
+  var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : init,
+      column = _ref4.column,
+      row = _ref4.row;
+
+  return '{ node::' + column + '_' + row + ' }';
 };
 
 // **node** `::  (Number, Number) -> Node`
@@ -32,9 +84,7 @@ var nodeString = function nodeString(_ref3) {
 var node = function node() {
   var column = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   var row = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  return { column: column, row: row, toString: function toString() {
-      return nodeString({ column: column, row: row });
-    } };
+  return { column: column, row: row, id: nodeString({ column: column, row: row }) };
 };
 
 // **copy** `::  Node -> Node`
@@ -45,20 +95,20 @@ var copy = function copy(n) {
 
 // **colDiff** `::  Node-> Node -> Number`
 // returns the difference of two nodes column properties
-var colDiff = function colDiff(_ref4) {
-  var c0 = _ref4.column;
-  return function (_ref5) {
-    var c1 = _ref5.column;
+var colDiff = function colDiff(_ref5) {
+  var c0 = _ref5.column;
+  return function (_ref6) {
+    var c1 = _ref6.column;
     return c0 - c1;
   };
 };
 
 // **rowDiff** `::  Node-> Node -> Number`
 // returns the difference of two nodes row properties
-var rowDiff = function rowDiff(_ref6) {
-  var r0 = _ref6.row;
-  return function (_ref7) {
-    var r1 = _ref7.row;
+var rowDiff = function rowDiff(_ref7) {
+  var r0 = _ref7.row;
+  return function (_ref8) {
+    var r1 = _ref8.row;
     return r0 - r1;
   };
 };
@@ -154,18 +204,84 @@ var isNeighbor = function isNeighbor(n0) {
 // **cIDs** `::  [Node] -> Set<Number>`
 // returns a Set of a grid's columns
 var cIDs = function cIDs(nodes) {
-  return new Set(nodes.map(column));
+  return spread(asSet(nodes.map(column)));
 };
 
 // **rIDs** `::  [Node] -> Set<Number>`
 // returns a Set of a grid's rows
 var rIDs = function rIDs(nodes) {
-  return new Set(nodes.map(row));
+  return spread(asSet(nodes.map(row)));
+};
+
+// **byColumn** `::  Map<edge> ->  Number  -> [Node]`
+// returns an array of nodes  with the specified column id
+var byCol = function byCol(nodes) {
+  return function () {
+    var column = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    return nodes.filter(sameCol({ column: column }));
+  };
+};
+
+// **byRow** `::  Map<edge> ->  Number  -> [Node]`
+// returns an array of nodes  with the specified row id
+var byRow = function byRow(nodes) {
+  return function () {
+    var row = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    return nodes.filter(sameRow({ row: row }));
+  };
+};
+
+// **byPVec** `:: Map<edge> ->  (Number, Number)  -> [Node]`
+// returns an array of nodes on the specified postive diagonal
+var byPVec = function byPVec(nodes) {
+  return function () {
+    var column = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var row = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    return nodes.filter(samePVector({ column: column, row: row }));
+  };
+};
+
+// **byNVec** `:: Map<edge> ->  (Number, Number)  -> [Node]`
+// returns an array of nodes on the specified negative diagonal
+var byNVec = function byNVec(nodes) {
+  return function () {
+    var column = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var row = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    return nodes.filter(sameNVector({ column: column, row: row }));
+  };
+};
+
+// **byPosition** `::  Map<edge> ->  node  -> Node`
+// returns a node at the specified position
+var byPosition = function byPosition(nodes) {
+  return function () {
+    var column = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var row = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    return nodes.find(isEquivalent({ column: column, row: row }));
+  };
+};
+
+// **genNodes** `::  (Number, Number) -> [Node]`
+// returns an array of nodes the specified number of columns and rows
+var generate = function generate() {
+  var cols = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var rows = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+  var nArr = [];
+
+  for (var c = cols - 1; c >= 0; c--) {
+    for (var r = rows - 1; r >= 0; r--) {
+      nArr.unshift(node(c, r));
+    }
+  }
+
+  return nArr;
 };
 
 var node$1 = Object.freeze({
 	column: column,
 	row: row,
+	id: id,
 	nodeString: nodeString,
 	node: node,
 	copy: copy,
@@ -183,7 +299,13 @@ var node$1 = Object.freeze({
 	xEquivalent: xEquivalent,
 	isNeighbor: isNeighbor,
 	cIDs: cIDs,
-	rIDs: rIDs
+	rIDs: rIDs,
+	byCol: byCol,
+	byRow: byRow,
+	byPVec: byPVec,
+	byNVec: byNVec,
+	byPosition: byPosition,
+	generate: generate
 });
 
 var nodes = Graph.nodes;
@@ -237,7 +359,7 @@ var adj = Object.freeze({
 	negAdj: negAdj
 });
 
-var toConsumableArray = function (arr) {
+var toConsumableArray$1 = function (arr) {
   if (Array.isArray(arr)) {
     for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
 
@@ -254,31 +376,31 @@ var nodes$1 = Graph.nodes;
 // returns a copy of a grid with edges joining a nodes and all its neighbors
 
 var joinAdj = function joinAdj(g, src) {
-  return addEdges(g)(src, 0).apply(undefined, toConsumableArray(allAdj(g)(src)));
+  return addEdges(g)(src, 0).apply(undefined, toConsumableArray$1(allAdj(g)(src)));
 };
 
 // **joinCols** `::  (Map<edge>, node)  -> Map<edge>`
 // returns a copy of a grid with edges joining a nodes and all its column neighbors
 var joinCols = function joinCols(g, src) {
-  return addEdges(g)(src, 0).apply(undefined, toConsumableArray(colAdj(g)(src)));
+  return addEdges(g)(src, 0).apply(undefined, toConsumableArray$1(colAdj(g)(src)));
 };
 
 // **joinRows** `::  (Map<edge>, node)  -> Map<edge>`
 // returns a copy of a grid with edges joining a nodes and all its row neighbors
 var joinRows = function joinRows(g, src) {
-  return addEdges(g)(src, 0).apply(undefined, toConsumableArray(rowAdj(g)(src)));
+  return addEdges(g)(src, 0).apply(undefined, toConsumableArray$1(rowAdj(g)(src)));
 };
 
 // **joinPVectors** `::  (Map<edge>, node)  -> Map<edge>`
 // returns a copy of a grid with edges joining a nodes and all its positive neighbors
 var joinPVectors = function joinPVectors(g, src) {
-  return addEdges(g)(src, 0).apply(undefined, toConsumableArray(posAdj(g)(src)));
+  return addEdges(g)(src, 0).apply(undefined, toConsumableArray$1(posAdj(g)(src)));
 };
 
 // **joinNVectors** `::  (Map<edge>, node)  -> Map<edge>`
 // returns a copy of a grid with edges joining a nodes and all its negative neighbors
-var joinNVectors = function joinNVectors(g, src) {
-  return addEdges(g)(src, 0).apply(undefined, toConsumableArray(negAdj(g)(src)));
+var joinNVectors$1 = function joinNVectors(g, src) {
+  return addEdges(g)(src, 0).apply(undefined, toConsumableArray$1(negAdj(g)(src)));
 };
 
 // **joinGrid** `::  Map<edge>  -> Map<edge>`
@@ -308,7 +430,7 @@ var posGrid = function posGrid(grid) {
 // **negGrid** `::  (Map<edge>, node)  -> Map<edge>`
 // returns a copy of a grid with edges joining all nodes with all their negative neighbors
 var negGrid = function negGrid(grid) {
-  return nodes$1(grid).reduce(joinNVectors, grid);
+  return nodes$1(grid).reduce(joinNVectors$1, grid);
 };
 
 
@@ -318,7 +440,7 @@ var join = Object.freeze({
 	joinCols: joinCols,
 	joinRows: joinRows,
 	joinPVectors: joinPVectors,
-	joinNVectors: joinNVectors,
+	joinNVectors: joinNVectors$1,
 	joinGrid: joinGrid,
 	colGrid: colGrid,
 	rowGrid: rowGrid,
@@ -378,7 +500,7 @@ var components = Object.freeze({
 	splitComps: splitComps
 });
 
-var fromElements = Graph.fromElements;
+var graph = Graph.graph;
 var nodes$2 = Graph.nodes;
 
 // **genNodes** `::  (Number, Number) -> [Node]`
@@ -416,13 +538,13 @@ var rIDs$1 = function rIDs$$1(grid) {
 var grid = function grid() {
   var c = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
   var r = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  return fromElements.apply(undefined, toConsumableArray(genNodes(c, r)));
+  return graph.apply(undefined, toConsumableArray$1(genNodes(c, r)));
 };
 
 // **copy** `::  Map<edge> ->  node  -> Map<edge>`
 // returns a copy of a grid
 var copy$1 = function copy$$1(grid) {
-  return fromElements.apply(undefined, toConsumableArray(nodes$2(grid)));
+  return graph.apply(undefined, toConsumableArray$1(nodes$2(grid)));
 };
 
 // **nodesByColumn** `::  Map<edge> ->  Number  -> [Node]`
@@ -473,6 +595,36 @@ var nodeByPosition = function nodeByPosition(grid) {
   };
 };
 
+// **joinGrid** `::  Map<edge>  -> Map<edge>`
+// returns a copy of a grid with edges joining all nodes with all their neighbors
+var joinGrid$1 = function joinGrid$$1(grid) {
+  return nodes$2(grid).reduce(joinAdj, grid);
+};
+
+// **colGrid** `::  Map<edge> -> Map<edge>`
+// returns a copy of a grid with edges joining all nodes with all their column eighbors
+var colGrid$1 = function colGrid$$1(grid) {
+  return nodes$2(grid).reduce(joinCols, grid);
+};
+
+// **rowGrid** `::  Map<edge>  -> Map<edge>`
+// returns a copy of a grid with edges joining all nodes with all their row neighbors
+var rowGrid$1 = function rowGrid$$1(grid) {
+  return nodes$2(grid).reduce(joinRows, grid);
+};
+
+// **posGrid** `::  Map<edge>  -> Map<edge>`
+// returns a copy of a grid with edges joining all nodes with all their positive neighbors
+var posGrid$1 = function posGrid$$1(grid) {
+  return nodes$2(grid).reduce(joinPVectors, grid);
+};
+
+// **negGrid** `::  (Map<edge>, node)  -> Map<edge>`
+// returns a copy of a grid with edges joining all nodes with all their negative neighbors
+var negGrid$1 = function negGrid$$1(grid) {
+  return nodes$2(grid).reduce(joinNVectors, grid);
+};
+
 
 
 var grid$1 = Object.freeze({
@@ -485,7 +637,12 @@ var grid$1 = Object.freeze({
 	nodesByRow: nodesByRow,
 	nodesByPVector: nodesByPVector,
 	nodesByNVector: nodesByNVector,
-	nodeByPosition: nodeByPosition
+	nodeByPosition: nodeByPosition,
+	joinGrid: joinGrid$1,
+	colGrid: colGrid$1,
+	rowGrid: rowGrid$1,
+	posGrid: posGrid$1,
+	negGrid: negGrid$1
 });
 
 export { adj as Adj, components as Components, grid$1 as Grid, join as Join, node$1 as Node };
