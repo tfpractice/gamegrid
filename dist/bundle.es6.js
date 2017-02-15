@@ -314,36 +314,54 @@ var join = Object.freeze({
 
 var componentSet = Components.componentSet;
 
-// **colComponents** `::  Map<edge>  -> Set<edge>`
+// **colComps** `::  Map<edge>  -> Set<edge>`
 // returns a set of all columnn connected components
 
-var colComponents = function colComponents(grid) {
+var colComps = function colComps(grid) {
   return componentSet(colGrid(grid));
 };
 
-// **rowComponents** `::  Map<edge>  -> Set<edge>`
+// **rowComps** `::  Map<edge>  -> Set<edge>`
 // returns a set of all row connected components
-var rowComponents = function rowComponents(grid) {
+var rowComps = function rowComps(grid) {
   return componentSet(rowGrid(grid));
 };
 
-// **posComponents** `::  Map<edge>  -> Set<edge>`
+// **posComps** `::  Map<edge>  -> Set<edge>`
 // returns a set of all positive connected components
-var posComponents = function posComponents(grid) {
+var posComps = function posComps(grid) {
   return componentSet(posGrid(grid));
 };
 
-// **negComponents** `::  Map<edge>  -> Set<edge>`
+// **negComps** `::  Map<edge>  -> Set<edge>`
 // returns a set of all negative connected components
-var negComponents = function negComponents(grid) {
+var negComps = function negComps(grid) {
   return componentSet(negGrid(grid));
 };
 
+// **omniComps** `::  Map<edge>  -> Set<edge>`
+// returns a set of all connected components
+var omniComps = function omniComps(grid) {
+  return [colComps, negComps, posComps, rowComps].map(function (f) {
+    return f(grid);
+  }).reduce(function (set, next) {
+    return new Set(set).add(next);
+  }, new Set());
+};
+
+// **splitComps** `::  Map<edge>  -> Set<edge>`
+// returns a map of all connected components by direction
+var splitComps = function splitComps(g) {
+  return new Map().set('row', rowComps(g)).set('col', colComps(g)).set('pos', posComps(g)).set('neg', negComps(g));
+};
+
 var components = Object.freeze({
-	colComponents: colComponents,
-	rowComponents: rowComponents,
-	posComponents: posComponents,
-	negComponents: negComponents
+	colComps: colComps,
+	rowComps: rowComps,
+	posComps: posComps,
+	negComps: negComps,
+	omniComps: omniComps,
+	splitComps: splitComps
 });
 
 var fromElements = Graph.fromElements;
