@@ -8,13 +8,13 @@ const { fromElements, nodes, } = Graph;
 // returns an array of nodes the specified number of columns and rows
 export const genNodes = (cols = 0, rows = 0) => {
   const nArr = [];
-  
+
   for (let c = cols - 1; c >= 0; c--) {
     for (let r = rows - 1; r >= 0; r--) {
       nArr.unshift(node(c, r));
     }
   }
-  
+
   return nArr;
 };
 

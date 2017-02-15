@@ -1,22 +1,27 @@
 import { asSet, spread, } from 'fenugreek-collections';
 const { atan, abs, PI } = Math;
+const init = { column: null, row: null, id: nodeString() };
 
 // **column** `::  Node ->  Number`
 // returns a node's column property
-export const column = ({ column }) => column;
+export const column = ({ column } = init) => column;
 
 // **row** `::  Node ->  Number`
 // returns a node's row property
-export const row = ({ row }) => row;
+export const row = ({ row } = init) => row;
+
+// **id** `::  Node ->  String`
+// returns a node's row property
+export const id = ({ id } = init) => id;
 
 // **nodeString** `::  Node ->  String`
 // returns a string representation of a node
-export const nodeString = ({ column, row }) => `{ node::${column}_${row} }`;
+export const nodeString = ({ column, row } = init) => `{ node::${column}_${row} }`;
 
 // **node** `::  (Number, Number) -> Node`
 // returns an object with column and row properties
 export const node = (column = null, row = null) =>
- ({ column, row, toString: () => nodeString({ column, row }) });
+ ({ column, row, id: nodeString({ column, row }), });
 
  // **copy** `::  Node -> Node`
  // returns a copy of a node
@@ -105,3 +110,17 @@ export const byNVec = nodes => (column = 0, row = 0) =>
 // returns a node at the specified position
 export const byPosition = nodes => (column = 0, row = 0) =>
   nodes.find(isEquivalent({ column, row }));
+
+  // **genNodes** `::  (Number, Number) -> [Node]`
+  // returns an array of nodes the specified number of columns and rows
+export const generate = (cols = 0, rows = 0) => {
+  const nArr = [];
+
+  for (let c = cols - 1; c >= 0; c--) {
+    for (let r = rows - 1; r >= 0; r--) {
+      nArr.unshift(node(c, r));
+    }
+  }
+
+  return nArr;
+};
