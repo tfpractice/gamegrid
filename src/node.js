@@ -1,3 +1,4 @@
+import { asSet, spread, } from 'fenugreek-collections';
 const { atan, abs, PI } = Math;
 
 // **column** `::  Node ->  Number`
@@ -73,3 +74,11 @@ export const xEquivalent = src => alt => !isEquivalent(src)(alt);
 // checks if two different nodes are neighbors
 export const isNeighbor = n0 => n1 =>
  xEquivalent(n0)(n1) && cAdj(n0)(n1) && rAdj(n0)(n1);
+
+ // **cIDs** `::  [Node] -> Set<Number>`
+ // returns a Set of a grid's columns
+export const cIDs = nodes => spread(asSet(nodes.map(column)));
+
+ // **rIDs** `::  [Node] -> Set<Number>`
+ // returns a Set of a grid's rows
+export const rIDs = nodes => spread(asSet(nodes.map(row)));

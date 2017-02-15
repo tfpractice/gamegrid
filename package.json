@@ -75,6 +75,7 @@
     ]
   },
   "dependencies": {
+    "fenugreek-collections": "^1.1.0",
     "graph-curry": "^2.0.0"
   }
 }

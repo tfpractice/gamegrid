@@ -151,6 +151,18 @@ var isNeighbor = function isNeighbor(n0) {
   };
 };
 
+// **cIDs** `::  [Node] -> Set<Number>`
+// returns a Set of a grid's columns
+var cIDs = function cIDs(nodes) {
+  return new Set(nodes.map(column));
+};
+
+// **rIDs** `::  [Node] -> Set<Number>`
+// returns a Set of a grid's rows
+var rIDs = function rIDs(nodes) {
+  return new Set(nodes.map(row));
+};
+
 var node$1 = Object.freeze({
 	column: column,
 	row: row,
@@ -169,7 +181,9 @@ var node$1 = Object.freeze({
 	rAdj: rAdj,
 	isEquivalent: isEquivalent,
 	xEquivalent: xEquivalent,
-	isNeighbor: isNeighbor
+	isNeighbor: isNeighbor,
+	cIDs: cIDs,
+	rIDs: rIDs
 });
 
 var nodes = Graph.nodes;
@@ -387,13 +401,13 @@ var genNodes = function genNodes() {
 
 // **cIDs** `::  Map<edge> -> Set<Number>`
 // returns a Set of a grid's columns
-var cIDs = function cIDs(grid) {
+var cIDs$1 = function cIDs$$1(grid) {
   return new Set(nodes$2(grid).map(column));
 };
 
 // **rIDs** `::  Map<edge> -> Set<Number>`
 // returns a Set of a grid's rows
-var rIDs = function rIDs(grid) {
+var rIDs$1 = function rIDs$$1(grid) {
   return new Set(nodes$2(grid).map(row));
 };
 
@@ -463,8 +477,8 @@ var nodeByPosition = function nodeByPosition(grid) {
 
 var grid$1 = Object.freeze({
 	genNodes: genNodes,
-	cIDs: cIDs,
-	rIDs: rIDs,
+	cIDs: cIDs$1,
+	rIDs: rIDs$1,
 	grid: grid,
 	copy: copy$1,
 	nodesByColumn: nodesByColumn,
