@@ -40,40 +40,10 @@ describe('queries', () => {
       expect(column(c00)).toBe(0);
     });
   });
-
+  
   describe('nodeString(node)', () => {
     it('returns a string representation', () => {
       expect(nodeString(c00)).toBeString();
-    });
-  });
-});
-
-describe('operators', () => {
-  describe('colDiff', () => {
-    it('returns the difference in column attributes', () => {
-      expect(colDiff(c00)(c01)).toBe(0);
-    });
-  });
-  describe('rowDiff', () => {
-    it('returns the difference in column attributes', () => {
-      expect(Math.abs(rowDiff(c00)(c01))).toBe(1);
-    });
-  });
-
-  describe('tangent', () => {
-    it('returns coldiff/rowDiff', () => {
-      expect(Math.abs(tangent(c00)(c01))).toBe(Infinity);
-    });
-  });
-
-  describe('angleBetween', () => {
-    it('returns the angle between two nodes in radians', () => {
-      expect(Math.abs(angleBetween(c00)(c01))).toBe(Math.PI / 2);
-    });
-  });
-  describe('samePVector', () => {
-    it('checks if the anglebetween two nodes is PI/4', () => {
-      expect(samePVector(c22)(c33)).toBeTrue();
     });
   });
 });
@@ -89,13 +59,13 @@ describe('comparitors', () => {
       expect(rAdj(c00)(c01)).toBeTrue();
     });
   });
-
+  
   describe('sameNVector', () => {
     it('checks if the anglebetween two nodes is PI/4', () => {
       expect(sameNVector(c31)(c22)).toBeTrue();
     });
   });
-
+  
   describe('sameCol', () => {
     it('checks node columns a difference of 0', () => {
       expect(sameCol(c00)(c01)).toBeTrue();
