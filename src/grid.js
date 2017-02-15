@@ -2,7 +2,7 @@ import { Graph, } from 'graph-curry';
 import { column as getCol, row as getRow, isEquivalent, node, sameCol,
   sameNVector, samePVector, sameRow, } from './node';
 import { joinAdj, joinCols, joinPVectors, joinRows, } from './join';
-const { fromElements, nodes, } = Graph;
+const { graph, nodes, } = Graph;
 
 // **genNodes** `::  (Number, Number) -> [Node]`
 // returns an array of nodes the specified number of columns and rows
@@ -28,11 +28,11 @@ export const rIDs = grid => new Set(nodes(grid).map(getRow));
 
 // **grid** `::  (Number, Number) -> Map<edge>`
 // returns a Map of edges with the specified number of columns and rows
-export const grid = (c = 0, r = 0) => fromElements(...genNodes(c, r));
+export const grid = (c = 0, r = 0) => graph(...genNodes(c, r));
 
 // **copy** `::  Map<edge> ->  node  -> Map<edge>`
 // returns a copy of a grid
-export const copy = grid => fromElements(...nodes(grid));
+export const copy = grid => graph(...nodes(grid));
 
 // **nodesByColumn** `::  Map<edge> ->  Number  -> [Node]`
 // returns an array of nodes  with the specified column id
