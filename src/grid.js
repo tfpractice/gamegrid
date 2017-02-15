@@ -1,7 +1,7 @@
 import { Graph, } from 'graph-curry';
 import { column as getCol, row as getRow, isEquivalent, node, sameCol,
   sameNVector, samePVector, sameRow, } from './node';
-import { joinAdj, joinCols, joinPVectors, joinRows, } from './join';
+import { joinAdj, joinCols, joinNVectors, joinPVectors, joinRows, } from './join';
 const { graph, nodes, } = Graph;
 
 // **genNodes** `::  (Number, Number) -> [Node]`
@@ -17,14 +17,6 @@ export const genNodes = (cols = 0, rows = 0) => {
 
   return nArr;
 };
-
-// **cIDs** `::  Map<edge> -> Set<Number>`
-// returns a Set of a grid's columns
-export const cIDs = grid => new Set(nodes(grid).map(getCol));
-
-// **rIDs** `::  Map<edge> -> Set<Number>`
-// returns a Set of a grid's rows
-export const rIDs = grid => new Set(nodes(grid).map(getRow));
 
 // **grid** `::  (Number, Number) -> Map<edge>`
 // returns a Map of edges with the specified number of columns and rows
