@@ -1,7 +1,7 @@
 import 'jasmine-expect';
-import { angleBetween, cAdj, cIDs, colDiff, column, copy, isEquivalent,
-  isNeighbor, node, nodeString, rAdj, rIDs, row, rowDiff, sameCol, sameNVector,
-   samePVector, sameRow, tangent, xEquivalent, } from 'src/node';
+import { angleBetween, byCol, byNVec, byPosition, byPVec, byRow, cAdj,
+  cIDs, colDiff, column, copy, isEquivalent, isNeighbor, node, nodeString, rAdj, rIDs,
+   row, rowDiff, sameCol, sameNVector, samePVector, sameRow, tangent, xEquivalent, } from 'src/node';
 
 const c00 = node(0, 0);
 const c01 = node(0, 1);
@@ -129,6 +129,31 @@ describe('comparitors', () => {
   describe('rIDs', () => {
     it('returns an array of columns', () => {
       expect(rIDs(myNodes)).toBeArray();
+    });
+  });
+  describe('byCol', () => {
+    it('filters nodes by Column', () => {
+      expect(byCol(myNodes)(0)).toBeArray();
+    });
+  });
+  describe('byRow', () => {
+    it('filters nodes by Column', () => {
+      expect(byRow(myNodes)(0)).toBeArray();
+    });
+  });
+  describe('byPVec', () => {
+    it('filters nodes by Column', () => {
+      expect(byPVec(myNodes)(0, 0)).toBeArray();
+    });
+  });
+  describe('byNVec', () => {
+    it('filters nodes by Column', () => {
+      expect(byNVec(myNodes)(0, 0)).toBeArray();
+    });
+  });
+  describe('byPosition', () => {
+    it('returns the node with the given position', () => {
+      expect(byPosition(myNodes)(0, 0)).toBeObject();
     });
   });
 });

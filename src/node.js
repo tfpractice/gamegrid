@@ -82,3 +82,26 @@ export const cIDs = nodes => spread(asSet(nodes.map(column)));
  // **rIDs** `::  [Node] -> Set<Number>`
  // returns a Set of a grid's rows
 export const rIDs = nodes => spread(asSet(nodes.map(row)));
+
+// **byColumn** `::  Map<edge> ->  Number  -> [Node]`
+// returns an array of nodes  with the specified column id
+export const byCol = nodes => (column = 0) => nodes.filter(sameCol({ column }));
+
+// **byRow** `::  Map<edge> ->  Number  -> [Node]`
+// returns an array of nodes  with the specified row id
+export const byRow = nodes => (row = 0) => nodes.filter(sameRow({ row }));
+
+// **byPVec** `:: Map<edge> ->  (Number, Number)  -> [Node]`
+// returns an array of nodes on the specified postive diagonal
+export const byPVec = nodes => (column = 0, row = 0) =>
+ nodes.filter(samePVector({ column, row }));
+
+// **byNVec** `:: Map<edge> ->  (Number, Number)  -> [Node]`
+// returns an array of nodes on the specified negative diagonal
+export const byNVec = nodes => (column = 0, row = 0) =>
+  nodes.filter(sameNVector({ column, row }));
+
+// **byPosition** `::  Map<edge> ->  node  -> Node`
+// returns a node at the specified position
+export const byPosition = nodes => (column = 0, row = 0) =>
+  nodes.find(isEquivalent({ column, row }));
