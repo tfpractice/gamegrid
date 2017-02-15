@@ -37,7 +37,7 @@ export const sameNVector = n0 => n1 => angleBetween(n0)(n1) === PI * 0.75;
 // checks if two nodes share position
 export const samePos = c0 => c1 => sameCol(c0)(c1) && sameRow(c0)(c1);
 
-// **xEquivalent** `::  Node -> Node -> Boolean`
+// **diffPos** `::  Node -> Node -> Boolean`
 // checks if two nodes don't share position
 export const diffPos = src => alt => !samePos(src)(alt);
 

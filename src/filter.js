@@ -34,20 +34,6 @@ export const cIDs = nodes => spread(asSet(map(nodes)(column)));
 // returns a Set of a grid's rows
 export const rIDs = nodes => spread(asSet(map(nodes)(row)));
 
-// **genNodes** `::  (Number, Number) -> [Node]`
-// returns an array of nodes the specified number of columns and rows
-export const generate = (cols = 0, rows = 0) => {
-  const nArr = [];
-
-  for (let c = cols - 1; c >= 0; c--) {
-    for (let r = rows - 1; r >= 0; r--) {
-      nArr.unshift(node(c, r));
-    }
-  }
-
-  return nArr;
-};
-
 // **byAdj** `::  Map<edge> ->  node  -> Map<edge>`
 // returns a graph with edges connecting all nodes
 export const byAdj = nodes => src => filter(nodes)(isNeighbor(src));
