@@ -1,5 +1,6 @@
 import { Components, } from 'graph-curry';
 import { colGrid, negGrid, posGrid, rowGrid, } from './grid';
+
 const { componentSet, } = Components;
 
 // **colComps** `::  Map<edge>  -> Set<edge>`
