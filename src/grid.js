@@ -2,6 +2,7 @@ import { Graph, } from 'graph-curry';
 import { byCol, byNVec, byPosition, byPVec, byRow, } from './filter';
 import { joinAdj, joinCols, joinNVectors, joinPVectors, joinRows, } from './join';
 import { node, } from './node';
+
 const { graph, nodes, } = Graph;
 
 // **genNodes** `::  (Number, Number) -> [Node]`
