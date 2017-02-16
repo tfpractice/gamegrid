@@ -14,14 +14,14 @@ export const row = ({ row } = init) => row;
 // returns a node's row property
 export const id = ({ id } = init) => id;
 
-// **nodeString** `::  Node ->  String`
+// **show** `::  Node ->  String`
 // returns a string representation of a node
-export const nodeString = ({ column, row } = init) => `{ node::${column}_${row} }`;
+export const show = ({ column, row } = init) => `<c${column}_r${row}>`;
 
 // **node** `::  (Number, Number) -> Node`
 // returns an object with column and row properties
 export const node = (column = null, row = null) =>
- ({ column, row, id: nodeString({ column, row }), });
+ ({ column, row, id: show({ column, row }), });
 
  // **copy** `::  Node -> Node`
  // returns a copy of a node

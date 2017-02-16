@@ -1,7 +1,7 @@
 import 'jasmine-expect';
 import { angleBetween, byCol, byNVec, byPosition, byPVec, byRow, cAdj,
-  cIDs, colDiff, column, copy, isEquivalent, isNeighbor, node, nodeString, rAdj, rIDs,
-   row, rowDiff, sameCol, sameNVector, samePVector, sameRow, tangent, xEquivalent, } from 'src/node';
+  cIDs, colDiff, column, copy, isEquivalent, isNeighbor, node, rAdj, rIDs, row,
+   rowDiff, sameCol, sameNVector, samePVector, sameRow, show, tangent, xEquivalent, } from 'src/node';
 
 const c00 = node(0, 0);
 const c01 = node(0, 1);
@@ -41,9 +41,9 @@ describe('queries', () => {
     });
   });
   
-  describe('nodeString(node)', () => {
+  describe('show(node)', () => {
     it('returns a string representation', () => {
-      expect(nodeString(c00)).toBeString();
+      expect(show(c00)).toBeString();
     });
   });
 });
