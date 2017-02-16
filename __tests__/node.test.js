@@ -4,7 +4,7 @@ import 'jasmine-expect';
 //   cIDs, colDiff, column, copy, isEquivalent, isNeighbor, node, rAdj, rIDs, row,
 //    rowDiff, sameCol, sameNVector, samePVector, sameRow, show, tangent, xEquivalent, } from 'src/node';
 
-import { column, copy, id, node, row, show, } from 'src/node';
+import { column, copy, id, node, row, setCol, setRow, show, } from 'src/node';
 const c00 = node(0, 0);
 const c01 = node(0, 1);
 const c22 = node(2, 2);
@@ -41,6 +41,16 @@ describe('node', () => {
     describe('column(node)', () => {
       it('retuns the column index', () => {
         expect(column(c00)).toBe(0);
+      });
+    });
+    describe('setCol', () => {
+      it('retuns the node with an updated column index', () => {
+        expect(column(setCol(0)(c00))).toBe(0);
+      });
+    });
+    describe('setRow', () => {
+      it('retuns the row index', () => {
+        expect(row(setRow(0)(c00))).toBe(0);
       });
     });
   
