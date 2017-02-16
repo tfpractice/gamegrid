@@ -1,5 +1,3 @@
-// import { asSet, spread, } from 'fenugreek-collections';
-// const { atan, abs, PI } = Math;
 const init = { column: null, row: null, id: '' };
 
 // **column** `::  Node ->  Number`
@@ -27,5 +25,10 @@ export const node = (column = null, row = null) =>
  // returns a copy of a node
 export const copy = n => node(column(n), row(n));
 
+// **setCol** `::  Node -> Node`
+// returns a copy of a node with a modified row
 export const setCol = c => n => node(c, row(n));
+
+// **setRow** `::  Node -> Node`
+// returns a copy of a node with a modified row
 export const setRow = r => n => node(column(n), r);
