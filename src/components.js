@@ -1,3 +1,4 @@
+import { addBinSet, flattenBin, } from 'fenugreek-collections';
 import { Components, } from 'graph-curry';
 import { colGrid, negGrid, posGrid, rowGrid, } from './grid';
 
