@@ -1,4 +1,5 @@
 import { Components, Graph } from 'graph-curry';
+import { asSet, filter, map, spread } from 'fenugreek-collections';
 
 var init = { column: null, row: null, id: '' };
 
@@ -205,68 +206,12 @@ var compare = Object.freeze({
 	isNeighbor: isNeighbor
 });
 
-// **isIterable** `:: obj -> bool`  
-// checks if an object is iterable
-var isIterable = function isIterable(o) {
-  return !!o[Symbol.iterator];
-};
-
-// **iterify** `:: obj -> iterable`  
-// returns the object or an Iterable<a> containging the object
-var iterify = function iterify(o) {
-  return isIterable(o) ? o : [o];
-};
-
-var toConsumableArray = function (arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-    return arr2;
-  } else {
-    return Array.from(arr);
-  }
-};
-
-// requires [iterify](iterable.html)
-// **spread** `:: Iterable<a> -> Iterable<a>`  
-// returns an Iterable<a> of the collections default iterator
-var spread = function spread() {
-  var coll = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  return [].concat(toConsumableArray(iterify(coll)));
-};
-
-// export default spread;
-
-// requires [spread](spread.html)
-// **map** `:: Iterable<a>  -> (a->b) -> [b]`  
-// returns an Iterable<a> of the return values of a 
-// function called on each element of an iterable 
-var map = function map(coll) {
-  return function (fn) {
-    return spread(coll).map(fn);
-  };
-};
-
-// **filter** `:: Iterable<a>  -> (a->bool) -> [a]`  
-// returns the iterable's values which return true for a given function
-var filter$1 = function filter(coll) {
-  return function (fn) {
-    return spread(coll).filter(fn);
-  };
-};
-
-// **asSet** `:: Iterable<a> -> Set[a]`  
-// returns an Iterable<a> of the collections default iterator
-var asSet = function asSet(c) {
-  return new Set(spread(c));
-};
-
 // **byCol** `::  [Node] ->  Number  -> [Node]`
 // returns an array of nodes  with the specified column id
 var byCol = function byCol(nodes) {
   return function () {
     var column$$1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    return filter$1(nodes)(sameCol({ column: column$$1 }));
+    return filter(nodes)(sameCol({ column: column$$1 }));
   };
 };
 
@@ -275,7 +220,7 @@ var byCol = function byCol(nodes) {
 var byRow = function byRow(nodes) {
   return function () {
     var row$$1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    return filter$1(nodes)(sameRow({ row: row$$1 }));
+    return filter(nodes)(sameRow({ row: row$$1 }));
   };
 };
 
@@ -285,7 +230,7 @@ var byPVec = function byPVec(nodes) {
   return function () {
     var column$$1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
     var row$$1 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    return filter$1(nodes)(samePVector({ column: column$$1, row: row$$1 }));
+    return filter(nodes)(samePVector({ column: column$$1, row: row$$1 }));
   };
 };
 
@@ -295,7 +240,7 @@ var byNVec = function byNVec(nodes) {
   return function () {
     var column$$1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
     var row$$1 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    return filter$1(nodes)(sameNVector({ column: column$$1, row: row$$1 }));
+    return filter(nodes)(sameNVector({ column: column$$1, row: row$$1 }));
   };
 };
 
@@ -325,7 +270,7 @@ var rIDs = function rIDs(nodes) {
 // returns a graph with edges connecting all nodes
 var byAdj = function byAdj(nodes) {
   return function (src) {
-    return filter$1(nodes)(isNeighbor(src));
+    return filter(nodes)(isNeighbor(src));
   };
 };
 
@@ -333,7 +278,7 @@ var byAdj = function byAdj(nodes) {
 // returns a graph with edges connecting all rows
 var rowAdj = function rowAdj(nodes) {
   return function (src) {
-    return filter$1(byAdj(nodes)(src))(sameRow(src));
+    return filter(byAdj(nodes)(src))(sameRow(src));
   };
 };
 
@@ -341,7 +286,7 @@ var rowAdj = function rowAdj(nodes) {
 // returns a graph with edges connecting all columns
 var colAdj = function colAdj(nodes) {
   return function (src) {
-    return filter$1(byAdj(nodes)(src))(sameCol(src));
+    return filter(byAdj(nodes)(src))(sameCol(src));
   };
 };
 
@@ -349,7 +294,7 @@ var colAdj = function colAdj(nodes) {
 // returns a graph with edges connecting all positive diagonals
 var posAdj = function posAdj(nodes) {
   return function (src) {
-    return filter$1(byAdj(nodes)(src))(samePVector(src));
+    return filter(byAdj(nodes)(src))(samePVector(src));
   };
 };
 
@@ -357,11 +302,11 @@ var posAdj = function posAdj(nodes) {
 // returns a graph with edges connecting all negative diagonal
 var negAdj = function negAdj(nodes) {
   return function (src) {
-    return filter$1(byAdj(nodes)(src))(sameNVector(src));
+    return filter(byAdj(nodes)(src))(sameNVector(src));
   };
 };
 
-var filter = Object.freeze({
+var filter$1 = Object.freeze({
 	byCol: byCol,
 	byRow: byRow,
 	byPVec: byPVec,
@@ -376,7 +321,7 @@ var filter = Object.freeze({
 	negAdj: negAdj
 });
 
-var toConsumableArray$1 = function (arr) {
+var toConsumableArray = function (arr) {
   if (Array.isArray(arr)) {
     for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
 
@@ -393,31 +338,31 @@ var nodes$1 = Graph.nodes;
 // returns a copy of a grid with edges joining a nodes and all its neighbors
 
 var joinAdj = function joinAdj(g, n) {
-  return addEdges(g)(n, 0).apply(undefined, toConsumableArray$1(byAdj(nodes$1(g))(n)));
+  return addEdges(g)(n, 0).apply(undefined, toConsumableArray(byAdj(nodes$1(g))(n)));
 };
 
 // **joinCols** `::  (Map<edge>, node)  -> Map<edge>`
 // returns a copy of a grid with edges joining a nodes and all its column neighbors
 var joinCols = function joinCols(g, n) {
-  return addEdges(g)(n, 0).apply(undefined, toConsumableArray$1(colAdj(nodes$1(g))(n)));
+  return addEdges(g)(n, 0).apply(undefined, toConsumableArray(colAdj(nodes$1(g))(n)));
 };
 
 // **joinRows** `::  (Map<edge>, node)  -> Map<edge>`
 // returns a copy of a grid with edges joining a nodes and all its row neighbors
 var joinRows = function joinRows(g, n) {
-  return addEdges(g)(n, 0).apply(undefined, toConsumableArray$1(rowAdj(nodes$1(g))(n)));
+  return addEdges(g)(n, 0).apply(undefined, toConsumableArray(rowAdj(nodes$1(g))(n)));
 };
 
 // **joinPVectors** `::  (Map<edge>, node)  -> Map<edge>`
 // returns a copy of a grid with edges joining a nodes and all its positive neighbors
 var joinPVectors = function joinPVectors(g, n) {
-  return addEdges(g)(n, 0).apply(undefined, toConsumableArray$1(posAdj(nodes$1(g))(n)));
+  return addEdges(g)(n, 0).apply(undefined, toConsumableArray(posAdj(nodes$1(g))(n)));
 };
 
 // **joinNVectors** `::  (Map<edge>, node)  -> Map<edge>`
 // returns a copy of a grid with edges joining a nodes and all its negative neighbors
 var joinNVectors = function joinNVectors(g, n) {
-  return addEdges(g)(n, 0).apply(undefined, toConsumableArray$1(negAdj(nodes$1(g))(n)));
+  return addEdges(g)(n, 0).apply(undefined, toConsumableArray(negAdj(nodes$1(g))(n)));
 };
 
 
@@ -456,13 +401,13 @@ var genNodes = function genNodes() {
 var grid = function grid() {
   var c = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
   var r = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  return graph.apply(undefined, toConsumableArray$1(genNodes(c, r)));
+  return graph.apply(undefined, toConsumableArray(genNodes(c, r)));
 };
 
 // **copy** `::  Map<edge> ->  node  -> Map<edge>`
 // returns a copy of a grid
 var copy$1 = function copy$$1(grid) {
-  return graph.apply(undefined, toConsumableArray$1(nodes(grid)));
+  return graph.apply(undefined, toConsumableArray(nodes(grid)));
 };
 
 // **colNodes** `::  Map<edge> ->  Number  -> [Node]`
@@ -613,5 +558,5 @@ var components = Object.freeze({
 	splitComps: splitComps
 });
 
-export { compare as Compare, components as Components, filter as Filter, grid$1 as Grid, join as Join, node$1 as Node };
+export { compare as Compare, components as Components, filter$1 as Filter, grid$1 as Grid, join as Join, node$1 as Node };
 //# sourceMappingURL=bundle.es6.js.map
