@@ -15,7 +15,6 @@ const [ n00, n01, n02, n03, n04, n05, n10, n11, n12, n13, n14, n15,
 describe('join', () => {
   describe('joinAdj', () => {
     it('creates edges between a src node and all adjacent nodes', () => {
-      console.log(joinAdj(centGrid, n05));
       expect(joinAdj(centGrid, n05) instanceof Map).toBeTrue();
     });
   });
