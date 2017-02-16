@@ -25,8 +25,6 @@ export const genNodes = (cols = 0, rows = 0) => {
 // returns a Map of edges with the specified number of columns and rows
 export const grid = (c = 0, r = 0) => graph(...genNodes(c, r));
 
-export const setNodes = (...nodes) => g => graph(...genNodes(c, r));
-
 // **copy** `::  Map<edge> ->  node  -> Map<edge>`
 // returns a copy of a grid
 export const copy = grid => graph(...nodes(grid));
