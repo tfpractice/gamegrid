@@ -1,13 +1,32 @@
 {
-    "presets": [["latest", { "es2015": { "modules": false } }]],
-    "env": { "test": { "presets": [["latest"]] } },
-    "plugins": [["module-resolver", {
-            "root": ["./"],
-            "alias": {
-              "game-grid": "./",
-              "src": "src",
-              "config": "./config",
-            }
-        }],
-    ],
+  "presets": [
+    [
+      "latest",
+      {
+        "es2015": {
+          "modules": false
+        }
+      }
+    ]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        "latest"
+      ]
+    }
+  },
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./"
+        ],
+        "alias": {
+          "src": "./src"
+        }
+      }
+    ]
+  ]
 }
