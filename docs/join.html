@@ -20,13 +20,18 @@
             <div id="jump_page">
               
                 
-                <a class="source" href="adj.html">
-                  adj.js
+                <a class="source" href="compare.html">
+                  compare.js
                 </a>
               
                 
                 <a class="source" href="components.html">
                   components.js
+                </a>
+              
+                
+                <a class="source" href="filter.html">
+                  filter.js
                 </a>
               
                 
@@ -74,7 +79,7 @@
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="hljs-keyword">import</span> { Graph, } <span class="hljs-keyword">from</span> <span class="hljs-string">'graph-curry'</span>;
-<span class="hljs-keyword">import</span> { allAdj, colAdj, negAdj, posAdj, rowAdj, } <span class="hljs-keyword">from</span> <span class="hljs-string">'./adj'</span>;
+<span class="hljs-keyword">import</span> { byAdj, colAdj, negAdj, posAdj, rowAdj, } <span class="hljs-keyword">from</span> <span class="hljs-string">'./filter'</span>;
 
 <span class="hljs-keyword">const</span> { addEdges, nodes, } = Graph;</pre></div></div>
             
@@ -92,7 +97,7 @@ returns a copy of a grid with edges joining a nodes and all its neighbors</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> joinAdj = <span class="hljs-function">(<span class="hljs-params">g, src</span>) =&gt;</span> addEdges(g)(src, <span class="hljs-number">0</span>)(...allAdj(g)(src));</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> joinAdj = <span class="hljs-function">(<span class="hljs-params">g, n</span>) =&gt;</span> addEdges(g)(n, <span class="hljs-number">0</span>)(...byAdj(nodes(g))(n));</pre></div></div>
             
         </li>
         
@@ -108,7 +113,7 @@ returns a copy of a grid with edges joining a nodes and all its column neighbors
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> joinCols = <span class="hljs-function">(<span class="hljs-params">g, src</span>) =&gt;</span> addEdges(g)(src, <span class="hljs-number">0</span>)(...colAdj(g)(src));</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> joinCols = <span class="hljs-function">(<span class="hljs-params">g, n</span>) =&gt;</span> addEdges(g)(n, <span class="hljs-number">0</span>)(...colAdj(nodes(g))(n));</pre></div></div>
             
         </li>
         
@@ -124,7 +129,7 @@ returns a copy of a grid with edges joining a nodes and all its row neighbors</p
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> joinRows = <span class="hljs-function">(<span class="hljs-params">g, src</span>) =&gt;</span> addEdges(g)(src, <span class="hljs-number">0</span>)(...rowAdj(g)(src));</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> joinRows = <span class="hljs-function">(<span class="hljs-params">g, n</span>) =&gt;</span> addEdges(g)(n, <span class="hljs-number">0</span>)(...rowAdj(nodes(g))(n));</pre></div></div>
             
         </li>
         
@@ -140,7 +145,7 @@ returns a copy of a grid with edges joining a nodes and all its positive neighbo
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> joinPVectors = <span class="hljs-function">(<span class="hljs-params">g, src</span>) =&gt;</span> addEdges(g)(src, <span class="hljs-number">0</span>)(...posAdj(g)(src));</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> joinPVectors = <span class="hljs-function">(<span class="hljs-params">g, n</span>) =&gt;</span> addEdges(g)(n, <span class="hljs-number">0</span>)(...posAdj(nodes(g))(n));</pre></div></div>
             
         </li>
         
@@ -156,87 +161,7 @@ returns a copy of a grid with edges joining a nodes and all its negative neighbo
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> joinNVectors = <span class="hljs-function">(<span class="hljs-params">g, src</span>) =&gt;</span> addEdges(g)(src, <span class="hljs-number">0</span>)(...negAdj(g)(src));</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-7">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
-              </div>
-              <p><strong>joinGrid</strong> <code>::  Map&lt;edge&gt;  -&gt; Map&lt;edge&gt;</code>
-returns a copy of a grid with edges joining all nodes with all their neighbors</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> joinGrid = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> nodes(grid).reduce(joinAdj, grid);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-8">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
-              </div>
-              <p><strong>colGrid</strong> <code>::  Map&lt;edge&gt; -&gt; Map&lt;edge&gt;</code>
-returns a copy of a grid with edges joining all nodes with all their column eighbors</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> colGrid = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> nodes(grid).reduce(joinCols, grid);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-9">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
-              </div>
-              <p><strong>rowGrid</strong> <code>::  Map&lt;edge&gt;  -&gt; Map&lt;edge&gt;</code>
-returns a copy of a grid with edges joining all nodes with all their row neighbors</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> rowGrid = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> nodes(grid).reduce(joinRows, grid);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-10">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
-              </div>
-              <p><strong>posGrid</strong> <code>::  Map&lt;edge&gt;  -&gt; Map&lt;edge&gt;</code>
-returns a copy of a grid with edges joining all nodes with all their positive neighbors</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> posGrid = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> nodes(grid).reduce(joinPVectors, grid);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-11">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
-              </div>
-              <p><strong>negGrid</strong> <code>::  (Map&lt;edge&gt;, node)  -&gt; Map&lt;edge&gt;</code>
-returns a copy of a grid with edges joining all nodes with all their negative neighbors</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> negGrid = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> nodes(grid).reduce(joinNVectors, grid);</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> joinNVectors = <span class="hljs-function">(<span class="hljs-params">g, n</span>) =&gt;</span> addEdges(g)(n, <span class="hljs-number">0</span>)(...negAdj(nodes(g))(n));</pre></div></div>
             
         </li>
         

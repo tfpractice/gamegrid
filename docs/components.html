@@ -20,13 +20,18 @@
             <div id="jump_page">
               
                 
-                <a class="source" href="adj.html">
-                  adj.js
+                <a class="source" href="compare.html">
+                  compare.js
                 </a>
               
                 
                 <a class="source" href="components.html">
                   components.js
+                </a>
+              
+                
+                <a class="source" href="filter.html">
+                  filter.js
                 </a>
               
                 
@@ -74,7 +79,8 @@
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="hljs-keyword">import</span> { Components, } <span class="hljs-keyword">from</span> <span class="hljs-string">'graph-curry'</span>;
-<span class="hljs-keyword">import</span> { colGrid, negGrid, posGrid, rowGrid, } <span class="hljs-keyword">from</span> <span class="hljs-string">'./join'</span>;
+<span class="hljs-keyword">import</span> { colGrid, negGrid, posGrid, rowGrid, } <span class="hljs-keyword">from</span> <span class="hljs-string">'./grid'</span>;
+
 <span class="hljs-keyword">const</span> { componentSet, } = Components;</pre></div></div>
             
         </li>
@@ -86,12 +92,12 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p><strong>colComponents</strong> <code>::  Map&lt;edge&gt;  -&gt; Set&lt;edge&gt;</code>
+              <p><strong>colComps</strong> <code>::  Map&lt;edge&gt;  -&gt; Set&lt;edge&gt;</code>
 returns a set of all columnn connected components</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> colComponents = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> componentSet(colGrid(grid));</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> colComps = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> componentSet(colGrid(grid));</pre></div></div>
             
         </li>
         
@@ -102,12 +108,12 @@ returns a set of all columnn connected components</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p><strong>rowComponents</strong> <code>::  Map&lt;edge&gt;  -&gt; Set&lt;edge&gt;</code>
+              <p><strong>rowComps</strong> <code>::  Map&lt;edge&gt;  -&gt; Set&lt;edge&gt;</code>
 returns a set of all row connected components</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> rowComponents = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> componentSet(rowGrid(grid));</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> rowComps = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> componentSet(rowGrid(grid));</pre></div></div>
             
         </li>
         
@@ -118,12 +124,12 @@ returns a set of all row connected components</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p><strong>posComponents</strong> <code>::  Map&lt;edge&gt;  -&gt; Set&lt;edge&gt;</code>
+              <p><strong>posComps</strong> <code>::  Map&lt;edge&gt;  -&gt; Set&lt;edge&gt;</code>
 returns a set of all positive connected components</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> posComponents = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> componentSet(posGrid(grid));</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> posComps = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> componentSet(posGrid(grid));</pre></div></div>
             
         </li>
         
@@ -134,12 +140,46 @@ returns a set of all positive connected components</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p><strong>negComponents</strong> <code>::  Map&lt;edge&gt;  -&gt; Set&lt;edge&gt;</code>
+              <p><strong>negComps</strong> <code>::  Map&lt;edge&gt;  -&gt; Set&lt;edge&gt;</code>
 returns a set of all negative connected components</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> negComponents = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> componentSet(negGrid(grid));</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> negComps = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> componentSet(negGrid(grid));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p><strong>omniComps</strong> <code>::  Map&lt;edge&gt;  -&gt; Set&lt;edge&gt;</code>
+returns a set of all connected components</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> omniComps = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> [ colComps, negComps, posComps, rowComps, ]
+  .map(<span class="hljs-function"><span class="hljs-params">f</span> =&gt;</span> f(grid)).reduce(<span class="hljs-function">(<span class="hljs-params">set, next</span>) =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(set).add(next), <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p><strong>splitComps</strong> <code>::  Map&lt;edge&gt;  -&gt; Set&lt;edge&gt;</code>
+returns a map of all connected components by direction</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> splitComps = <span class="hljs-function"><span class="hljs-params">g</span> =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>().set(<span class="hljs-string">'row'</span>, rowComps(g))
+  .set(<span class="hljs-string">'col'</span>, colComps(g)).set(<span class="hljs-string">'pos'</span>, posComps(g)).set(<span class="hljs-string">'neg'</span>, negComps(g));</pre></div></div>
             
         </li>
         
