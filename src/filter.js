@@ -1,8 +1,8 @@
 import { asSet, filter, map, spread, } from 'fenugreek-collections';
 import { column, row, } from './node';
-import { angleBetween, cAdj, colDiff, diffPos, isNeighbor, rAdj, rowDiff,
-   sameCol, sameNVector, samePos, samePVector, sameRow, tangent, } from './compare';
-   
+import { isNeighbor, sameCol, sameNVector, samePos, samePVector, sameRow,
+} from './compare';
+
 // **byCol** `::  [Node] ->  Number  -> [Node]`
 // returns an array of nodes  with the specified column id
 export const byCol = nodes => (column = 0) => filter(nodes)(sameCol({ column }));
