@@ -51,22 +51,22 @@ export const negNodes = grid => (c = 0, r = 0) => byNVec(nodes(grid))(c, r);
 // returns a node at the specified position
 export const findNode = grid => (c = 0, r = 0) => byPosition(nodes(grid))(c, r);
 
-  // **joinGrid** `::  Map<edge>  -> Map<edge>`
-  // returns a copy of a grid with edges joining all nodes with all their neighbors
+// **joinGrid** `::  Map<edge>  -> Map<edge>`
+// returns a copy of a grid with edges joining all nodes with all their neighbors
 export const joinGrid = grid => nodes(grid).reduce(joinAdj, grid);
 
-  // **colGrid** `::  Map<edge> -> Map<edge>`
-  // returns a copy of a grid with edges joining all nodes with all their column eighbors
+// **colGrid** `::  Map<edge> -> Map<edge>`
+// returns a copy of a grid with edges joining all nodes with all their column eighbors
 export const colGrid = grid => nodes(grid).reduce(joinCols, grid);
 
-  // **rowGrid** `::  Map<edge>  -> Map<edge>`
-  // returns a copy of a grid with edges joining all nodes with all their row neighbors
+// **rowGrid** `::  Map<edge>  -> Map<edge>`
+// returns a copy of a grid with edges joining all nodes with all their row neighbors
 export const rowGrid = grid => nodes(grid).reduce(joinRows, grid);
 
-  // **posGrid** `::  Map<edge>  -> Map<edge>`
-  // returns a copy of a grid with edges joining all nodes with all their positive neighbors
+// **posGrid** `::  Map<edge>  -> Map<edge>`
+// returns a copy of a grid with edges joining all nodes with all their positive neighbors
 export const posGrid = grid => nodes(grid).reduce(joinPVectors, grid);
 
-  // **negGrid** `::  (Map<edge>, node)  -> Map<edge>`
-  // returns a copy of a grid with edges joining all nodes with all their negative neighbors
+// **negGrid** `::  (Map<edge>, node)  -> Map<edge>`
+// returns a copy of a grid with edges joining all nodes with all their negative neighbors
 export const negGrid = grid => nodes(grid).reduce(joinNVectors, grid);
