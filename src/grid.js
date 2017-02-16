@@ -1,11 +1,8 @@
 import { Graph, } from 'graph-curry';
-import { column as getCol, row as getRow, isEquivalent, node, sameCol,
-  sameNVector, samePVector, sameRow, } from './node';
+import { byCol, byNVec, byPosition, byPVec, byRow, } from './filter';
 import { joinAdj, joinCols, joinNVectors, joinPVectors, joinRows, } from './join';
+import { node, } from './node';
 const { graph, nodes, } = Graph;
-
-import { byAdj, byCol, byNVec, byPosition, byPVec, byRow, cIDs, colAdj,
-generate, negAdj, posAdj, rIDs, rowAdj, } from './filter';
 
 // **genNodes** `::  (Number, Number) -> [Node]`
 // returns an array of nodes the specified number of columns and rows
