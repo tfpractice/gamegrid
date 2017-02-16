@@ -17,8 +17,11 @@ export default {
   moduleName: 'game-grid',
   sourceMap: true,
   exports: 'named',
-  external: [ 'graph-curry' ],
-  globals: { 'graph-curry': 'graph-curry' },
+  external: [ 'graph-curry', 'fenugreek-collections' ],
+  globals: {
+    'graph-curry': 'graph-curry',
+    'fenugreek-collections': 'fenugreek-collections'
+  },
   plugins: [
     progress({ clearLine: false, }),
     filesize(),

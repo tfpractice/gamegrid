@@ -12,7 +12,7 @@ export default {
     moduleId: 'game-grid',
     moduleName: 'game-grid',
     exports: 'named',
-    external: [ 'graph-curry' ],
+    external: [ 'graph-curry', 'fenugreek-collections' ],
     sourceMap: true,
     plugins: [
       progress({ clearLine: false, }),
