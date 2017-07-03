@@ -1,5 +1,5 @@
+import { addBinMap, addBinSet, asSet, filter, flattenBin, map, spread } from 'fenugreek-collections';
 import { Components, Graph } from 'graph-curry';
-import { asSet, filter, map, spread } from 'fenugreek-collections';
 
 var init = { column: null, row: null, id: '' };
 
@@ -506,6 +506,34 @@ var grid$1 = Object.freeze({
 	negGrid: negGrid
 });
 
+var isFunc = function isFunc(fn) {
+  return fn instanceof Function;
+};
+var callOn = function callOn(x) {
+  return function (fn) {
+    return isFunc(fn) ? fn(x) : x;
+  };
+};
+var callBin = function callBin(x, fn) {
+  return callOn(x)(fn);
+};
+var pipeline = function pipeline() {
+  for (var _len = arguments.length, funcs = Array(_len), _key = 0; _key < _len; _key++) {
+    funcs[_key] = arguments[_key];
+  }
+
+  return function (x) {
+    return funcs.reduce(callBin, x);
+  };
+};
+
+var utils = Object.freeze({
+	isFunc: isFunc,
+	callOn: callOn,
+	callBin: callBin,
+	pipeline: pipeline
+});
+
 var componentSet = Components.componentSet;
 
 // **colComps** `::  Map<edge>  -> Set<edge>`
@@ -536,17 +564,13 @@ var negComps = function negComps(grid$$1) {
 // **omniComps** `::  Map<edge>  -> Set<edge>`
 // returns a set of all connected components
 var omniComps = function omniComps(grid$$1) {
-  return [colComps, negComps, posComps, rowComps].map(function (f) {
-    return f(grid$$1);
-  }).reduce(function (set, next) {
-    return new Set(set).add(next);
-  }, new Set());
+  return [colComps, rowComps, posComps, negComps].map(callOn(grid$$1)).reduce(flattenBin, []).reduce(addBinSet, new Set());
 };
 
 // **splitComps** `::  Map<edge>  -> Set<edge>`
 // returns a map of all connected components by direction
 var splitComps = function splitComps(g) {
-  return new Map().set('row', rowComps(g)).set('col', colComps(g)).set('pos', posComps(g)).set('neg', negComps(g));
+  return [['row', rowComps(g)], ['col', colComps(g)], ['pos', posComps(g)], ['neg', negComps(g)]].reduce(addBinMap, new Map());
 };
 
 var components = Object.freeze({
@@ -558,5 +582,13 @@ var components = Object.freeze({
 	splitComps: splitComps
 });
 
-export { compare as Compare, components as Components, filter$1 as Filter, grid$1 as Grid, join as Join, node$1 as Node };
+// exports [compare](compare.html)
+// exports [components](components.html)
+// exports [filter](filter.html)
+// exports [grid](grid.html)
+// exports [join](join.html)
+// exports [node](node.html)
+// exports [utils](utils.html)
+
+export { compare as Compare, components as Components, filter$1 as Filter, grid$1 as Grid, join as Join, node$1 as Node, utils as Utils };
 //# sourceMappingURL=bundle.es6.js.map

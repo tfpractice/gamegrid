@@ -54,6 +54,11 @@
                   node.js
                 </a>
               
+                
+                <a class="source" href="utils.html">
+                  utils.js
+                </a>
+              
             </div>
           </div>
         </li>
@@ -78,9 +83,10 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">import</span> { Components, } <span class="hljs-keyword">from</span> <span class="hljs-string">'graph-curry'</span>;
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">import</span> { addBinMap, addBinSet, flattenBin, } <span class="hljs-keyword">from</span> <span class="hljs-string">'fenugreek-collections'</span>;
+<span class="hljs-keyword">import</span> { Components, } <span class="hljs-keyword">from</span> <span class="hljs-string">'graph-curry'</span>;
 <span class="hljs-keyword">import</span> { colGrid, negGrid, posGrid, rowGrid, } <span class="hljs-keyword">from</span> <span class="hljs-string">'./grid'</span>;
-
+<span class="hljs-keyword">import</span> { callBin, callOn, isFunc, pipeline, } <span class="hljs-keyword">from</span> <span class="hljs-string">'./utils'</span>;
 <span class="hljs-keyword">const</span> { componentSet, } = Components;</pre></div></div>
             
         </li>
@@ -97,7 +103,8 @@ returns a set of all columnn connected components</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> colComps = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> componentSet(colGrid(grid));</pre></div></div>
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> colComps = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> componentSet(colGrid(grid));</pre></div></div>
             
         </li>
         
@@ -161,8 +168,8 @@ returns a set of all connected components</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> omniComps = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> [ colComps, negComps, posComps, rowComps, ]
-  .map(<span class="hljs-function"><span class="hljs-params">f</span> =&gt;</span> f(grid)).reduce(<span class="hljs-function">(<span class="hljs-params">set, next</span>) =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(set).add(next), <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>);</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> omniComps = <span class="hljs-function"><span class="hljs-params">grid</span> =&gt;</span> [ colComps, rowComps, posComps, negComps, ]
+  .map(callOn(grid)).reduce(flattenBin, []).reduce(addBinSet, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>);</pre></div></div>
             
         </li>
         
@@ -178,8 +185,8 @@ returns a map of all connected components by direction</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> splitComps = <span class="hljs-function"><span class="hljs-params">g</span> =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>().set(<span class="hljs-string">'row'</span>, rowComps(g))
-  .set(<span class="hljs-string">'col'</span>, colComps(g)).set(<span class="hljs-string">'pos'</span>, posComps(g)).set(<span class="hljs-string">'neg'</span>, negComps(g));</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> splitComps = <span class="hljs-function"><span class="hljs-params">g</span> =&gt;</span> [[ <span class="hljs-string">'row'</span>, rowComps(g) ], [ <span class="hljs-string">'col'</span>, colComps(g) ],
+ [ <span class="hljs-string">'pos'</span>, posComps(g) ], [ <span class="hljs-string">'neg'</span>, negComps(g) ]].reduce(addBinMap, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>);</pre></div></div>
             
         </li>
         

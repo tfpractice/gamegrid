@@ -1458,11 +1458,7 @@ fb-watchman@^1.8.0, fb-watchman@^1.9.0:
   dependencies:
     bser "1.0.2"
 
-fenugreek-collections@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/fenugreek-collections/-/fenugreek-collections-1.1.0.tgz#444103aab6bdc3d6580a85a5b7d661fc4d51a597"
-
-fenugreek-collections@^1.1.1:
+fenugreek-collections@^1.1.0, fenugreek-collections@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/fenugreek-collections/-/fenugreek-collections-1.1.1.tgz#92e1c5915d5dce1c266b5737c1b6eaddb194732f"
 
